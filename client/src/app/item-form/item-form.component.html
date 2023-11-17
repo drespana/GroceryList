@@ -1,0 +1,37 @@
+<form class="item-form" [formGroup]="itemForm" (ngSubmit)="submitForm()">
+    <div class="form-floating mb-3">
+        <input class="form-control" type="text" id="item" formControlName="item" placeholder="Item Name" required/>
+        <label for="item">Item Name</label>
+    </div>
+
+    <div *ngIf="item.invalid && (item.dirty || item.touched)" class="alert alert-danger">
+        <div *ngIf="item.errors?.['required']">
+            Name is required.
+        </div>
+        <div *ngIf="item.errors?.['minlength']">
+            Name must be at least 3 characters long.
+        </div>
+    </div>
+
+    <div mdbDropdown class="form-floating">
+        <select class="form-control" formControlName="frequency" placeholder="frequency">
+            <option value="One-Time Request">One-Time Request</option>
+            <option value="Weekly">Weekly</option>
+            <option value="Monthly">Monthly</option>
+            <option value="Indefinitely">Indefinitely</option>
+        </select>
+        <label for="frequency">Frequency</label>
+    </div>
+
+    <div mdDropdown class="form-floating dropdown bd-3">
+        
+        <select class="form-control" formControlName="store" placeholder="store">
+            <option value="Aldi">Aldi</option>
+            <option value="Jewel Osco">Jewel Osco</option>
+            <option value="Pete's Fresh Market">Pete's Fresh Market</option>
+            <option value="Online">Online</option>
+        </select>
+        <label for="store">Store</label>
+    </div>
+
+</form>

@@ -55,16 +55,16 @@ itemRouter.put("/:id", async (req, res) => {
     try {
     const id = req?.params?.id;
     const item = req.body;
-    const query = { _id: new mongodb.ObjectId}
+    const query = { _id: new mongodb.ObjectId(id)}
     const result = await collections.items?.updateOne(query, {$set: item});
-
+        console.log(result)
 
     if (result && result.matchedCount) {
         res.status(200).send(`Updated item: ID ${id}`);
     } else if (!result?.matchedCount){
         res.status(304).send(`Failed to update: ID ${id}`)
     } else {
-        res.status(304).send(`Failed to update: ID ${id}`)
+        res.status(304).send(`failed to update: ID ${id}`)
     }
 } catch (err) {
     console.error(err.message);
@@ -77,15 +77,16 @@ itemRouter.put("/:id", async (req, res) => {
 itemRouter.delete("/:id", async (req, res) => {
     try {
         const id = req?.params?.id;
-        const query = { _id: new mongodb.ObjectId};
+        const query = { _id: new mongodb.ObjectId(id)};
         const result = await collections.items?.deleteOne(query);
+        
 
         if (result && result.deletedCount) {
             res.status(200).send(`Removed item: ID ${id}`);
         } else if (!result){
-            res.status(400).send(`Faile to remove item: ID ${id}`);
+            res.status(400).send(`Failed to remove item: ID ${id}`);
         } else {
-            res.status(404).send(`Faile to remove item: ID ${id}`)
+            res.status(404).send(`failed to remove item: ID ${id}`)
         }
     } catch (err) {
         console.error(err.message);

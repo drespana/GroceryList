@@ -1,0 +1,20 @@
+.allCards{
+    padding-top:3em;
+    display: flex;
+    flex-wrap: wrap;    
+    flex-direction: column;
+    align-content: center;
+
+}
+
+.card-contents{
+    padding:10px;
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width:60%;
+}
+
+.mt-3 {
+    padding: 0 0 0 30px;
+}
