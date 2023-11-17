@@ -14,7 +14,19 @@ itemRouter.get("/", async (_req, res) => {
     } catch (err) {
         res.status(500).send(err.message)
     }
-});
+}); 
+
+// GET by frequency
+// GET by store
+// GET by out of stock
+itemRouter.get("/out-of-stock", async (req, res) => {
+    try {
+        const oosItems = await collections.items?.find({inStock:0}).toArray();
+        res.status(200).send(oosItems);
+    } catch (err) {
+        res.status(500).send(err.message)
+    }
+})
 
 // GET item by id
 itemRouter.get("/:id", async (req, res) => {

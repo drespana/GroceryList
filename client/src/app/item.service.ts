@@ -24,6 +24,13 @@ export class ItemService {
     return this.items$;
   }
 
+  // get by frequency
+  // get by store
+  // get by out of stock
+  getOutOfStock(): Observable<Item[]> {
+    return this.http.get<Item[]>(`${this.url}/groceries/out-of-stock`)
+  }
+
   getItem(id:string): Observable<Item> {
     return this.http.get<Item>(`${this.url}/groceries/${id}`)
   }

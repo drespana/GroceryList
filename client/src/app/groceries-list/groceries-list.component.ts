@@ -25,6 +25,8 @@ export class GroceriesListComponent {
     })
   }
 
+  // get by frequency
+
   private fetchItems(): void {
     this.items$ = this.itemService.getItems();
   }

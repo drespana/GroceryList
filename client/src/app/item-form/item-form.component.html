@@ -1,8 +1,8 @@
 <form class="item-form" [formGroup]="itemForm" (ngSubmit)="submitForm()">
-    <div class="form-floating mb-3">
-        <input class="form-control" type="text" id="item" formControlName="item" placeholder="Item Name" required/>
+    <mat-form-field>
         <label for="item">Item Name</label>
-    </div>
+        <input class="form-control" type="text" id="item" formControlName="item" placeholder="Item Name" required/>
+    </mat-form-field>
 
     <div *ngIf="item.invalid && (item.dirty || item.touched)" class="alert alert-danger">
         <div *ngIf="item.errors?.['required']">
@@ -13,25 +13,24 @@
         </div>
     </div>
 
-    <div mdbDropdown class="form-floating">
-        <select class="form-control" formControlName="frequency" placeholder="frequency">
+    <mat-form-field >
+        <mat-label>Frequency</mat-label>
+        <select matNativeControl>
             <option value="One-Time Request">One-Time Request</option>
             <option value="Weekly">Weekly</option>
             <option value="Monthly">Monthly</option>
             <option value="Indefinitely">Indefinitely</option>
         </select>
-        <label for="frequency">Frequency</label>
-    </div>
+    </mat-form-field>
 
-    <div mdDropdown class="form-floating dropdown bd-3">
-        
-        <select class="form-control" formControlName="store" placeholder="store">
+    <mat-form-field class="bd-3">
+        <mat-label>Store</mat-label>
+        <select>
             <option value="Aldi">Aldi</option>
             <option value="Jewel Osco">Jewel Osco</option>
             <option value="Pete's Fresh Market">Pete's Fresh Market</option>
             <option value="Online">Online</option>
         </select>
-        <label for="store">Store</label>
-    </div>
+    </mat-form-field>
 
 </form>

@@ -3,17 +3,26 @@
 </div>
 
 <div class="allCards">
+
   All Items:
   <mat-card class="card-contents" *ngFor="let item of items$ | async">
+    
     <div class="card-contents-item">
       {{ item.item }}
     </div>
+
     <div class="card-contents-inStock">
       {{ item.inStock === 0 ? "Out of Stock" : item.inStock }}
     </div>
+
     <div class="button-container">
-      <button color="primary" mat-raised-button>edit</button>
-      <button color="warn" mat-raised-button>delete</button>
+      <button color="primary" mat-raised-button>
+        <mat-icon fontIcon="mode"/>
+      </button>
+      <button color="warn" mat-raised-button >
+        <mat-icon fontIcon="delete"/>
+      </button>
     </div>
+
   </mat-card>
 </div>
