@@ -19,8 +19,6 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 
 import { AppComponent } from './app.component';
 import { GroceriesListComponent } from './groceries-list/groceries-list.component';
-import { ItemFormComponent } from './item-form/item-form.component';
-import { AddItemComponent } from './add-item/add-item.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AllItemsComponent } from './all-items/all-items.component';
 
@@ -28,8 +26,6 @@ import { AllItemsComponent } from './all-items/all-items.component';
   declarations: [
     AppComponent,
     GroceriesListComponent,
-    ItemFormComponent,
-    AddItemComponent,
     AllItemsComponent
   ],
   imports: [

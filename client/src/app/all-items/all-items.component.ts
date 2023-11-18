@@ -1,7 +1,10 @@
-import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import Item from '../Item';
+import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ItemService } from '../item.service';
+import { BehaviorSubject } from 'rxjs';
+import Item from '../Item';
 
 @Component({
   selector: 'app-all-items',
@@ -9,17 +12,57 @@ import { ItemService } from '../item.service';
   styleUrls: ['./all-items.component.css'],
 })
 export class AllItemsComponent {
+  @Input() initialState: BehaviorSubject<Item> = new BehaviorSubject({});
+  
+  @Output() formSubmitted = new EventEmitter<Item>();
+  @Output() formValuesChanged = new EventEmitter<Item>();
   items$: Observable<Item[]> = new Observable();
   isAdding:boolean=false;
-  constructor(private itemService: ItemService) {}
+  itemForm: FormGroup = new FormGroup({});
+  newItem:Item={};
+  constructor(private fb: FormBuilder, private router:Router, private itemService:ItemService) {}
+
+  get item() {return this.itemForm.get('item')!;}
+  get inStock() {return this.itemForm.get('inStock')!;}
+  get frequency() {return this.itemForm.get('frequency')!;}
+  get store() {return this.itemForm.get('store')!};
 
   ngOnInit(): void {
     this.fetchItems();
     this.isAdding=false;
+
+    this.initialState.subscribe(item => {
+      this.itemForm = this.fb.group({
+        item: [item.item, [Validators.required]],
+        frequency: [ item.frequency, [Validators.required] ],
+        inStock: [ item.inStock, [] ],
+        store: [item.store, [] ]
+      })
+    })
+    this.itemForm.valueChanges.subscribe((val) => { this.formValuesChanged.emit(val); });
+  
   }
 
   toggle():void{
     this.isAdding=!this.isAdding
+  }
+
+  submitForm() {
+    // this.formSubmitted.emit(this.itemForm.value)
+    this.newItem = this.itemForm.value;
+    this.addItem(this.newItem)
+    this.toggle();
+    this.fetchItems();
+  }
+
+  addItem(item:Item){
+    this.itemService.createItem(item)
+      .subscribe({
+        error: (error) => {
+          alert("Failed to create Item");
+          console.error(error);
+        }
+      })
   }
 
   deleteItem(id: string): void {

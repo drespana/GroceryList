@@ -24,3 +24,8 @@
     display:flex;
     justify-content: flex-end;
 }
+
+.item-form {
+    display: flex;
+    flex-direction: column;
+}
