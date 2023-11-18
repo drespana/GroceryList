@@ -1,10 +1,30 @@
+
 <mat-toolbar>
-  <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+  <button
+    mat-icon-button
+    (click)="sideNav.toggle()"
+    class="example-icon"
+    aria-label="Example icon-button with menu icon"
+  >
     <mat-icon>menu</mat-icon>
   </button>
+
   <h2>Shopping List</h2>
 </mat-toolbar>
 
-<div>
-  <router-outlet></router-outlet>
-</div>
+<mat-sidenav-container class="sideBarNavigation">
+
+  <mat-sidenav class="sideNavCont"  #sideNav mode="side" [(opened)]="opened">
+    <div class="sideNav">
+    <button mat-button routerLink="/groceries">List</button>
+    <button mat-button routerLink="/all">All Items</button>
+    </div>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <div>
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+
+</mat-sidenav-container>
