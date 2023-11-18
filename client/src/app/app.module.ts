@@ -15,6 +15,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar'
 import { MatSidenavModule } from '@angular/material/sidenav'
 import { MatBadgeModule } from '@angular/material/badge'
 import { MatButtonModule } from '@angular/material/button'
+import {MatFormFieldModule} from '@angular/material/form-field';
 
 import { AppComponent } from './app.component';
 import { GroceriesListComponent } from './groceries-list/groceries-list.component';
@@ -32,6 +33,7 @@ import { AllItemsComponent } from './all-items/all-items.component';
     AllItemsComponent
   ],
   imports: [
+    MatFormFieldModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
@@ -47,7 +49,7 @@ import { AllItemsComponent } from './all-items/all-items.component';
     MatTableModule,
     MatSidenavModule,
     MatBadgeModule,
-    MatButtonModule
+    MatButtonModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,12 +1,12 @@
 <div class="mt-3">
-  <button color="primary" mat-raised-button routerLink="/groceries">Back</button>
+  <button color="primary" mat-raised-button routerLink="/groceries">
+    Back
+  </button>
 </div>
 
 <div class="allCards">
-
   All Items:
   <mat-card class="card-contents" *ngFor="let item of items$ | async">
-    
     <div class="card-contents-item">
       {{ item.item }}
     </div>
@@ -16,13 +16,21 @@
     </div>
 
     <div class="button-container">
-      <button color="primary" mat-raised-button>
-        <mat-icon fontIcon="mode"/>
+      <button color="primary" mat-mini-fab>
+        <mat-icon fontIcon="mode" />
       </button>
-      <button color="warn" mat-raised-button >
-        <mat-icon fontIcon="delete"/>
+      <button color="warn" mat-mini-fab>
+        <mat-icon fontIcon="delete" />
       </button>
     </div>
-
   </mat-card>
+
+  <div class="add-button">
+    <button  mat-fab [color]="isAdding? 'warn':'primary'" (click)="toggle()">
+     <mat-icon>{{isAdding?'clear':'add'}}</mat-icon>
+    </button>
+  </div>
+  <div *ngIf="isAdding">
+   <app-item-form></app-item-form>
+  </div>
 </div>

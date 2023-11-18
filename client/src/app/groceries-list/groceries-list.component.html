@@ -4,7 +4,7 @@
 </div>
 
 
-<mat-grid-list cols="2">
+<mat-grid-list cols="3">
   <mat-grid-tile> One-Time Request
     <mat-card *ngFor="let item of items$ | async"> 
         <div *ngIf="item.frequency=='One-Time Request'">
@@ -17,20 +17,19 @@
               </div>
           
               <div class="button-container">
-                <button color="primary" mat-raised-button>
+                <button color="primary" mat-mini-fab>
                   <mat-icon fontIcon="mode"/>
                 </button>
-                <button color="warn" mat-raised-button >
+                <button color="warn" mat-mini-fab >
                   <mat-icon fontIcon="delete"/>
                 </button>
               </div>
         </div>
-    
-    <button mat-fab color="primary" >
-        <mat-icon>delete</mat-icon>
-      </button>
 
-    </mat-card>
+    </mat-card>  
+      <button mat-fab color="primary" >
+        <mat-icon>add</mat-icon>
+      </button>
   </mat-grid-tile>
 
   <mat-grid-tile> Weekly
@@ -46,16 +45,19 @@
                   </div>
               
                   <div class="button-container">
-                    <button color="primary" mat-raised-button>
+                    <button color="primary" mat-mini-fab>
                       <mat-icon fontIcon="mode"/>
                     </button>
-                    <button color="warn" mat-raised-button >
+                    <button color="warn" mat-mini-fab >
                       <mat-icon fontIcon="delete"/>
                     </button>
                   </div>
             </div>
         </div>
     </mat-card>
+    <button mat-fab color="primary" >
+        <mat-icon>add</mat-icon>
+      </button>
   </mat-grid-tile>
 
   <mat-grid-tile> Monthly
@@ -71,16 +73,19 @@
                   </div>
               
                   <div class="button-container">
-                    <button color="primary" mat-raised-button>
+                    <button color="primary" mat-mini-fab>
                       <mat-icon fontIcon="mode"/>
                     </button>
-                    <button color="warn" mat-raised-button >
+                    <button color="warn" mat-mini-fab >
                       <mat-icon fontIcon="delete"/>
                     </button>
                   </div>
             </div>
         </div>
     </mat-card>
+    <button mat-fab color="primary" >
+        <mat-icon>add</mat-icon>
+      </button>
   </mat-grid-tile>
 
   <mat-grid-tile> Indefinite
@@ -96,15 +101,18 @@
                   </div>
               
                   <div class="button-container">
-                    <button color="primary" mat-raised-button>
+                    <button color="primary" mat-mini-fab>
                       <mat-icon fontIcon="mode"/>
                     </button>
-                    <button color="warn" mat-raised-button >
+                    <button color="warn" mat-mini-fab >
                       <mat-icon fontIcon="delete"/>
                     </button>
                   </div>
             </div>
         </div>
     </mat-card>
+    <button mat-fab color="primary" >
+        <mat-icon>add</mat-icon>
+      </button>
   </mat-grid-tile>
 </mat-grid-list>

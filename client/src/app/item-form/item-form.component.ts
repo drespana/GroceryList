@@ -19,21 +19,24 @@ export class ItemFormComponent {
 
   get item() {return this.itemForm.get('item')!;}
   get inStock() {return this.itemForm.get('inStock')!;}
+  get frequency() {return this.itemForm.get('frequency')!;}
   get store() {return this.itemForm.get('store')!};
 
   ngOnInit() {
     this.initialState.subscribe(item => {
       this.itemForm = this.fb.group({
         item: [item.item, [Validators.required]],
-        inStock: [ item.inStock, [Validators.required]],
-        store: [item.store, [Validators.required]]
+        frequency: [ item.frequency, [Validators.required] ],
+        inStock: [ item.inStock, [] ],
+        store: [item.store, [] ]
       })
     })
     this.itemForm.valueChanges.subscribe((val) => { this.formValuesChanged.emit(val); });
   }
 
   submitForm() {
-    this.formSubmitted.emit(this.itemForm.value)
+    console.log(this.itemForm.value)
+    // this.formSubmitted.emit(this.itemForm.value)
   }
 
 }
