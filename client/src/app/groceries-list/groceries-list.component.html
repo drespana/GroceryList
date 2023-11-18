@@ -41,6 +41,77 @@
 
     <mat-grid-tile colspan="3" rowspan="3">
       <div class="post-it-two">
+        <h4>Monthly</h4>
+        <div class="tile">
+          <div *ngFor="let item of items$ | async">
+            <mat-card class="card-contents" *ngIf="item.frequency == 'Monthly'">
+              <div class="card-contents-item">
+                {{ item.item }}
+              </div>
+
+              <div class="card-contents-inStock">
+                {{ item.inStock === 0 ? "Out of Stock" : item.inStock }}
+              </div>
+
+              <div class="item-buttons">
+                <button color="primary" mat-icon-button>
+                  <mat-icon fontIcon="mode" />
+                </button>
+                <button color="warn" mat-icon-button>
+                  <mat-icon fontIcon="delete" />
+                </button>
+              </div>
+            </mat-card>
+          </div>
+          <div class="button-container">
+            <button mat-fab color="primary">
+              <mat-icon>add</mat-icon>
+            </button>
+          </div>
+        </div>
+      </div>
+    </mat-grid-tile>
+
+    <mat-grid-tile colspan="4" rowspan="6">
+      <div class="notebook-one">
+      <h5>Indefinite</h5>
+      <div class="tile">
+        
+        <div *ngFor="let item of items$ | async">
+          <div
+            class="card-contents"
+            *ngIf="item.frequency == 'Indefinite'"
+          >
+            <div class="card-contents-item">
+              {{ item.item }}
+            </div>
+
+            <div class="card-contents-inStock">
+              {{ item.inStock === 0 ? "Out of Stock" : item.inStock }}
+            </div>
+
+            <div class="item-buttons">
+              <button color="primary" mat-icon-button>
+                <mat-icon fontIcon="mode" />
+              </button>
+              <button color="warn" mat-icon-button>
+                <mat-icon fontIcon="delete" />
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="button-container">
+          <button mat-fab color="primary">
+            <mat-icon>add</mat-icon>
+          </button>
+        </div>
+      </div>
+</div>
+    </mat-grid-tile>
+
+    <mat-grid-tile colspan="6" rowspan="3">
+      <div class="notebook-two">
         <h4>Weekly</h4>
         <div class="tile">
           <div *ngFor="let item of items$ | async">
@@ -69,72 +140,6 @@
               <mat-icon>add</mat-icon>
             </button>
           </div>
-        </div>
-      </div>
-    </mat-grid-tile>
-
-    <mat-grid-tile colspan="4" rowspan="6">
-      <div class="tile">
-        <h5>Indefinite</h5>
-        <div *ngFor="let item of items$ | async">
-          <mat-card
-            class="card-contents"
-            *ngIf="item.frequency == 'Indefinite'"
-          >
-            <div class="card-contents-item">
-              {{ item.item }}
-            </div>
-
-            <div class="card-contents-inStock">
-              {{ item.inStock === 0 ? "Out of Stock" : item.inStock }}
-            </div>
-
-            <div class="item-buttons">
-              <button color="primary" mat-icon-button>
-                <mat-icon fontIcon="mode" />
-              </button>
-              <button color="warn" mat-icon-button>
-                <mat-icon fontIcon="delete" />
-              </button>
-            </div>
-          </mat-card>
-        </div>
-
-        <div class="button-container">
-          <button mat-fab color="primary">
-            <mat-icon>add</mat-icon>
-          </button>
-        </div>
-      </div>
-    </mat-grid-tile>
-
-    <mat-grid-tile colspan="6" rowspan="3">
-      <div class="tile">
-        <h5>Monthly</h5>
-        <div *ngFor="let item of items$ | async">
-          <mat-card class="card-contents" *ngIf="item.frequency == 'Monthly'">
-            <div class="card-contents-item">
-              {{ item.item }}
-            </div>
-
-            <div class="card-contents-inStock">
-              {{ item.inStock === 0 ? "Out of Stock" : item.inStock }}
-            </div>
-
-            <div class="item-buttons">
-              <button color="primary" mat-icon-button>
-                <mat-icon fontIcon="mode" />
-              </button>
-              <button color="warn" mat-icon-button>
-                <mat-icon fontIcon="delete" />
-              </button>
-            </div>
-          </mat-card>
-        </div>
-        <div class="button-container">
-          <button mat-fab color="primary">
-            <mat-icon>add</mat-icon>
-          </button>
         </div>
       </div>
     </mat-grid-tile>
