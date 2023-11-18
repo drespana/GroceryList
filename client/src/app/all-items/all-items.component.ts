@@ -51,8 +51,9 @@ export class AllItemsComponent {
     // this.formSubmitted.emit(this.itemForm.value)
     this.newItem = this.itemForm.value;
     this.addItem(this.newItem)
+    let stuff = this.itemService.getItems();
+    console.log(stuff)
     this.toggle();
-    this.fetchItems();
   }
 
   addItem(item:Item){
@@ -65,7 +66,7 @@ export class AllItemsComponent {
       })
   }
 
-  deleteItem(id: string): void {
+  deleteItem(id: string | undefined): void {
     this.itemService.deleteItem(id).subscribe({
       next: () => this.fetchItems(),
     });

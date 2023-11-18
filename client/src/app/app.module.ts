@@ -16,6 +16,7 @@ import { MatSidenavModule } from '@angular/material/sidenav'
 import { MatBadgeModule } from '@angular/material/badge'
 import { MatButtonModule } from '@angular/material/button'
 import {MatFormFieldModule} from '@angular/material/form-field';
+import {DragDropModule} from '@angular/cdk/drag-drop'
 
 import { AppComponent } from './app.component';
 import { GroceriesListComponent } from './groceries-list/groceries-list.component';
@@ -46,6 +47,7 @@ import { AllItemsComponent } from './all-items/all-items.component';
     MatSidenavModule,
     MatBadgeModule,
     MatButtonModule,
+    DragDropModule
   ],
   providers: [],
   bootstrap: [AppComponent]

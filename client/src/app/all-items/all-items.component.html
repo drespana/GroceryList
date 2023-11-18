@@ -1,3 +1,5 @@
+
+<div>
 <div class="mt-3">
   <button color="primary" mat-raised-button routerLink="/groceries">
     Back
@@ -19,7 +21,7 @@
       <button color="primary" mat-mini-fab>
         <mat-icon fontIcon="mode" />
       </button>
-      <button color="warn" mat-mini-fab>
+      <button color="warn" mat-mini-fab (click)="deleteItem(item._id)">
         <mat-icon fontIcon="delete" />
       </button>
     </div>
@@ -84,9 +86,10 @@
       <div *ngIf="item.errors?.['required']">Store is required.</div>
     </div>
     
-      <button mat-raised-button color="primary" type="submit">Submit</button>
+      <button mat-raised-button color="primary" type="submit" routerLink="/all">Submit</button>
     
     </form>
   </div>
 
+</div>
 </div>

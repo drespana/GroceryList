@@ -2,15 +2,27 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import Item from '../Item';
 import { ItemService } from '../item.service';
+import {
+  CdkDragDrop,
+  moveItemInArray,
+  transferArrayItem,
+  CdkDrag,
+  CdkDropList,
+} from '@angular/cdk/drag-drop';
+
+export interface Tile {
+  color: string;
+  cols: number;
+  rows: number;
+  text: string;
+}
 
 @Component({
   selector: 'app-groceries-list',
   templateUrl: './groceries-list.component.html',
-  styleUrls: ['./groceries-list.component.css']
+  styleUrls: ['./groceries-list.component.css'],
 })
-
 export class GroceriesListComponent {
-  
   items$: Observable<Item[]> = new Observable();
 
   constructor(private itemService: ItemService) {}
@@ -19,13 +31,28 @@ export class GroceriesListComponent {
     this.fetchItems();
   }
 
-  deleteItem(id:string):void {
-    this.itemService.deleteItem(id).subscribe({
-      next: ()=> this.fetchItems()
-    })
+  drop(event: CdkDragDrop<string[]>) {
+    if (event.previousContainer === event.container) {
+      moveItemInArray(
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex
+      );
+    } else {
+      transferArrayItem(
+        event.previousContainer.data,
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex
+      );
+    }
   }
 
-  // get by frequency
+  deleteItem(id: string): void {
+    this.itemService.deleteItem(id).subscribe({
+      next: () => this.fetchItems(),
+    });
+  }
 
   private fetchItems(): void {
     this.items$ = this.itemService.getItems();

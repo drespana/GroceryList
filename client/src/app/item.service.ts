@@ -43,7 +43,7 @@ export class ItemService {
     return this.http.put(`${this.url}/groceries/${id}`, item, { responseType: 'text' });
   }
   
-  deleteItem(id: string): Observable<string> {
+  deleteItem(id: string | undefined): Observable<string> {
     return this.http.delete(`${this.url}/groceries/${id}`, { responseType: 'text' });
   }
 
