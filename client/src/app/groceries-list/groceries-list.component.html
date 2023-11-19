@@ -27,8 +27,8 @@
           </div>
           <div *ngIf="addOneTime">
             <form class="one-time-form" (ngSubmit)="submitOne()">
-              <input type="text" class="oneItem" required/>
-              <input type="number" class="oneStock">
+              <input type="text" class="oneItem" placeholder="Item" matInput required/>
+              <input type="number" class="oneStock" placeholder="In Stock" matInput>
               <button type="submit" mat-mini-fab color="primary"><mat-icon >check</mat-icon></button>
             </form>
           </div>
@@ -46,7 +46,7 @@
         <h4>Monthly</h4>
         <div class="tile">
           <div *ngFor="let item of items$ | async">
-            <mat-card class="card-contents" *ngIf="item.frequency == 'Monthly'">
+            <div class="card-contents" *ngIf="item.frequency == 'Monthly'">
               <div class="card-contents-item">
                 <b>{{ item.item }}</b>
               </div>
@@ -63,13 +63,13 @@
                   <mat-icon fontIcon="delete" />
                 </button>
               </div>
-            </mat-card>
+            </div>
           </div>
           <div *ngIf="addMonthly">
-            <form class="monthly-form">
+            <form class="monthly-form" (ngSubmit)="submitMonth()">
               <input type="text" class="monthlyItem" placeholder="Item" matInput required/>
               <input type="number" class="monthlyStock" placeholder="In Stock" matInput>
-              <button type="submit" mat-mini-fab color="primary" (click)="submitMonth()"><mat-icon >check</mat-icon></button>
+              <button type="submit" mat-mini-fab color="primary" ><mat-icon >check</mat-icon></button>
             </form>
           </div>
           <div class="button-container">

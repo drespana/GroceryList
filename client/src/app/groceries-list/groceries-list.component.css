@@ -28,11 +28,12 @@
   width: 100%;
 }
 
-.one-time-form {
-  display: flex;
-  flex-direction: row;
-}
 
+.item-buttons {
+  display: flex;
+  flex:nowrap;
+  justify-content: space-around;
+}
 
 
 .button-container {
@@ -78,7 +79,7 @@
 
 .post-it {
   background-color: rgb(253, 253, 138);
-  color: rgb(103, 103, 6);
+  color: rgb(100, 100, 3);
   border-radius: 2px;
   display: flex;
   flex-wrap: nowrap;
@@ -104,7 +105,7 @@
 .oneItem {
   border: none;
   width: 30%;
-  background-color: rgb(253, 253, 239);
+  background-color: rgb(255, 255, 191);
 }
 
 .post-it-two {
