@@ -1,16 +1,16 @@
 .sideNav {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    padding: 0 2px 0 2px;
-
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 0 2px 0 2px;
 }
 
 .sideNavCont {
-    width:14%;
-        background-color: rgb(169, 167, 162);
+  width: 14%;
+  background-color: rgb(169, 167, 162);
 }
 
 .sideBarNavigation {
-    background-color: rgb(219, 206, 189);
+  background-color: rgb(219, 206, 189);
+  height: 100%;
 }
