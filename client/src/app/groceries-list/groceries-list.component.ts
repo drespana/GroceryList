@@ -133,42 +133,61 @@ export class GroceriesListComponent {
 
   toggleOne(): void {
     this.addOneTime = !this.addOneTime;
-    
   }
 
+  oneTimeInvalid:boolean=false;
   submitOne(): void {
+    if (this.oneTimeForm.invalid) {
+      this.oneTimeInvalid=true;
+    } else {
     this.formSubmitted.emit(this.oneTimeForm.value)
     this.newOneItem = this.oneTimeForm.value;
     this.addItem(this.newOneItem)
     this.fetchItems();
     this.ngOnInit();
   }
+  }
 
   toggleMonth() {
     this.addMonthly = !this.addMonthly;
   }
+  monthlyInvalid:boolean=false;
   submitMonth() {
+    if (this.monthlyForm.invalid) {
+      this.monthlyInvalid=true;
+    } else {
     console.log('Monthly item submitted!');
     this.fetchItems();
     this.ngOnInit();
+    }
   }
 
   toggleWeek() {
     this.addWeekly = !this.addWeekly;
   }
+  weeklyInvalid:boolean=false;
   submitWeek() {
+    if (this.weeklyForm.invalid) {
+      this.weeklyInvalid=true;
+    } else {
     console.log('Weekly item submitted!');
     this.fetchItems();
     this.ngOnInit();
+    }
   }
 
   toggleIndef() {
     this.addIndefinite = !this.addIndefinite;
   }
+  indefInvalid:boolean=false;
   submitIndef() {
+    if (this.indefForm.invalid) {
+      this.indefInvalid=true;
+    } else {
     console.log('Indefinitely item submitted!');
     this.fetchItems();
     this.ngOnInit();
+    }
   }
 
   addItem(item: Item) {

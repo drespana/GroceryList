@@ -2,6 +2,10 @@
   padding: 10px 0 0 30px;
 }
 
+.alertbox {
+  margin: 1em 1.5em 0 1.5em;
+}
+
 .card-contents {
   margin-bottom: 1em;
   display: flex;

@@ -34,7 +34,7 @@ export class AllItemsComponent {
 
     this.initialState.subscribe(item => {
       this.itemForm = this.fb.group({
-        item: [item.item, [Validators.requiredTrue]],
+        item: [item.item, [Validators.required]],
         frequency: [ item.frequency, [Validators.required] ],
         inStock: [ item.inStock, [] ],
         store: [item.store, [] ]
