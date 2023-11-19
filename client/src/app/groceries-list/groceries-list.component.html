@@ -25,22 +25,55 @@
                 <button color="primary" mat-icon-button>
                   <mat-icon fontIcon="mode" />
                 </button>
-                <button color="warn" (click)="deleteItem(item._id)" mat-icon-button>
+                <button
+                  color="warn"
+                  (click)="deleteItem(item._id)"
+                  mat-icon-button
+                >
                   <mat-icon fontIcon="delete" />
                 </button>
               </div>
             </div>
           </div>
           <div *ngIf="addOneTime">
-            <form class="one-time-form"[formGroup]="oneTimeForm" (ngSubmit)="submitOne()">
-              <input formControlName="item" type="text" class="oneItem" placeholder="Item" matInput required/>
-              <input formControlName="inStock" type="number" class="oneStock" placeholder="In Stock" matInput>
-              <button type="submit" mat-icon-button color="primary"><mat-icon fontIcon="done"/></button>
+            <form
+              class="one-time-form"
+              [formGroup]="oneTimeForm"
+              (ngSubmit)="submitOne()"
+            >
+              <input
+                formControlName="item"
+                type="text"
+                class="oneItem"
+                placeholder="Item"
+                matInput
+                required
+              />
+              <input
+                formControlName="inStock"
+                type="number"
+                class="oneStock"
+                placeholder="In Stock"
+                matInput
+              />
+              <select id="store" name="store" class="oneStore" formControlName="store">
+                <option value="Aldi">Aldi</option>
+                <option value="Jewel Osco">Jewel Osco</option>
+                <option value="Pete's Fresh Market">Pete's Fresh Market</option>
+                <option value="Online">Online</option>
+              </select>
+              <button type="submit" mat-icon-button color="primary">
+                <mat-icon fontIcon="done" />
+              </button>
             </form>
           </div>
           <div class="button-container">
-            <button mat-fab [color]="addOneTime? 'warn':'primary'" (click)="toggleOne()">
-              <mat-icon>{{addOneTime? 'clear':'add'}}</mat-icon>
+            <button
+              mat-mini-fab
+              [color]="addOneTime ? 'warn' : 'primary'"
+              (click)="toggleOne()"
+            >
+              <mat-icon>{{ addOneTime ? "clear" : "add" }}</mat-icon>
             </button>
           </div>
         </div>
@@ -65,22 +98,56 @@
                 <button color="primary" mat-icon-button>
                   <mat-icon fontIcon="mode" />
                 </button>
-                <button color="warn" (click)="deleteItem(item._id)" mat-icon-button>
+                <button
+                  color="warn"
+                  (click)="deleteItem(item._id)"
+                  mat-icon-button
+                >
                   <mat-icon fontIcon="delete" />
                 </button>
               </div>
             </div>
           </div>
           <div *ngIf="addMonthly">
-            <form class="monthly-form" [formGroup]="monthlyForm" (ngSubmit)="submitMonth()">
-              <input formControlName="item" type="text" class="monthlyItem" placeholder="Item" matInput required/>
-              <input formControlName="inStock" type="number" class="monthlyStock" placeholder="In Stock" matInput>
-              <button type="submit" mat-icon-button color="primary"><mat-icon fontIcon="done"/></button>
+            <form
+              class="monthly-form"
+              [formGroup]="monthlyForm"
+              (ngSubmit)="submitMonth()"
+            >
+              <input
+                formControlName="item"
+                type="text"
+                class="monthlyItem"
+                placeholder="Item"
+                matInput
+                required
+              />
+              <input
+                formControlName="inStock"
+                type="number"
+                class="monthlyStock"
+                placeholder="In Stock"
+                matInput
+              />
+
+              <select id="store" name="store" class="monthlyStore" formControlName="store">
+                <option value="Aldi">Aldi</option>
+                <option value="Jewel Osco">Jewel Osco</option>
+                <option value="Pete's Fresh Market">Pete's Fresh Market</option>
+                <option value="Online">Online</option>
+              </select>
+              <button type="submit" mat-icon-button color="primary">
+                <mat-icon fontIcon="done" />
+              </button>
             </form>
           </div>
           <div class="button-container">
-            <button mat-fab [color]="addMonthly? 'warn':'primary'" (click)="toggleMonth()">
-              <mat-icon>{{addMonthly? 'clear':'add'}}</mat-icon>
+            <button
+              mat-mini-fab
+              [color]="addMonthly ? 'warn' : 'primary'"
+              (click)="toggleMonth()"
+            >
+              <mat-icon>{{ addMonthly ? "clear" : "add" }}</mat-icon>
             </button>
           </div>
         </div>
@@ -105,16 +172,55 @@
                 <button color="primary" mat-icon-button>
                   <mat-icon fontIcon="mode" />
                 </button>
-                <button color="warn" (click)="deleteItem(item._id)" mat-icon-button>
+                <button
+                  color="warn"
+                  (click)="deleteItem(item._id)"
+                  mat-icon-button
+                >
                   <mat-icon fontIcon="delete" />
                 </button>
               </div>
             </div>
           </div>
-
+          <div *ngIf="addIndefinite">
+            <form
+              class="indef-form"
+              [formGroup]="indefForm"
+              (ngSubmit)="submitIndef()"
+            >
+              <input
+                formControlName="item"
+                type="text"
+                class="indefItem"
+                placeholder="Item"
+                matInput
+                required
+              />
+              <input
+                formControlName="inStock"
+                type="number"
+                class="indefStock"
+                placeholder="In Stock"
+                matInput
+              />
+              <select id="store" name="store" class="indefStore" formControlName="store">
+                <option value="Aldi">Aldi</option>
+                <option value="Jewel Osco">Jewel Osco</option>
+                <option value="Pete's Fresh Market">Pete's Fresh Market</option>
+                <option value="Online">Online</option>
+              </select>
+              <button type="submit" mat-icon-button color="primary">
+                <mat-icon fontIcon="done" />
+              </button>
+            </form>
+          </div>
           <div class="button-container">
-            <button mat-fab [color]="addWeekly? 'warn':'primary'" (click)="toggleWeek()">
-              <mat-icon>{{addWeekly? 'clear':'add'}}</mat-icon>
+            <button
+              mat-mini-fab
+              [color]="addIndefinite ? 'warn' : 'primary'"
+              (click)="toggleIndef()"
+            >
+              <mat-icon>{{ addIndefinite ? "clear" : "add" }}</mat-icon>
             </button>
           </div>
         </div>
@@ -140,20 +246,61 @@
                 <button color="primary" mat-icon-button>
                   <mat-icon fontIcon="mode" />
                 </button>
-                <button color="warn" (click)="deleteItem(item._id)" mat-icon-button>
+                <button
+                  color="warn"
+                  (click)="deleteItem(item._id)"
+                  mat-icon-button
+                >
                   <mat-icon fontIcon="delete" />
                 </button>
               </div>
             </div>
           </div>
+          <div *ngIf="addWeekly">
+            <form
+              class="weekly-form"
+              [formGroup]="weeklyForm"
+              (ngSubmit)="submitWeek()"
+            >
+              <input
+                formControlName="item"
+                type="text"
+                class="weeklyItem"
+                placeholder="Item"
+                matInput
+                required
+              />
+              <input
+                formControlName="inStock"
+                type="number"
+                class="weeklyStock"
+                placeholder="In Stock"
+                matInput
+              />
 
+              <select id="store" name="store" class="weeklyStore" formControlName="store">
+                <option value="Aldi">Aldi</option>
+                <option value="Jewel Osco">Jewel Osco</option>
+                <option value="Pete's Fresh Market">Pete's Fresh Market</option>
+                <option value="Online">Online</option>
+              </select>
+              
+
+              <button type="submit" mat-icon-button color="primary">
+                <mat-icon fontIcon="done" />
+              </button>
+            </form>
+          </div>
           <div class="button-container">
-            <button mat-fab [color]="addIndefinite? 'warn':'primary'" (click)="toggleIndef()">
-              <mat-icon>{{addIndefinite? 'clear':'add'}}</mat-icon>
+            <button
+              mat-mini-fab
+              [color]="addWeekly ? 'warn' : 'primary'"
+              (click)="toggleWeek()"
+            >
+              <mat-icon>{{ addWeekly ? "clear" : "add" }}</mat-icon>
             </button>
           </div>
         </div>
-
       </div>
     </mat-grid-tile>
   </mat-grid-list>

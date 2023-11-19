@@ -32,10 +32,10 @@ export class GroceriesListComponent {
   weeklyForm: FormGroup = new FormGroup({});
   addIndefinite: boolean = false;
   indefForm: FormGroup = new FormGroup({});
-  newOneItem:Item={};
-  newMonthlyItem:Item={};
-  newWeeklyItem:Item={};
-  newIndefItem:Item={};
+  newOneItem: Item = {};
+  newMonthlyItem: Item = {};
+  newWeeklyItem: Item = {};
+  newIndefItem: Item = {};
   constructor(private fb: FormBuilder, private itemService: ItemService) {}
 
   get oneTimeItem() {
@@ -88,105 +88,116 @@ export class GroceriesListComponent {
   }
 
   ngOnInit(): void {
-    this.fetchItems();
     this.addOneTime = false;
     this.addMonthly = false;
-    this.addWeekly = false;    
+    this.addWeekly = false;
     this.addIndefinite = false;
-    this.initialState.subscribe(item => {
+    this.initialState.subscribe((item) => {
       this.oneTimeForm = this.fb.group({
         item: [item.item, [Validators.required]],
-        frequency: [ item.frequency]="One-Time Request",
-        inStock: [ item.inStock, [] ],
-        store: [item.store, [] ]
-      })
-    })
-    this.initialState.subscribe(item => {
+        frequency: ([item.frequency] = 'One-Time Request'),
+        inStock: [item.inStock, []],
+        store: [item.store, []],
+      });
+    });
+    this.initialState.subscribe((item) => {
       this.monthlyForm = this.fb.group({
         item: [item.item, [Validators.required]],
-        frequency: [ item.frequency]="Monthly",
-        inStock: [ item.inStock, [] ],
-        store: [item.store, [] ]
-      })
-    })
-    this.initialState.subscribe(item => {
+        frequency: ([item.frequency] = 'Monthly'),
+        inStock: [item.inStock, []],
+        store: [item.store, []],
+      });
+    });
+    this.initialState.subscribe((item) => {
       this.weeklyForm = this.fb.group({
         item: [item.item, [Validators.required]],
-        frequency: [ item.frequency]="Weekly",
-        inStock: [ item.inStock, [] ],
-        store: [item.store, [] ]
-      })
-    })
-    this.initialState.subscribe(item => {
+        frequency: ([item.frequency] = 'Weekly'),
+        inStock: [item.inStock, []],
+        store: [item.store, []],
+      });
+    });
+    this.initialState.subscribe((item) => {
       this.indefForm = this.fb.group({
         item: [item.item, [Validators.required]],
-        frequency: [ item.frequency]="Indefinite",
-        inStock: [ item.inStock, [] ],
-        store: [item.store, [] ]
-      })
-    })
-    this.oneTimeForm.valueChanges.subscribe((val) => { this.formValuesChanged.emit(val); });
-    this.monthlyForm.valueChanges.subscribe((val) => { this.formValuesChanged.emit(val); });
-    this.weeklyForm.valueChanges.subscribe((val) => { this.formValuesChanged.emit(val); });
-    this.indefForm.valueChanges.subscribe((val) => { this.formValuesChanged.emit(val); });
+        frequency: ([item.frequency] = 'Indefinite'),
+        inStock: [item.inStock, []],
+        store: [item.store, []],
+      });
+    });
+    this.oneTimeForm.valueChanges.subscribe((val) => {
+      this.formValuesChanged.emit(val);
+    });
+    this.monthlyForm.valueChanges.subscribe((val) => {
+      this.formValuesChanged.emit(val);
+    });
+    this.weeklyForm.valueChanges.subscribe((val) => {
+      this.formValuesChanged.emit(val);
+    });
+    this.indefForm.valueChanges.subscribe((val) => {
+      this.formValuesChanged.emit(val);
+    });
+    this.fetchItems();
   }
 
   toggleOne(): void {
     this.addOneTime = !this.addOneTime;
   }
 
-  oneTimeInvalid:boolean=false;
+  oneTimeInvalid: boolean = false;
   submitOne(): void {
     if (this.oneTimeForm.invalid) {
-      this.oneTimeInvalid=true;
+      this.oneTimeInvalid = true;
     } else {
-    this.formSubmitted.emit(this.oneTimeForm.value)
-    this.newOneItem = this.oneTimeForm.value;
-    this.addItem(this.newOneItem)
-    this.fetchItems();
-    this.ngOnInit();
-  }
+      this.formSubmitted.emit(this.oneTimeForm.value);
+      this.newOneItem = this.oneTimeForm.value;
+      this.addItem(this.newOneItem);
+      this.fetchItems();
+      this.ngOnInit();
+    }
   }
 
   toggleMonth() {
     this.addMonthly = !this.addMonthly;
   }
-  monthlyInvalid:boolean=false;
+  monthlyInvalid: boolean = false;
   submitMonth() {
     if (this.monthlyForm.invalid) {
-      this.monthlyInvalid=true;
+      this.monthlyInvalid = true;
     } else {
-    console.log('Monthly item submitted!');
-    this.fetchItems();
-    this.ngOnInit();
+      this.newMonthlyItem = this.monthlyForm.value;
+      this.addItem(this.newMonthlyItem)
+      this.fetchItems();
+      this.ngOnInit();
     }
   }
 
   toggleWeek() {
     this.addWeekly = !this.addWeekly;
   }
-  weeklyInvalid:boolean=false;
+  weeklyInvalid: boolean = false;
   submitWeek() {
     if (this.weeklyForm.invalid) {
-      this.weeklyInvalid=true;
+      this.weeklyInvalid = true;
     } else {
-    console.log('Weekly item submitted!');
-    this.fetchItems();
-    this.ngOnInit();
+      this.newWeeklyItem = this.weeklyForm.value;
+      this.addItem(this.newWeeklyItem)
+      this.fetchItems();
+      this.ngOnInit();
     }
   }
 
   toggleIndef() {
     this.addIndefinite = !this.addIndefinite;
   }
-  indefInvalid:boolean=false;
+  indefInvalid: boolean = false;
   submitIndef() {
     if (this.indefForm.invalid) {
-      this.indefInvalid=true;
+      this.indefInvalid = true;
     } else {
-    console.log('Indefinitely item submitted!');
-    this.fetchItems();
-    this.ngOnInit();
+      this.newIndefItem = this.indefForm.value;
+      this.addItem(this.newIndefItem)
+      this.fetchItems();
+      this.ngOnInit();
     }
   }
 

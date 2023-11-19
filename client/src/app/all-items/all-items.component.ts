@@ -29,7 +29,7 @@ export class AllItemsComponent {
   get store() {return this.itemForm.get('store')!};
 
   ngOnInit(): void {
-    this.fetchItems();
+   
     this.isAdding=false;
 
     this.initialState.subscribe(item => {
@@ -41,6 +41,7 @@ export class AllItemsComponent {
       })
     })
     this.itemForm.valueChanges.subscribe((val) => { this.formValuesChanged.emit(val); });
+    this.fetchItems();
   }
 
   toggle():void{
