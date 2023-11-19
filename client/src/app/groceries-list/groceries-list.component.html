@@ -1,5 +1,5 @@
 <div class="tile-container">
-  <mat-grid-list cols="10">
+  <mat-grid-list cols="10" rowHeight="8em">
     <mat-grid-tile colspan="3" rowspan="3">
       <div class="post-it">
         <h4>One-Time Request</h4>
@@ -27,8 +27,8 @@
           </div>
           <div *ngIf="addOneTime">
             <form class="one-time-form" (ngSubmit)="submitOne()">
-              <input type="text" class="itemName" matInput required/>
-              <input type="number" class="itemStock" matInput>
+              <input type="text" class="oneItem" matInput required/>
+              <input type="number" class="oneStock" matInput>
               <button type="submit" mat-mini-fab color="primary"><mat-icon >check</mat-icon></button>
             </form>
           </div>
@@ -67,8 +67,8 @@
           </div>
           <div *ngIf="addMonthly">
             <form class="monthly-form">
-              <input type="text" class="itemName" matInput required/>
-              <input type="number" class="itemStock" matInput>
+              <input type="text" class="monthlyItem" placeholder="Item" matInput required/>
+              <input type="number" class="monthlyStock" placeholder="In Stock" matInput>
               <button type="submit" mat-mini-fab color="primary" (click)="submitMonth()"><mat-icon >check</mat-icon></button>
             </form>
           </div>
@@ -117,6 +117,7 @@
 
     <mat-grid-tile colspan="6" rowspan="3">
       <div class="notebook-two">
+        <div class="red-line"></div>
         <h4>Weekly</h4>
         <div class="tile">
           <div *ngFor="let item of items$ | async">
@@ -146,6 +147,7 @@
             </button>
           </div>
         </div>
+
       </div>
     </mat-grid-tile>
   </mat-grid-list>

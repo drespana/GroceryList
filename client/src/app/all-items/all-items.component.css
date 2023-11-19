@@ -8,10 +8,10 @@ h2 {
 .notebook {
   background-color: rgb(253, 253, 253);
   border-radius: 5px;
-  margin-top: 2em;
+  margin-top: 3em;
   margin-left: auto;
   margin-right: auto;
-  margin-bottom: 5em;
+  margin-bottom: 3em;
   width: 80%;
   height: 100%;
   background-image: linear-gradient(#ccc 1px, transparent 1px);
@@ -19,7 +19,7 @@ h2 {
 }
 
 .allCards {
-  padding: 3em 0 4em 0;
+  padding: 4em 0 5em 0;
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
