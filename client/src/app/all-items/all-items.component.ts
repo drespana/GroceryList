@@ -18,6 +18,7 @@ export class AllItemsComponent {
   @Output() formValuesChanged = new EventEmitter<Item>();
   items$: Observable<Item[]> = new Observable();
   isAdding:boolean=false;
+  displayError:boolean=false;
   itemForm: FormGroup = new FormGroup({});
   newItem:Item={};
   constructor(private fb: FormBuilder, private router:Router, private itemService:ItemService) {}
@@ -33,7 +34,7 @@ export class AllItemsComponent {
 
     this.initialState.subscribe(item => {
       this.itemForm = this.fb.group({
-        item: [item.item, [Validators.required]],
+        item: [item.item, [Validators.requiredTrue]],
         frequency: [ item.frequency, [Validators.required] ],
         inStock: [ item.inStock, [] ],
         store: [item.store, [] ]
@@ -47,11 +48,15 @@ export class AllItemsComponent {
   }
 
   submitForm() {
+    if (this.itemForm.invalid) {
+      this.displayError=true;
+    } else {
     this.formSubmitted.emit(this.itemForm.value)
     this.newItem = this.itemForm.value;
     this.addItem(this.newItem);
     this.fetchItems();
     this.ngOnInit();
+  }
   }
 
   addItem(item:Item){

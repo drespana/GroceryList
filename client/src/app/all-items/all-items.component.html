@@ -29,7 +29,11 @@
   </div>
 
   <div *ngIf="isAdding">
+    
     <form class="item-form" [formGroup]="itemForm" (ngSubmit)="submitForm()">
+      <div class="alert alert-danger" *ngIf="displayError">
+      Input Required
+    </div>
       <mat-form-field>
         <mat-label for="item"><strong>Item Name</strong></mat-label>
         <input matInput type="text" id="item" name="item" formControlName="item" required />

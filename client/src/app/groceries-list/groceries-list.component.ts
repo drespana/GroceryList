@@ -92,19 +92,43 @@ export class GroceriesListComponent {
     this.addOneTime = false;
     this.addMonthly = false;
     this.addWeekly = false;    
+    this.addIndefinite = false;
     this.initialState.subscribe(item => {
       this.oneTimeForm = this.fb.group({
-        oneTimeItem: [item.item, [Validators.required]],
-        oneTimeFrequency: [ item.frequency]="One-Time Request",
-        oneTimeStock: [ item.inStock, [] ],
-        oneTimeStore: [item.store, [] ]
+        item: [item.item, [Validators.required]],
+        frequency: [ item.frequency]="One-Time Request",
+        inStock: [ item.inStock, [] ],
+        store: [item.store, [] ]
+      })
+    })
+    this.initialState.subscribe(item => {
+      this.monthlyForm = this.fb.group({
+        item: [item.item, [Validators.required]],
+        frequency: [ item.frequency]="Monthly",
+        inStock: [ item.inStock, [] ],
+        store: [item.store, [] ]
+      })
+    })
+    this.initialState.subscribe(item => {
+      this.weeklyForm = this.fb.group({
+        item: [item.item, [Validators.required]],
+        frequency: [ item.frequency]="Weekly",
+        inStock: [ item.inStock, [] ],
+        store: [item.store, [] ]
+      })
+    })
+    this.initialState.subscribe(item => {
+      this.indefForm = this.fb.group({
+        item: [item.item, [Validators.required]],
+        frequency: [ item.frequency]="Indefinite",
+        inStock: [ item.inStock, [] ],
+        store: [item.store, [] ]
       })
     })
     this.oneTimeForm.valueChanges.subscribe((val) => { this.formValuesChanged.emit(val); });
-  
-    this.addIndefinite = false;
-
-
+    this.monthlyForm.valueChanges.subscribe((val) => { this.formValuesChanged.emit(val); });
+    this.weeklyForm.valueChanges.subscribe((val) => { this.formValuesChanged.emit(val); });
+    this.indefForm.valueChanges.subscribe((val) => { this.formValuesChanged.emit(val); });
   }
 
   toggleOne(): void {
@@ -113,11 +137,11 @@ export class GroceriesListComponent {
   }
 
   submitOne(): void {
-    console.log('one-time item submitted!');
+    this.formSubmitted.emit(this.oneTimeForm.value)
     this.newOneItem = this.oneTimeForm.value;
     this.addItem(this.newOneItem)
-    console.log(this.newOneItem)
-    // this.ngOnInit();
+    this.fetchItems();
+    this.ngOnInit();
   }
 
   toggleMonth() {
@@ -125,6 +149,8 @@ export class GroceriesListComponent {
   }
   submitMonth() {
     console.log('Monthly item submitted!');
+    this.fetchItems();
+    this.ngOnInit();
   }
 
   toggleWeek() {
@@ -132,6 +158,8 @@ export class GroceriesListComponent {
   }
   submitWeek() {
     console.log('Weekly item submitted!');
+    this.fetchItems();
+    this.ngOnInit();
   }
 
   toggleIndef() {
@@ -139,6 +167,8 @@ export class GroceriesListComponent {
   }
   submitIndef() {
     console.log('Indefinitely item submitted!');
+    this.fetchItems();
+    this.ngOnInit();
   }
 
   addItem(item: Item) {
