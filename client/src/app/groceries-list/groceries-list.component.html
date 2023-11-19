@@ -19,7 +19,7 @@
                 <button color="primary" mat-icon-button>
                   <mat-icon fontIcon="mode" />
                 </button>
-                <button color="warn" mat-icon-button>
+                <button color="warn" (click)="deleteItem(item._id)" mat-icon-button>
                   <mat-icon fontIcon="delete" />
                 </button>
               </div>
@@ -29,12 +29,12 @@
             <form class="one-time-form" (ngSubmit)="submitOne()">
               <input type="text" class="oneItem" placeholder="Item" matInput required/>
               <input type="number" class="oneStock" placeholder="In Stock" matInput>
-              <button type="submit" mat-mini-fab color="primary"><mat-icon >check</mat-icon></button>
+              <button type="submit" mat-icon-button color="primary"><mat-icon fontIcon="done"/></button>
             </form>
           </div>
           <div class="button-container">
-            <button mat-fab color="primary" (click)="toggleOne()">
-              <mat-icon>add</mat-icon>
+            <button mat-fab [color]="addOneTime? 'warn':'primary'" (click)="toggleOne()">
+              <mat-icon>{{addOneTime? 'clear':'add'}}</mat-icon>
             </button>
           </div>
         </div>
@@ -59,7 +59,7 @@
                 <button color="primary" mat-icon-button>
                   <mat-icon fontIcon="mode" />
                 </button>
-                <button color="warn" mat-icon-button>
+                <button color="warn" (click)="deleteItem(item._id)" mat-icon-button>
                   <mat-icon fontIcon="delete" />
                 </button>
               </div>
@@ -69,12 +69,12 @@
             <form class="monthly-form" (ngSubmit)="submitMonth()">
               <input type="text" class="monthlyItem" placeholder="Item" matInput required/>
               <input type="number" class="monthlyStock" placeholder="In Stock" matInput>
-              <button type="submit" mat-mini-fab color="primary" ><mat-icon >check</mat-icon></button>
+              <button type="submit" mat-icon-button color="primary"><mat-icon fontIcon="done"/></button>
             </form>
           </div>
           <div class="button-container">
-            <button mat-fab color="primary" (click)="toggleMonth()">
-              <mat-icon>add</mat-icon>
+            <button mat-fab [color]="addMonthly? 'warn':'primary'" (click)="toggleMonth()">
+              <mat-icon>{{addMonthly? 'clear':'add'}}</mat-icon>
             </button>
           </div>
         </div>
@@ -99,7 +99,7 @@
                 <button color="primary" mat-icon-button>
                   <mat-icon fontIcon="mode" />
                 </button>
-                <button color="warn" mat-icon-button>
+                <button color="warn" (click)="deleteItem(item._id)" mat-icon-button>
                   <mat-icon fontIcon="delete" />
                 </button>
               </div>
@@ -107,8 +107,8 @@
           </div>
 
           <div class="button-container">
-            <button mat-fab color="primary">
-              <mat-icon>add</mat-icon>
+            <button mat-fab [color]="addWeekly? 'warn':'primary'" (click)="toggleWeek()">
+              <mat-icon>{{addWeekly? 'clear':'add'}}</mat-icon>
             </button>
           </div>
         </div>
@@ -134,7 +134,7 @@
                 <button color="primary" mat-icon-button>
                   <mat-icon fontIcon="mode" />
                 </button>
-                <button color="warn" mat-icon-button>
+                <button color="warn" (click)="deleteItem(item._id)" mat-icon-button>
                   <mat-icon fontIcon="delete" />
                 </button>
               </div>
@@ -142,8 +142,8 @@
           </div>
 
           <div class="button-container">
-            <button mat-fab color="primary">
-              <mat-icon>add</mat-icon>
+            <button mat-fab [color]="addIndefinite? 'warn':'primary'" (click)="toggleIndef()">
+              <mat-icon>{{addIndefinite? 'clear':'add'}}</mat-icon>
             </button>
           </div>
         </div>

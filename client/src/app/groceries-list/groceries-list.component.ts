@@ -150,7 +150,7 @@ export class GroceriesListComponent {
     });
   }
 
-  deleteItem(id: string): void {
+  deleteItem(id: string | undefined): void {
     this.itemService.deleteItem(id).subscribe({
       next: () => this.fetchItems(),
     });

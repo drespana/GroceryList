@@ -19,7 +19,7 @@
   width: 100%;
   height: 100%;
   align-items: stretch;
-  padding: 10px 5px 5px 6px;
+  padding: 5px 5px 5px 6px;
 }
 
 .tile-container {
@@ -92,6 +92,15 @@
   height:75%
 }
 
+.monthly-form,
+.one-time-form {
+  display: flex;
+  justify-content: flex-start;
+  align-items: baseline;
+  height: 50%;
+  padding: 0px 10px 10px 10px;
+}
+
 .monthlyStock,
 .monthlyItem{
   border:none;
@@ -99,7 +108,6 @@
   background-color: rgb(255, 191, 246);
 
 }
-
 
 .oneStock,
 .oneItem {
