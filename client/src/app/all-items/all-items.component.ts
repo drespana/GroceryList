@@ -40,7 +40,6 @@ export class AllItemsComponent {
       })
     })
     this.itemForm.valueChanges.subscribe((val) => { this.formValuesChanged.emit(val); });
-  
   }
 
   toggle():void{
@@ -48,12 +47,11 @@ export class AllItemsComponent {
   }
 
   submitForm() {
-    // this.formSubmitted.emit(this.itemForm.value)
+    this.formSubmitted.emit(this.itemForm.value)
     this.newItem = this.itemForm.value;
-    this.addItem(this.newItem)
-    let stuff = this.itemService.getItems();
-    console.log(stuff)
-    this.toggle();
+    this.addItem(this.newItem);
+    this.fetchItems();
+    this.ngOnInit();
   }
 
   addItem(item:Item){

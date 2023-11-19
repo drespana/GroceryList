@@ -1,33 +1,52 @@
-.allCards{
-    padding-top:3em;
-    display: flex;
-    flex-wrap: wrap;    
-    flex-direction: column;
-    align-content: center;
-
+h2 {
+  color: rgb(62, 62, 62);
+  display: flex;
+  justify-content: center;
+  margin-top: 2em;
 }
 
-.card-contents{
-    margin-bottom: 1em;
-    display:flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    width:60%;
-    padding: 7px 20px 7px 20px;
+.notebook {
+  background-color: rgb(253, 253, 253);
+  border-radius: 5px;
+  margin-top: 2em;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 5em;
+  width: 80%;
+  height: 100%;
+  background-image: linear-gradient(#ccc 1px, transparent 1px);
+  background-size: 20px 30px;
+}
+
+.allCards {
+  padding: 3em 0 4em 0;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-content: center;
+}
+
+.card-contents {
+  margin-bottom: 1em;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 60%;
+  padding: 7px 20px 7px 20px;
 }
 
 .mt-3 {
-    padding: 0 0 0 30px;
+  padding: 0 0 0 30px;
 }
 
 .add-button {
-    display:flex;
-    justify-content: flex-end;
+  display: flex;
+  justify-content: flex-end;
 }
 
 .item-form {
-    display: flex;
-    flex-direction: column;
-    padding: 2em 0 0 0;
+  display: flex;
+  flex-direction: column;
+  padding: 2em 0 0 0;
 }

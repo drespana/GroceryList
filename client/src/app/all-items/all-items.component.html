@@ -1,11 +1,11 @@
-
-<div>
+<div><h2>All Items</h2>
+<div class="notebook">
 
 <div class="allCards">
-  All Items:
-  <mat-card class="card-contents" *ngFor="let item of items$ | async">
+  
+  <div class="card-contents" *ngFor="let item of items$ | async">
     <div class="card-contents-item">
-      {{ item.item }}
+     <b>{{ item.item }}</b> 
     </div>
 
     <div class="card-contents-inStock">
@@ -20,7 +20,7 @@
         <mat-icon fontIcon="delete" />
       </button>
     </div>
-  </mat-card>
+  </div>
 
   <div class="add-button">
     <button  mat-fab [color]="isAdding? 'warn':'primary'" (click)="toggle()">
@@ -81,10 +81,10 @@
       <div *ngIf="item.errors?.['required']">Store is required.</div>
     </div>
     
-      <button mat-raised-button color="primary" type="submit" routerLink="/all">Submit</button>
+      <button mat-raised-button color="primary" type="submit" >Submit</button>
     
     </form>
   </div>
+</div>
 
-</div>
-</div>
+</div></div>
