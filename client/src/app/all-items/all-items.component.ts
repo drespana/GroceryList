@@ -71,10 +71,8 @@ export class AllItemsComponent {
   // Edit Form  Functions //
   submitEdit(id:string | undefined){
     if (this.editForm.invalid) {
-      console.log("clickws")
       this.displayEditError=true;
     } else {
-      console.log("clicked!!!!")
     this.newItem = this.editForm.value;
     this.editItem(id, this.newItem);
     this.fetchItems();

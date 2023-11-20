@@ -25,6 +25,7 @@ export class GroceriesListComponent {
   @Output() formValuesChanged = new EventEmitter<Item>();
   items$: Observable<Item[]> = new Observable();
   addOneTime: boolean = false;
+  editForm: FormGroup = new FormGroup({});
   oneTimeForm: FormGroup = new FormGroup({});
   addMonthly: boolean = false;
   monthlyForm: FormGroup = new FormGroup({});
@@ -38,6 +39,18 @@ export class GroceriesListComponent {
   newIndefItem: Item = {};
   constructor(private fb: FormBuilder, private itemService: ItemService) {}
 
+  get editedItem() {
+    return this.editForm.get('item')!;
+  }
+  get editedStock() {
+    return this.editForm.get('inStock')!;
+  }
+  get editedFrequency() {
+    return this.editForm.get('frequency')!;
+  }
+  get editedStore() {
+    return this.editForm.get('store')!;
+  }
   get oneTimeItem() {
     return this.oneTimeForm.get('item')!;
   }
@@ -95,7 +108,7 @@ export class GroceriesListComponent {
     this.initialState.subscribe((item) => {
       this.oneTimeForm = this.fb.group({
         item: [item.item, [Validators.required]],
-        frequency: ([item.frequency] = 'One-Time Request'),
+        frequency: (item.frequency = 'One-Time Request'),
         inStock: [item.inStock, []],
         store: [item.store, []],
       });
@@ -103,7 +116,7 @@ export class GroceriesListComponent {
     this.initialState.subscribe((item) => {
       this.monthlyForm = this.fb.group({
         item: [item.item, [Validators.required]],
-        frequency: ([item.frequency] = 'Monthly'),
+        frequency: (item.frequency = 'Monthly'),
         inStock: [item.inStock, []],
         store: [item.store, []],
       });
@@ -111,7 +124,7 @@ export class GroceriesListComponent {
     this.initialState.subscribe((item) => {
       this.weeklyForm = this.fb.group({
         item: [item.item, [Validators.required]],
-        frequency: ([item.frequency] = 'Weekly'),
+        frequency: (item.frequency = 'Weekly'),
         inStock: [item.inStock, []],
         store: [item.store, []],
       });
@@ -119,7 +132,15 @@ export class GroceriesListComponent {
     this.initialState.subscribe((item) => {
       this.indefForm = this.fb.group({
         item: [item.item, [Validators.required]],
-        frequency: ([item.frequency] = 'Indefinite'),
+        frequency: (item.frequency = 'Indefinite'),
+        inStock: [item.inStock, []],
+        store: [item.store, []],
+      });
+    });
+    this.initialState.subscribe((item) => {
+      this.editForm = this.fb.group({
+        item: [item.item, [Validators.required]],
+        frequency: (item.frequency, [Validators.required]),
         inStock: [item.inStock, []],
         store: [item.store, []],
       });
@@ -136,7 +157,23 @@ export class GroceriesListComponent {
     this.indefForm.valueChanges.subscribe((val) => {
       this.formValuesChanged.emit(val);
     });
+    this.editForm.valueChanges.subscribe((val) => {
+      this.formValuesChanged.emit(val);
+    });
     this.fetchItems();
+  }
+
+  editInvalid:boolean=false;
+  submitEdit(id:string | undefined):void {
+    if (this.editForm.invalid) {
+      this.editInvalid = true;
+    } else {
+      this.formSubmitted.emit(this.editForm.value);
+      this.newOneItem = this.editForm.value;
+      this.editItem(id,this.newOneItem);
+      this.fetchItems();
+      this.ngOnInit();
+    }
   }
 
   toggleOne(): void {
@@ -145,7 +182,6 @@ export class GroceriesListComponent {
     this.addMonthly = false;
     this.addWeekly = false;
   }
-
   oneTimeInvalid: boolean = false;
   submitOne(): void {
     if (this.oneTimeForm.invalid) {
@@ -220,6 +256,12 @@ export class GroceriesListComponent {
         console.error(error);
       },
     });
+  }
+
+  editItem(id:string | undefined, item:Item):void{
+    this.itemService.updateItem(id, item).subscribe({
+      next: () => this.fetchItems()
+    })
   }
 
   deleteItem(id: string | undefined): void {

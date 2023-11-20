@@ -11,18 +11,41 @@
         <h4>One-Time Request</h4>
         <div class="tile">
           <div *ngFor="let item of items$ | async">
+            <div *ngIf="item.editing" class="edit-form">
+              <button mat-icon-button (click)="item.editing = false">
+                <mat-icon fontIcon="clear" />
+              </button>
+              <form  [formGroup]="editForm" (ngSubmit)="submitEdit(item._id)">
+                <button mat-icon-button><mat-icon fontIcon="done" /></button>
+                <input class="edit-one-item" type="text" [(ngModel)]="item.item" formControlName="item"/>
+                <input class="edit-one-stock" type="number" [(ngModel)]="item.inStock" formControlName="inStock"/>
+                <select class="edit-one-store" id="store" [(ngModel)]="item.store" name="store" formControlName="store">
+                  <option value="Aldi">Aldi</option>
+                  <option value="Jewel Osco">Jewel Osco</option>
+                  <option value="Pete's Fresh Market">
+                    Pete's Fresh Market
+                  </option>
+                  <option value="Online">Online</option>
+                </select>
+              </form>
+            </div>
+
             <div
               class="card-contents"
               *ngIf="item.frequency == 'One-Time Request'"
             >
-              <div class="card-contents-item">
+              <div class="card-contents-item" *ngIf="!item.editing">
                 <b>{{ item.item }}</b>
               </div>
-              <div class="card-contents-inStock">
+              <div class="card-contents-inStock" *ngIf="!item.editing">
                 {{ item.inStock === 0 ? "Out of Stock" : item.inStock }}
               </div>
-              <div class="item-buttons">
-                <button color="primary" mat-icon-button>
+              <div class="item-buttons" *ngIf="!item.editing">
+                <button
+                  color="primary"
+                  mat-icon-button
+                  (click)="item.editing = true"
+                >
                   <mat-icon fontIcon="mode" />
                 </button>
                 <button
@@ -56,7 +79,12 @@
                 placeholder="In Stock"
                 matInput
               />
-              <select id="store" name="store" class="oneStore" formControlName="store">
+              <select
+                id="store"
+                name="store"
+                class="oneStore"
+                formControlName="store"
+              >
                 <option value="Aldi">Aldi</option>
                 <option value="Jewel Osco">Jewel Osco</option>
                 <option value="Pete's Fresh Market">Pete's Fresh Market</option>
@@ -130,7 +158,12 @@
                 matInput
               />
 
-              <select id="store" name="store" class="monthlyStore" formControlName="store">
+              <select
+                id="store"
+                name="store"
+                class="monthlyStore"
+                formControlName="store"
+              >
                 <option value="Aldi">Aldi</option>
                 <option value="Jewel Osco">Jewel Osco</option>
                 <option value="Pete's Fresh Market">Pete's Fresh Market</option>
@@ -203,7 +236,12 @@
                 placeholder="In Stock"
                 matInput
               />
-              <select id="store" name="store" class="indefStore" formControlName="store">
+              <select
+                id="store"
+                name="store"
+                class="indefStore"
+                formControlName="store"
+              >
                 <option value="Aldi">Aldi</option>
                 <option value="Jewel Osco">Jewel Osco</option>
                 <option value="Pete's Fresh Market">Pete's Fresh Market</option>
@@ -278,13 +316,17 @@
                 matInput
               />
 
-              <select id="store" name="store" class="weeklyStore" formControlName="store">
+              <select
+                id="store"
+                name="store"
+                class="weeklyStore"
+                formControlName="store"
+              >
                 <option value="Aldi">Aldi</option>
                 <option value="Jewel Osco">Jewel Osco</option>
                 <option value="Pete's Fresh Market">Pete's Fresh Market</option>
                 <option value="Online">Online</option>
               </select>
-              
 
               <button type="submit" mat-icon-button color="primary">
                 <mat-icon fontIcon="done" />
