@@ -36,6 +36,7 @@ h2 {
 .edit-form{
   display: flex;
   flex-direction: row;
+  justify-content: space-evenly;
 }
 .card-contents {
   display: flex;
