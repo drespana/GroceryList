@@ -98,16 +98,21 @@
   margin: 0 0 0 -1em;
 }
 
-.edit-one-stock {
+.edit-one-store{
   border:none;
-  width:18%;
+  width:22%;
   background-color: rgb(255, 255, 191);
 }
 
-.edit-one-store,
+.edit-one-stock {
+  border:none;
+  width:16%;
+  background-color: rgb(255, 255, 191);
+}
+
 .edit-one-item {
   border:none;
-  width:25%;
+  width:30%;
   background-color: rgb(255, 255, 191);
 }
 
