@@ -18,6 +18,7 @@ import { MatButtonModule } from '@angular/material/button'
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {DragDropModule} from '@angular/cdk/drag-drop'
 import { MatMenuModule } from '@angular/material/menu'
+import { MatChipsModule } from '@angular/material/chips'
 
 import { AppComponent } from './app.component';
 import { GroceriesListComponent } from './groceries-list/groceries-list.component';
@@ -49,7 +50,8 @@ import { AllItemsComponent } from './all-items/all-items.component';
     MatBadgeModule,
     MatButtonModule,
     DragDropModule,
-    MatMenuModule
+    MatMenuModule,
+    MatChipsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

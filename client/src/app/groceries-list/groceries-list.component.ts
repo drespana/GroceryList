@@ -141,6 +141,9 @@ export class GroceriesListComponent {
 
   toggleOne(): void {
     this.addOneTime = !this.addOneTime;
+    this.addIndefinite = false;
+    this.addMonthly = false;
+    this.addWeekly = false;
   }
 
   oneTimeInvalid: boolean = false;
@@ -158,6 +161,9 @@ export class GroceriesListComponent {
 
   toggleMonth() {
     this.addMonthly = !this.addMonthly;
+    this.addOneTime = false;
+    this.addIndefinite = false;
+    this.addWeekly = false;
   }
   monthlyInvalid: boolean = false;
   submitMonth() {
@@ -173,6 +179,9 @@ export class GroceriesListComponent {
 
   toggleWeek() {
     this.addWeekly = !this.addWeekly;
+    this.addOneTime = false;
+    this.addMonthly = false;
+    this.addIndefinite = false;
   }
   weeklyInvalid: boolean = false;
   submitWeek() {
@@ -188,6 +197,9 @@ export class GroceriesListComponent {
 
   toggleIndef() {
     this.addIndefinite = !this.addIndefinite;
+    this.addOneTime = false;
+    this.addMonthly = false;
+    this.addWeekly = false;
   }
   indefInvalid: boolean = false;
   submitIndef() {
