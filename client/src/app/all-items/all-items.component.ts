@@ -52,7 +52,7 @@ export class AllItemsComponent {
     if (this.itemForm.invalid) {
       this.displayError=true;
     } else {
-    this.formSubmitted.emit(this.itemForm.value)
+    // this.formSubmitted.emit(this.itemForm.value)
     this.newItem = this.itemForm.value;
     this.addItem(this.newItem);
     this.fetchItems();

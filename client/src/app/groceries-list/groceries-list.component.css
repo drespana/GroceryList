@@ -63,7 +63,7 @@
   -ms-transform: translateY(-50%);
   transform: translateY(-50%);
   border-left: 2px solid rgb(198, 98, 98);
-  
+  height:100%;
 }
 
 .indefStock,
