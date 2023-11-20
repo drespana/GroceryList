@@ -18,6 +18,7 @@ export class AllItemsComponent {
   @Output() formValuesChanged = new EventEmitter<Item>();
   items$: Observable<Item[]> = new Observable();
   isAdding:boolean=false;
+  allchip:boolean=true;
   displayError:boolean=false;
   itemForm: FormGroup = new FormGroup({});
   newItem:Item={};
@@ -28,10 +29,10 @@ export class AllItemsComponent {
   get frequency() {return this.itemForm.get('frequency')!;}
   get store() {return this.itemForm.get('store')!};
 
+  // OnInit //
   ngOnInit(): void {
-   
     this.isAdding=false;
-
+    this.allchip=true;
     this.initialState.subscribe(item => {
       this.itemForm = this.fb.group({
         item: [item.item, [Validators.required]],
@@ -44,6 +45,7 @@ export class AllItemsComponent {
     this.fetchItems();
   }
 
+  // Add Item Form Functions //
   toggle():void{
     this.isAdding=!this.isAdding
   }
@@ -60,6 +62,20 @@ export class AllItemsComponent {
   }
   }
 
+  // Chip filters //
+allChip(){
+  this.allchip=true;
+}
+ooschip:boolean=false;
+oosChip(){
+  this.ooschip=true;
+}
+aldiChip:boolean=false;
+jewelChip:boolean=false;
+petesChip:boolean=false;
+onlineChip:boolean=false;
+
+  // HTTP Requests //
   addItem(item:Item){
     this.itemService.createItem(item)
       .subscribe({
@@ -74,6 +90,10 @@ export class AllItemsComponent {
     this.itemService.deleteItem(id).subscribe({
       next: () => this.fetchItems(),
     });
+  }
+
+  filterStock():void{
+    this.itemService.getOutOfStock();
   }
 
   private fetchItems(): void {

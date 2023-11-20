@@ -24,7 +24,7 @@ export class ItemService {
     return this.items$;
   }
 
-  // get by frequency
+  
   // get by store
   // get by out of stock
   getOutOfStock(): Observable<Item[]> {

@@ -3,16 +3,23 @@ h2 {
   display: flex;
   justify-content: center;
   margin-top: 2em;
+  margin-bottom: .5em;
+}
+
+.all-chips {
+  display: flex;
+  justify-content: center;
 }
 
 .notebook {
   background-color: rgb(253, 253, 253);
   border-radius: 5px;
-  margin-top: 3em;
+  font-size: large;
+  margin-top: 1em;
   margin-left: auto;
   margin-right: auto;
-  margin-bottom: 3em;
-  width: 80%;
+  margin-bottom: 2em;
+  width: 70%;
   height: 100%;
   background-image: linear-gradient(#ccc 1px, transparent 1px);
   background-size: 20px 30px;
