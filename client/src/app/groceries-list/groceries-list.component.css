@@ -13,7 +13,6 @@
   align-items: center;
   width: 100%;
   height: 100%;
-  size:10px;
 }
 
 .tile {
@@ -21,14 +20,12 @@
   flex-direction: column;
   justify-content: flex-start;
   width: 100%;
-  height: 100%;
   align-items: stretch;
   padding: 5px 5px 5px 6px;
 }
 
 .tile-container {
-  padding: 10px 1em 10em 1em;
-  height: 100%;
+  padding: 10px 1em 6em 1em;
   width: 100%;
 }
 
@@ -38,7 +35,6 @@
   flex:nowrap;
   justify-content: space-around;
 }
-
 
 .button-container {
   display: flex;
@@ -56,6 +52,7 @@
   padding: 80px 45px 5px 55px;
   background-image: linear-gradient(#ccc 1.1px, transparent 1px);
   background-size: 100% 30px;
+  height:100%
 }
 
 .red-line{
@@ -92,6 +89,7 @@
   padding: 80px 45px 5px 90px;
   background-image: linear-gradient(#ccc 1px, transparent 1px);
   background-size: 20px 30px;
+  height:100%;
 }
 
 .post-it {
