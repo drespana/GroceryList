@@ -4,4 +4,5 @@ export default interface Item {
     inStock?:number;
     frequency?:string;
     _id?:string;
+    editing?:boolean;
 }

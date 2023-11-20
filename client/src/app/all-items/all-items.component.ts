@@ -18,11 +18,26 @@ export class AllItemsComponent {
   @Output() formValuesChanged = new EventEmitter<Item>();
   items$: Observable<Item[]> = new Observable();
   isAdding:boolean=false;
-  allchip:boolean=true;
+  isEditing:boolean=false;
   displayError:boolean=false;
+  displayEditError:boolean=false;
   itemForm: FormGroup = new FormGroup({});
+  editForm: FormGroup = new FormGroup({});
   newItem:Item={};
   constructor(private fb: FormBuilder, private router:Router, private itemService:ItemService) {}
+
+  get oneTimeItem() {
+    return this.editForm.get('item')!;
+  }
+  get oneTimeStock() {
+    return this.editForm.get('inStock')!;
+  }
+  get oneTimeFrequency() {
+    return this.editForm.get('frequency')!;
+  }
+  get oneTimeStore() {
+    return this.editForm.get('store')!;
+  }
 
   get item() {return this.itemForm.get('item')!;}
   get inStock() {return this.itemForm.get('inStock')!;}
@@ -32,7 +47,6 @@ export class AllItemsComponent {
   // OnInit //
   ngOnInit(): void {
     this.isAdding=false;
-    this.allchip=true;
     this.initialState.subscribe(item => {
       this.itemForm = this.fb.group({
         item: [item.item, [Validators.required]],
@@ -41,8 +55,31 @@ export class AllItemsComponent {
         store: [item.store, [] ]
       })
     })
+    this.initialState.subscribe(item => {
+      this.editForm = this.fb.group({
+        item: [item.item, [Validators.required]],
+        frequency: [ item.frequency, [Validators.required] ],
+        inStock: [ item.inStock, [] ],
+        store: [item.store, [] ]
+      })
+    })
     this.itemForm.valueChanges.subscribe((val) => { this.formValuesChanged.emit(val); });
+    this.editForm.valueChanges.subscribe((val) => { this.formValuesChanged.emit(val); });
     this.fetchItems();
+  }
+
+  // Edit Form  Functions //
+  submitEdit(id:string | undefined){
+    if (this.editForm.invalid) {
+      console.log("clickws")
+      this.displayEditError=true;
+    } else {
+      console.log("clicked!!!!")
+    this.newItem = this.editForm.value;
+    this.editItem(id, this.newItem);
+    this.fetchItems();
+    this.ngOnInit();
+  }
   }
 
   // Add Item Form Functions //
@@ -63,9 +100,6 @@ export class AllItemsComponent {
   }
 
   // Chip filters //
-allChip(){
-  this.allchip=true;
-}
 ooschip:boolean=false;
 oosChip(){
   this.ooschip=true;
@@ -84,6 +118,12 @@ onlineChip:boolean=false;
           console.error(error);
         }
       })
+  }
+
+  editItem(id:string | undefined, item:Item):void{
+    this.itemService.updateItem(id, item).subscribe({
+      next: () => this.fetchItems()
+    })
   }
 
   deleteItem(id: string | undefined): void {

@@ -69,7 +69,6 @@ itemRouter.put("/:id", async (req, res) => {
     const item = req.body;
     const query = { _id: new mongodb.ObjectId(id)}
     const result = await collections.items?.updateOne(query, {$set: item});
-        console.log(result)
 
     if (result && result.matchedCount) {
         res.status(200).send(`Updated item: ID ${id}`);

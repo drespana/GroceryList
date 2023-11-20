@@ -14,7 +14,7 @@ h2 {
 .notebook {
   background-color: rgb(253, 253, 253);
   border-radius: 5px;
-  font-size: large;
+  font-size: larger;
   margin-top: 1em;
   margin-left: auto;
   margin-right: auto;
@@ -33,14 +33,47 @@ h2 {
   align-content: center;
 }
 
+.edit-form{
+  display: flex;
+  flex-direction: row;
+}
 .card-contents {
-  margin-bottom: 1em;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   width: 60%;
-  padding: 7px 20px 7px 20px;
+  padding: 7px 10px 15px 10px;
+}
+
+.edit-input{
+  padding: 0 2px 0 0;
+}
+
+.edit-frequency,
+.edit-store,
+.edit-input {
+  border:none;
+  background-color: rgb(253, 253, 253);
+  width:25%;
+}
+
+.edit-stock {
+  border:none;
+  background-color: rgb(253, 253, 253);
+  width:11%;
+}
+
+.edit-frequency:hover,
+.edit-store:hover,
+.edit-stock:hover,
+.edit-input:hover{
+  border:none;
+  box-shadow: 0 5px 15px rgba(78, 78, 78, 0.4);
+}
+
+button {
+  margin: 0 6px 0 0;
 }
 
 .mt-3 {

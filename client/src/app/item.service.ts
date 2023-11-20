@@ -39,7 +39,7 @@ export class ItemService {
     return this.http.post(`${this.url}/groceries`, item, {responseType:'text'});
   }
 
-  updateItem(id: string, item: Item): Observable<string> {
+  updateItem(id: string | undefined, item: Item): Observable<string> {
     return this.http.put(`${this.url}/groceries/${id}`, item, { responseType: 'text' });
   }
   
