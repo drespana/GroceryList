@@ -55,13 +55,13 @@ h2 {
 .edit-store,
 .edit-input {
   border:none;
-  background-color: rgb(253, 253, 253);
+  background-color: transparent;
   width:25%;
 }
 
 .edit-stock {
   border:none;
-  background-color: rgb(253, 253, 253);
+  background-color:transparent;
   width:11%;
 }
 

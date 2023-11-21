@@ -71,14 +71,34 @@
 .indefItem {
   border:none;
   width:30%;
-  background-color: rgb(255, 255, 255);
+  background-color: transparent;
 }
+
+.edit-indef-item{
+  border:none;
+  width:30%;
+  height:26px;
+  background-color: transparent;
+}
+.edit-indef-stock {
+  border:none;
+  width:16%;
+  height:26px;
+  background-color: transparent;
+}
+.edit-indef-store {
+  border:none;
+  width:22%;
+  background-color: transparent;
+  height:26px;
+}
+
 .weeklyStock,
 .weeklyStore,
 .weeklyItem{
   border:none;
   width:30%;
-  background-color: rgb(252, 245, 236);
+  background-color: transparent;
 }
 
 .notebook-two {
@@ -100,37 +120,37 @@
 
 .edit-one-store{
   border:none;
-  width:22%;
+  width:24%;
   height:26px;
-  background-color: rgb(255, 255, 191);
+  background-color: transparent;
 }
 .edit-monthly-store {
   border:none;
-  width:22%;
-  background-color: rgb(255, 191, 246);
+  width:23%;
+  background-color: transparent;
   height:26px;
 }
 
 .edit-one-stock {
   border:none;
   width:16%;
-  background-color: rgb(255, 255, 191);
+  background-color: transparent;
 }
 .edit-monthly-stock {
   border:none;
   width:16%;
-  background-color: rgb(255, 191, 246);
+  background-color: transparent;
 }
 
 .edit-one-item {
   border:none;
   width:30%;
-  background-color: rgb(255, 255, 191);
+  background-color: transparent;
 }
 .edit-monthly-item {
   border:none;
   width:30%;
-  background-color: rgb(255, 191, 246);
+  background-color: transparent;
 }
 
 .post-it {
@@ -159,20 +179,31 @@
 }
 
 .monthlyStock,
-.monthlyStore,
 .monthlyItem{
   border:none;
   width: 30%;
   background-color: rgb(255, 191, 246);
 
 }
+.monthlyStore{
+  height:26px;
+  border: none;
+  width: 30%;
+  background-color: rgb(255, 191, 246);
+}
+
 
 .oneStock,
-.oneStore,
 .oneItem {
   border: none;
   width: 30%;
   background-color: rgb(255, 255, 191);
+}
+.oneStore{
+  height:25px;
+  border: none;
+  width: 30%;
+  background-color: rgb(255, 255, 191)
 }
 
 .post-it-two {

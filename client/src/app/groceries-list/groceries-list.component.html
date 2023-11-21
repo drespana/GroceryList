@@ -1,8 +1,8 @@
 <div class="alertbox">
-  <div class="alert alert-danger" *ngIf="oneTimeInvalid">Input Required</div>
-  <div class="alert alert-danger" *ngIf="monthlyInvalid">Input Required</div>
-  <div class="alert alert-danger" *ngIf="weeklyInvalid">Input Required</div>
-  <div class="alert alert-danger" *ngIf="indefInvalid">Input Required</div>
+  <div class="alert alert-danger" *ngIf="oneTimeInvalid">Input Required for One-Time Request</div>
+  <div class="alert alert-danger" *ngIf="monthlyInvalid">Input Required for Monthly</div>
+  <div class="alert alert-danger" *ngIf="weeklyInvalid">Input Required for Weekly</div>
+  <div class="alert alert-danger" *ngIf="indefInvalid">Input Required for Indefinite</div>
 </div>
 <div class="tile-container">
   <mat-grid-list cols="10" rowHeight="8em">
@@ -250,17 +250,55 @@
         <div class="tile">
           <div *ngFor="let item of items$ | async">
             <div class="card-contents" *ngIf="item.frequency == 'Indefinite'">
-              <div class="card-contents-item">
+              <div *ngIf="this.item.editing == true" class="edit-form">
+                <button mat-icon-button (click)="ngOnInit()">
+                  <mat-icon fontIcon="clear" />
+                </button>
+                <form
+                  [formGroup]="editForm"
+                  (ngSubmit)="submitEdit(this.item._id)"
+                >
+                  <button mat-icon-button><mat-icon fontIcon="done" /></button>
+                  <input
+                    class="edit-indef-item"
+                    type="text"
+                    [(ngModel)]="this.item.item"
+                    formControlName="item"
+                  />
+                  <input
+                    class="edit-indef-stock"
+                    type="number"
+                    [(ngModel)]="this.item.inStock"
+                    formControlName="inStock"
+                  />
+                  <select
+                    class="edit-indef-store"
+                    id="store"
+                    [(ngModel)]="this.item.store"
+                    name="store"
+                    formControlName="store"
+                  >
+                    <option value="Aldi">Aldi</option>
+                    <option value="Jewel Osco">Jewel Osco</option>
+                    <option value="Pete's Fresh Market">
+                      Pete's Fresh Market
+                    </option>
+                    <option value="Online">Online</option>
+                  </select>
+                </form>
+              </div>
+
+              <div class="card-contents-item" *ngIf="!this.item.editing">
                 <b>{{ item.item }}</b>
               </div>
 
-              <div class="card-contents-inStock">
+              <div class="card-contents-inStock" *ngIf="!this.item.editing">
                 {{ item.inStock === 0 ? "Out of Stock" : item.inStock }}
               </div>
 
-              <div class="item-buttons">
-                <button color="primary" mat-icon-button>
-                  <mat-icon fontIcon="mode" />
+              <div class="item-buttons" *ngIf="!this.item.editing">
+                <button color="primary" mat-icon-button (click)="this.item.editing = true">
+                  <mat-icon fontIcon="mode"/>
                 </button>
                 <button
                   color="warn"
