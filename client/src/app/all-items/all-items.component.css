@@ -51,12 +51,21 @@ h2 {
  align-items: center;
 }
 
+.oos-filter{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width:100%;
+  padding: 7px 10px 15px 10px;
+}
+
 .card-contents-all {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  width: 60%;
+  width: 70%;
   padding: 7px 10px 15px 10px;
 }
 
