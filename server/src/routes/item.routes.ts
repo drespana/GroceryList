@@ -17,7 +17,18 @@ itemRouter.get("/", async (_req, res) => {
 }); 
 
 // GET by frequency
-// GET by store
+
+
+// GET by store Aldi
+itemRouter.get("/aldi", async (req, res) => {
+    try {
+        const aldiItems = await collections.items.find({store:'Aldi'}).toArray();
+        res.status(200).send(aldiItems)
+    } catch (err) {
+        res.status(500).send(err.message)
+    }
+})
+
 // GET by out of stock
 itemRouter.get("/out-of-stock", async (req, res) => {
     try {

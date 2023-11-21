@@ -48,6 +48,11 @@ export class AllItemsComponent {
   ngOnInit(): void {
     this.isAdding=false;
     this.allchip=true;
+    this.ooschip=false;
+    this.aldichip=false;
+    this.jewelchip=false;
+    this.peteschip=false;
+    this.onlinechip=false;
     this.initialState.subscribe(item => {
       this.itemForm = this.fb.group({
         item: [item.item, [Validators.required]],
@@ -90,8 +95,16 @@ export class AllItemsComponent {
       this.displayError=true;
     } else {
     // this.formSubmitted.emit(this.itemForm.value)
+        this.isAdding=false;
+    this.allchip=true;
+    this.ooschip=false;
+    this.aldichip=false;
+    this.jewelchip=false;
+    this.peteschip=false;
+    this.onlinechip=false;
     this.newItem = this.itemForm.value;
     this.addItem(this.newItem);
+
     this.fetchItems();
     this.ngOnInit();
   }
