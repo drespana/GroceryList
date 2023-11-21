@@ -101,7 +101,14 @@
 .edit-one-store{
   border:none;
   width:22%;
+  height:26px;
   background-color: rgb(255, 255, 191);
+}
+.edit-monthly-store {
+  border:none;
+  width:22%;
+  background-color: rgb(255, 191, 246);
+  height:26px;
 }
 
 .edit-one-stock {
@@ -109,11 +116,21 @@
   width:16%;
   background-color: rgb(255, 255, 191);
 }
+.edit-monthly-stock {
+  border:none;
+  width:16%;
+  background-color: rgb(255, 191, 246);
+}
 
 .edit-one-item {
   border:none;
   width:30%;
   background-color: rgb(255, 255, 191);
+}
+.edit-monthly-item {
+  border:none;
+  width:30%;
+  background-color: rgb(255, 191, 246);
 }
 
 .post-it {

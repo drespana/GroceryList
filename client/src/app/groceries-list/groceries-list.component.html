@@ -11,40 +11,59 @@
         <h4>One-Time Request</h4>
         <div class="tile">
           <div *ngFor="let item of items$ | async">
-            <div *ngIf="item.editing" class="edit-form">
-              <button mat-icon-button (click)="item.editing = false">
-                <mat-icon fontIcon="clear" />
-              </button>
-              <form  [formGroup]="editForm" (ngSubmit)="submitEdit(item._id)">
-                <button mat-icon-button><mat-icon fontIcon="done" /></button>
-                <input class="edit-one-item" type="text" [(ngModel)]="item.item" formControlName="item"/>
-                <input class="edit-one-stock" type="number" [(ngModel)]="item.inStock" formControlName="inStock"/>
-                <select class="edit-one-store" id="store" [(ngModel)]="item.store" name="store" formControlName="store">
-                  <option value="Aldi">Aldi</option>
-                  <option value="Jewel Osco">Jewel Osco</option>
-                  <option value="Pete's Fresh Market">
-                    Pete's Fresh Market
-                  </option>
-                  <option value="Online">Online</option>
-                </select>
-              </form>
-            </div>
-
             <div
               class="card-contents"
               *ngIf="item.frequency == 'One-Time Request'"
             >
-              <div class="card-contents-item" *ngIf="!item.editing">
+              <div *ngIf="this.item.editing == true" class="edit-form">
+                <button mat-icon-button (click)="ngOnInit()">
+                  <mat-icon fontIcon="clear" />
+                </button>
+                <form
+                  [formGroup]="editForm"
+                  (ngSubmit)="submitEdit(this.item._id)"
+                >
+                  <button mat-icon-button><mat-icon fontIcon="done" /></button>
+                  <input
+                    class="edit-one-item"
+                    type="text"
+                    [(ngModel)]="this.item.item"
+                    formControlName="item"
+                  />
+                  <input
+                    class="edit-one-stock"
+                    type="number"
+                    [(ngModel)]="this.item.inStock"
+                    formControlName="inStock"
+                  />
+                  <select
+                    class="edit-one-store"
+                    id="store"
+                    [(ngModel)]="this.item.store"
+                    name="store"
+                    formControlName="store"
+                  >
+                    <option value="Aldi">Aldi</option>
+                    <option value="Jewel Osco">Jewel Osco</option>
+                    <option value="Pete's Fresh Market">
+                      Pete's Fresh Market
+                    </option>
+                    <option value="Online">Online</option>
+                  </select>
+                </form>
+              </div>
+
+              <div class="card-contents-item" *ngIf="!this.item.editing">
                 <b>{{ item.item }}</b>
               </div>
-              <div class="card-contents-inStock" *ngIf="!item.editing">
+              <div class="card-contents-inStock" *ngIf="!this.item.editing">
                 {{ item.inStock === 0 ? "Out of Stock" : item.inStock }}
               </div>
-              <div class="item-buttons" *ngIf="!item.editing">
+              <div class="item-buttons" *ngIf="!this.item.editing">
                 <button
                   color="primary"
                   mat-icon-button
-                  (click)="item.editing = true"
+                  (click)="this.item.editing = true"
                 >
                   <mat-icon fontIcon="mode" />
                 </button>
@@ -114,16 +133,54 @@
         <div class="tile">
           <div *ngFor="let item of items$ | async">
             <div class="card-contents" *ngIf="item.frequency == 'Monthly'">
-              <div class="card-contents-item">
+              <div *ngIf="this.item.editing" class="edit-form">
+                <button mat-icon-button (click)="ngOnInit()">
+                  <mat-icon fontIcon="clear" />
+                </button>
+                <form *ngIf="this.item.editing" [formGroup]="editForm" (ngSubmit)="submitEdit(item._id)">
+                  <button mat-icon-button><mat-icon fontIcon="done" /></button>
+                  <input
+                    class="edit-monthly-item"
+                    type="text"
+                    [(ngModel)]="this.item.item"
+                    formControlName="item"
+                  />
+                  <input
+                    class="edit-monthly-stock"
+                    type="number"
+                    [(ngModel)]="this.item.inStock"
+                    formControlName="inStock"
+                  />
+                  <select
+                    class="edit-monthly-store"
+                    id="store"
+                    [(ngModel)]="this.item.store"
+                    name="store"
+                    formControlName="store"
+                  >
+                    <option value="Aldi">Aldi</option>
+                    <option value="Jewel Osco">Jewel Osco</option>
+                    <option value="Pete's Fresh Market">
+                      Pete's Fresh Market
+                    </option>
+                    <option value="Online">Online</option>
+                  </select>
+                </form>
+              </div>
+              <div class="card-contents-item" *ngIf="!this.item.editing">
                 <b>{{ item.item }}</b>
               </div>
 
-              <div class="card-contents-inStock">
+              <div class="card-contents-inStock" *ngIf="!this.item.editing">
                 {{ item.inStock === 0 ? "Out of Stock" : item.inStock }}
               </div>
 
-              <div class="item-buttons">
-                <button color="primary" mat-icon-button>
+              <div class="item-buttons" *ngIf="!this.item.editing">
+                <button
+                  color="primary"
+                  mat-icon-button
+                  (click)="this.item.editing = true"
+                >
                   <mat-icon fontIcon="mode" />
                 </button>
                 <button
