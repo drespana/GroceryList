@@ -47,6 +47,7 @@ export class AllItemsComponent {
   // OnInit //
   ngOnInit(): void {
     this.isAdding=false;
+    this.allchip=true;
     this.initialState.subscribe(item => {
       this.itemForm = this.fb.group({
         item: [item.item, [Validators.required]],
@@ -84,7 +85,6 @@ export class AllItemsComponent {
   toggle():void{
     this.isAdding=!this.isAdding
   }
-
   submitForm() {
     if (this.itemForm.invalid) {
       this.displayError=true;
@@ -98,14 +98,62 @@ export class AllItemsComponent {
   }
 
   // Chip filters //
+allchip:boolean=false;
+allChip() {
+  this.allchip=true;
+  this.ooschip=false;
+  this.aldichip=false;
+  this.jewelchip=false;
+  this.peteschip=false;
+  this.onlinechip=false;
+  this.fetchItems();
+}
 ooschip:boolean=false;
 oosChip(){
+  this.allchip=false;
   this.ooschip=true;
+  this.aldichip=false;
+  this.jewelchip=false;
+  this.peteschip=false;
+  this.onlinechip=false;
+  this.filterStock();
 }
-aldiChip:boolean=false;
-jewelChip:boolean=false;
-petesChip:boolean=false;
-onlineChip:boolean=false;
+aldichip:boolean=false;
+aldiChip(){
+  this.allchip=false;
+  this.ooschip=false;
+  this.aldichip=true;
+  this.jewelchip=false;
+  this.peteschip=false;
+  this.onlinechip=false;
+}
+jewelchip:boolean=false;
+jewelChip(){
+  this.allchip=false;
+  this.ooschip=false;
+  this.aldichip=false;
+  this.jewelchip=true;
+  this.peteschip=false;
+  this.onlinechip=false;
+}
+peteschip:boolean=false;
+petesChip(){
+  this.allchip=false;
+  this.ooschip=false;
+  this.aldichip=false;
+  this.jewelchip=false;
+  this.peteschip=true;
+  this.onlinechip=false;
+}
+onlinechip:boolean=false;
+onlineChip(){
+  this.allchip=false;
+  this.ooschip=false;
+  this.aldichip=false;
+  this.jewelchip=false;
+  this.peteschip=false;
+  this.onlinechip=true;
+}
 
   // HTTP Requests //
   addItem(item:Item){

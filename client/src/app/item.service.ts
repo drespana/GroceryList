@@ -26,9 +26,12 @@ export class ItemService {
 
   
   // get by store
-  // get by out of stock
-  getOutOfStock(): Observable<Item[]> {
-    return this.http.get<Item[]>(`${this.url}/groceries/out-of-stock`)
+
+  getOutOfStock() {
+    this.http.get<Item[]>(`${this.url}/groceries/out-of-stock`)
+      .subscribe(items => {
+        this.items$.next(items);
+      })
   }
 
   getItem(id:string): Observable<Item> {

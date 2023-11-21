@@ -11,10 +11,7 @@
         <h4>One-Time Request</h4>
         <div class="tile">
           <div *ngFor="let item of items$ | async">
-            <div
-              class="card-contents"
-              *ngIf="item.frequency == 'One-Time Request'"
-            >
+            <div class="card-contents" *ngIf="item.frequency == 'One-Time Request'">
               <div *ngIf="this.item.editing == true" class="edit-form">
                 <button mat-icon-button (click)="ngOnInit()">
                   <mat-icon fontIcon="clear" />
