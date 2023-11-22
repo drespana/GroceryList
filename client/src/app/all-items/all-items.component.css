@@ -39,7 +39,10 @@ h2 {
   justify-content: space-evenly;
 }
 
-
+.online-store-filter,
+.petes-store-filter,
+.aldi-store-filter,
+.jewel-osco-filter,
 .out-of-stock-filter,
 .all-filter {
  width:100%;

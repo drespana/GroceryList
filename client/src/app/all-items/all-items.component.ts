@@ -181,7 +181,7 @@ export class AllItemsComponent {
   }
 
   // Chip filters //
-allchip:boolean=false;
+allchip:boolean=true;
 allChip() {
   this.allchip=!this.allchip;
   this.ooschip=false;
@@ -219,6 +219,7 @@ jewelChip(){
   this.jewelchip=!this.jewelchip;
   this.peteschip=false;
   this.onlinechip=false;
+  this.filterJewel();
 }
 peteschip:boolean=false;
 petesChip(){
@@ -228,6 +229,7 @@ petesChip(){
   this.jewelchip=false;
   this.peteschip=!this.peteschip;
   this.onlinechip=false;
+  this.filterPetes();
 }
 onlinechip:boolean=false;
 onlineChip(){
@@ -237,6 +239,7 @@ onlineChip(){
   this.jewelchip=false;
   this.peteschip=false;
   this.onlinechip=!this.onlinechip;
+  this.filterOnline();
 }
 
   // HTTP Requests //

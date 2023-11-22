@@ -45,7 +45,7 @@ export class ItemService {
     })
   }
   getOnline(){
-    this.http.get<Item[]>(`${this.url}/groceries/indefinite`)
+    this.http.get<Item[]>(`${this.url}/groceries/online`)
     .subscribe(items => {
       this.items$.next(items);
     })
