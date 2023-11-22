@@ -25,8 +25,33 @@ export class ItemService {
   }
 
   
-  // get by store
+// GET by store
+  getAldi(){
+    this.http.get<Item[]>(`${this.url}/groceries/aldi`)
+      .subscribe(items => {
+        this.items$.next(items);
+      })
+  }
+  getJewel(){
+    this.http.get<Item[]>(`${this.url}/groceries/jewel-osco`)
+    .subscribe(items => {
+      this.items$.next(items);
+    })
+  }
+  getPetes(){
+    this.http.get<Item[]>(`${this.url}/groceries/petes-fresh-market`)
+    .subscribe(items => {
+      this.items$.next(items);
+    })
+  }
+  getOnline(){
+    this.http.get<Item[]>(`${this.url}/groceries/indefinite`)
+    .subscribe(items => {
+      this.items$.next(items);
+    })
+  }
 
+// GET by stock
   getOutOfStock() {
     this.http.get<Item[]>(`${this.url}/groceries/out-of-stock`)
       .subscribe(items => {

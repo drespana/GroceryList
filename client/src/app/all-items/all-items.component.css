@@ -39,10 +39,7 @@ h2 {
   justify-content: space-evenly;
 }
 
-.online-filter,
-.petes-filter,
-.jewel-filter,
-.aldi-filter,
+
 .out-of-stock-filter,
 .all-filter {
  width:100%;
@@ -51,7 +48,10 @@ h2 {
  align-items: center;
 }
 
-
+.online-filter,
+.petes-filter,
+.jewel-filter,
+.aldi-filter,
 .oos-filter{
   display: flex;
   flex-direction: row;
@@ -107,17 +107,19 @@ button {
 .add-button {
   display: flex;
   justify-content: flex-end;
-  padding: 0 5em 0 0;
+  width:70%;
 }
 
 .form-container{
   display: flex;
   justify-content: space-around;
+  padding: 2em 0 0 0;
+  width:65%;
 }
 
 .item-form {
   display: flex;
   flex-direction: column;
-  padding: 2em 0 2em 0;
-  width: 65%;
+  padding: 0 0 0 0;
+  width: 100%;
 }
