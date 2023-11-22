@@ -1,4 +1,5 @@
 {
+    "compileOnSave": true,
     "compilerOptions": {
         "allowSyntheticDefaultImports": true,
         "module": "commonjs",
@@ -7,12 +8,12 @@
         "noImplicitAny": true,
         "moduleResolution": "node",
         "sourceMap": true,
-        "outDir": "dist",
+        "outDir": "dist/out-tsc",
         "baseUrl": ".",
         "allowJs": true,
         "paths": {
             "*": ["node_modules/*"]
         }
     },
-    "include": ["src/**/*"]
+    "include": ["server/**/*"]
  }

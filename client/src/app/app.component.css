@@ -1,0 +1,26 @@
+.toolbar {
+  background-color: rgb(255, 255, 255);
+  font-size: larger;
+}
+
+button {
+  padding:25px 0 25px 0;
+  font-size: large;
+}
+
+.sideNav {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 10px 0px 10px 0px;
+}
+
+.sideNavCont {
+  width: 14%;
+  background-color: rgb(163, 160, 148);
+}
+
+.sideBarNavigation {
+  background-color: rgb(219, 206, 189);
+  height: 100%;
+}

@@ -22,7 +22,7 @@ async function applySchemaValidation(db: mongodb.Db) {
     const jsonSchema = {
         $jsonSchema: {
             bsonType: "object",
-            required: ["item", "store", "inStock"],
+            required: ["item", "inStock", "frequency", "store"],
             additionalProperties: false,
             properties: {
                 _id: {},
@@ -30,15 +30,22 @@ async function applySchemaValidation(db: mongodb.Db) {
                     bsonType: "string",
                     description: "'item' is required and is a string",
                 },
+                inStock: {
+                    bsonType:"number",
+                    description: "'inStock' is required and is either true or false",
+
+                },
+                frequency: {
+                    bsonType: "string",
+                    description: "'store' is required and is a string",
+                    enum: ["One-Time Request", "Weekly","Monthly","Indefinite"]
+                },
                 store: {
                     bsonType: "string",
                     description: "'store' is required and is a string",
                     enum: ["Jewele Osco", "Pete's", "Online"]
                 },
-                inStock: {
-                    bsonType: "boolean",
-                    description: "'inStock' is required and is either true or false",
-                },
+                
             },
         },
     };
