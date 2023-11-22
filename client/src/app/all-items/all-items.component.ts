@@ -108,7 +108,7 @@ export class AllItemsComponent {
       this.oosForm = this.fb.group({
         item: [item.item, [Validators.required]],
         frequency: [ item.frequency, [Validators.required] ],
-        inStock: [ item.inStock, [] ],
+        inStock: [ item.inStock=0 ],
         store: [item.store, [] ]
       })
     })
@@ -117,7 +117,7 @@ export class AllItemsComponent {
         item: [item.item, [Validators.required]],
         frequency: [ item.frequency, [Validators.required] ],
         inStock: [ item.inStock, [] ],
-        store: [item.store, [] ]
+        store: [item.store="Aldi" ]
       })
     })
 
@@ -164,8 +164,9 @@ export class AllItemsComponent {
       this.displayError=true;
     } else {
     // this.formSubmitted.emit(this.itemForm.value)
-    this.newItem = this.itemForm.value;
+    this.newItem = this.oosForm.value;
     this.addItem(this.newItem);
+    this.ngOnInit();
     this.filterStock();
   }
   }
@@ -174,7 +175,7 @@ export class AllItemsComponent {
       this.displayError=true;
     } else {
     // this.formSubmitted.emit(this.itemForm.value)
-    this.newItem = this.itemForm.value;
+    this.newItem = this.aldiForm.value;
     this.addItem(this.newItem);
     this.filterAldi();
   }
@@ -189,6 +190,7 @@ allChip() {
   this.jewelchip=false;
   this.peteschip=false;
   this.onlinechip=false;
+  this.ngOnInit();
   this.fetchItems();
 }
 ooschip:boolean=false;

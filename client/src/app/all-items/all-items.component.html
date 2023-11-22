@@ -5,15 +5,22 @@
     <mat-chip-listbox aria-label="search">
       <mat-chip-option selected (click)="allChip()">All</mat-chip-option>
       <mat-chip-option unselected (click)="aldiChip()">Aldi</mat-chip-option>
-      <mat-chip-option unselected (click)="jewelChip()">Jewel Osco</mat-chip-option>
-      <mat-chip-option unselected (click)="petesChip()">Pete's Fresh Market</mat-chip-option>
-      <mat-chip-option unselected (click)="onlineChip()">Online</mat-chip-option>
-      <mat-chip-option unselected (click)="oosChip()">Out of Stock</mat-chip-option>
+      <mat-chip-option unselected (click)="jewelChip()"
+        >Jewel Osco</mat-chip-option
+      >
+      <mat-chip-option unselected (click)="petesChip()"
+        >Pete's Fresh Market</mat-chip-option
+      >
+      <mat-chip-option unselected (click)="onlineChip()"
+        >Online</mat-chip-option
+      >
+      <mat-chip-option unselected (click)="oosChip()"
+        >Out of Stock</mat-chip-option
+      >
     </mat-chip-listbox>
   </div>
   <div class="notebook">
     <div class="allCards">
-
       <div class="all-filter" *ngIf="allchip">
         <div class="card-contents-all" *ngFor="let item of items$ | async">
           <div *ngIf="item.editing" class="edit-form">
@@ -85,7 +92,6 @@
               <mat-icon fontIcon="delete" />
             </button>
           </div>
-          
         </div>
         <div class="add-button">
           <button
@@ -96,7 +102,7 @@
             <mat-icon>{{ isAdding ? "clear" : "add" }}</mat-icon>
           </button>
         </div>
-  
+
         <div *ngIf="isAdding" class="form-container">
           <form
             class="item-form"
@@ -117,17 +123,19 @@
                 required
               />
             </mat-form-field>
-  
+
             <mat-form-field>
               <mat-select id="frequency" formControlName="frequency" required>
-                <mat-option value="One-Time Request">One-Time Request</mat-option>
+                <mat-option value="One-Time Request"
+                  >One-Time Request</mat-option
+                >
                 <mat-option value="Weekly">Weekly</mat-option>
                 <mat-option value="Monthly">Monthly</mat-option>
                 <mat-option value="Indefinite">Indefinite</mat-option>
               </mat-select>
               <mat-label> <strong> Frequency</strong> </mat-label>
             </mat-form-field>
-  
+
             <mat-form-field>
               <mat-label for="inStock">In Stock</mat-label>
               <input
@@ -138,7 +146,7 @@
                 formControlName="inStock"
               />
             </mat-form-field>
-  
+
             <mat-form-field>
               <mat-select id="store" name="store" formControlName="store">
                 <mat-option value="Aldi">Aldi</mat-option>
@@ -150,7 +158,7 @@
               </mat-select>
               <mat-label>Store </mat-label>
             </mat-form-field>
-  
+
             <button
               mat-raised-button
               color="primary"
@@ -165,79 +173,88 @@
 
       <div class="aldi-store-filter" *ngIf="aldichip">
         <div class="card-contents-all" *ngFor="let item of items$ | async">
-          <div class="aldi-filter" *ngIf="this.item.store=='Aldi'" >
-          <div *ngIf="item.editing" class="edit-form">
-            <button mat-mini-fab color="warn" (click)="filterAldi()">
-              <mat-icon fontIcon="clear" />
-            </button>
-            <form [formGroup]="aldiForm" (ngSubmit)="submitEdit(this.item._id)">
-              <button mat-mini-fab color="primary" type="submit">
-                <mat-icon fontIcon="done"></mat-icon>
+          <div class="aldi-filter" *ngIf="this.item.store == 'Aldi'">
+            <div *ngIf="item.editing" class="edit-form">
+              <button mat-mini-fab color="warn" (click)="filterAldi()">
+                <mat-icon fontIcon="clear" />
               </button>
-              <input
-                class="edit-input"
-                type="text"
-                id="item"
-                name="item"
-                [(ngModel)]="item.item"
-                formControlName="item"
-                required
-              />
-              <input
-                class="edit-stock"
-                id="inStock"
-                name="inStock"
-                type="number"
-                [(ngModel)]="item.inStock"
-                formControlName="inStock"
-              />
-              <select
-                class="edit-frequency"
-                id="frequency"
-                name="frequency"
-                [(ngModel)]="item.frequency"
-                formControlName="frequency"
-                required
+              <form
+                [formGroup]="aldiForm"
+                (ngSubmit)="submitEdit(this.item._id)"
               >
-                <option value="One-Time Request">One-Time Request</option>
-                <option value="Monthly">Monthly</option>
-                <option value="Weekly">Weekly</option>
-                <option value="Indefinite">Idefinite</option>
-              </select>
-              <select
-                class="edit-store"
-                id="store"
-                name="store"
-                [(ngModel)]="item.store"
-                formControlName="store"
+                <button mat-mini-fab color="primary" type="submit">
+                  <mat-icon fontIcon="done"></mat-icon>
+                </button>
+                <input
+                  class="edit-input"
+                  type="text"
+                  id="item"
+                  name="item"
+                  [(ngModel)]="item.item"
+                  formControlName="item"
+                  required
+                />
+                <input
+                  class="edit-stock"
+                  id="inStock"
+                  name="inStock"
+                  type="number"
+                  [(ngModel)]="item.inStock"
+                  formControlName="inStock"
+                />
+                <select
+                  class="edit-frequency"
+                  id="frequency"
+                  name="frequency"
+                  [(ngModel)]="item.frequency"
+                  formControlName="frequency"
+                  required
+                >
+                  <option value="One-Time Request">One-Time Request</option>
+                  <option value="Monthly">Monthly</option>
+                  <option value="Weekly">Weekly</option>
+                  <option value="Indefinite">Idefinite</option>
+                </select>
+                <select
+                  class="edit-store"
+                  id="store"
+                  name="store"
+                  [(ngModel)]="item.store"
+                  formControlName="store"
+                >
+                  <option value="Aldi">Aldi</option>
+                  <option value="Jewel Osco">Jewel Osco</option>
+                  <option value="Pete's Fresh Market">
+                    Pete's Fresh Market
+                  </option>
+                  <option value="Online">Online</option>
+                </select>
+              </form>
+            </div>
+
+            <div *ngIf="!item.editing" class="card-contents-item">
+              <b>{{ item.item }}</b>
+            </div>
+
+            <div *ngIf="!item.editing" class="card-contents-inStock">
+              {{ item.inStock === 0 ? "Out of Stock" : item.inStock }}
+            </div>
+
+            <div *ngIf="!item.editing" class="button-container">
+              <button
+                color="primary"
+                (click)="item.editing = true"
+                mat-mini-fab
               >
-                <option value="Aldi">Aldi</option>
-                <option value="Jewel Osco">Jewel Osco</option>
-                <option value="Pete's Fresh Market">Pete's Fresh Market</option>
-                <option value="Online">Online</option>
-              </select>
-            </form>
-          </div>
-
-          <div *ngIf="!item.editing" class="card-contents-item">
-            <b>{{ item.item }}</b>
-          </div>
-
-          <div *ngIf="!item.editing" class="card-contents-inStock">
-            {{ item.inStock === 0 ? "Out of Stock" : item.inStock }}
-          </div>
-
-          <div *ngIf="!item.editing" class="button-container">
-            <button color="primary" (click)="item.editing = true" mat-mini-fab>
-              <mat-icon>mode</mat-icon>
-            </button>
-            <button color="warn" mat-mini-fab (click)="deleteItem(item._id)">
-              <mat-icon fontIcon="delete" />
-            </button>
-          </div>
+                <mat-icon>mode</mat-icon>
+              </button>
+              <button color="warn" mat-mini-fab (click)="deleteItem(item._id)">
+                <mat-icon fontIcon="delete" />
+              </button>
+            </div>
           </div>
         </div>
-        
+
         <div class="add-button">
           <button
             mat-fab
@@ -247,7 +264,7 @@
             <mat-icon>{{ isAdding ? "clear" : "add" }}</mat-icon>
           </button>
         </div>
-  
+
         <div *ngIf="isAdding" class="form-container">
           <form
             class="item-form"
@@ -268,17 +285,19 @@
                 required
               />
             </mat-form-field>
-  
+
             <mat-form-field>
               <mat-select id="frequency" formControlName="frequency" required>
-                <mat-option value="One-Time Request">One-Time Request</mat-option>
+                <mat-option value="One-Time Request"
+                  >One-Time Request</mat-option
+                >
                 <mat-option value="Weekly">Weekly</mat-option>
                 <mat-option value="Monthly">Monthly</mat-option>
                 <mat-option value="Indefinite">Indefinite</mat-option>
               </mat-select>
               <mat-label> <strong> Frequency</strong> </mat-label>
             </mat-form-field>
-  
+
             <mat-form-field>
               <mat-label for="inStock">In Stock</mat-label>
               <input
@@ -289,19 +308,7 @@
                 formControlName="inStock"
               />
             </mat-form-field>
-  
-            <mat-form-field>
-              <mat-select id="store" name="store" formControlName="store">
-                <mat-option value="Aldi">Aldi</mat-option>
-                <mat-option value="Jewel Osco">Jewel Osco</mat-option>
-                <mat-option value="Pete's Fresh Market"
-                  >Pete's Fresh Market</mat-option
-                >
-                <mat-option value="Online">Online</mat-option>
-              </mat-select>
-              <mat-label>Store </mat-label>
-            </mat-form-field>
-  
+
             <button
               mat-raised-button
               color="primary"
@@ -316,79 +323,88 @@
 
       <div class="jewel-osco-filter" *ngIf="jewelchip">
         <div class="card-contents-all" *ngFor="let item of items$ | async">
-          <div class="jewel-filter" *ngIf="this.item.store=='Jewel Osco'" >
-          <div *ngIf="item.editing" class="edit-form">
-            <button mat-mini-fab color="warn" (click)="filterJewel()">
-              <mat-icon fontIcon="clear" />
-            </button>
-            <form [formGroup]="aldiForm" (ngSubmit)="submitEdit(this.item._id)">
-              <button mat-mini-fab color="primary" type="submit">
-                <mat-icon fontIcon="done"></mat-icon>
+          <div class="jewel-filter" *ngIf="this.item.store == 'Jewel Osco'">
+            <div *ngIf="item.editing" class="edit-form">
+              <button mat-mini-fab color="warn" (click)="filterJewel()">
+                <mat-icon fontIcon="clear" />
               </button>
-              <input
-                class="edit-input"
-                type="text"
-                id="item"
-                name="item"
-                [(ngModel)]="item.item"
-                formControlName="item"
-                required
-              />
-              <input
-                class="edit-stock"
-                id="inStock"
-                name="inStock"
-                type="number"
-                [(ngModel)]="item.inStock"
-                formControlName="inStock"
-              />
-              <select
-                class="edit-frequency"
-                id="frequency"
-                name="frequency"
-                [(ngModel)]="item.frequency"
-                formControlName="frequency"
-                required
+              <form
+                [formGroup]="aldiForm"
+                (ngSubmit)="submitEdit(this.item._id)"
               >
-                <option value="One-Time Request">One-Time Request</option>
-                <option value="Monthly">Monthly</option>
-                <option value="Weekly">Weekly</option>
-                <option value="Indefinite">Idefinite</option>
-              </select>
-              <select
-                class="edit-store"
-                id="store"
-                name="store"
-                [(ngModel)]="item.store"
-                formControlName="store"
+                <button mat-mini-fab color="primary" type="submit">
+                  <mat-icon fontIcon="done"></mat-icon>
+                </button>
+                <input
+                  class="edit-input"
+                  type="text"
+                  id="item"
+                  name="item"
+                  [(ngModel)]="item.item"
+                  formControlName="item"
+                  required
+                />
+                <input
+                  class="edit-stock"
+                  id="inStock"
+                  name="inStock"
+                  type="number"
+                  [(ngModel)]="item.inStock"
+                  formControlName="inStock"
+                />
+                <select
+                  class="edit-frequency"
+                  id="frequency"
+                  name="frequency"
+                  [(ngModel)]="item.frequency"
+                  formControlName="frequency"
+                  required
+                >
+                  <option value="One-Time Request">One-Time Request</option>
+                  <option value="Monthly">Monthly</option>
+                  <option value="Weekly">Weekly</option>
+                  <option value="Indefinite">Idefinite</option>
+                </select>
+                <select
+                  class="edit-store"
+                  id="store"
+                  name="store"
+                  [(ngModel)]="item.store"
+                  formControlName="store"
+                >
+                  <option value="Aldi">Aldi</option>
+                  <option value="Jewel Osco">Jewel Osco</option>
+                  <option value="Pete's Fresh Market">
+                    Pete's Fresh Market
+                  </option>
+                  <option value="Online">Online</option>
+                </select>
+              </form>
+            </div>
+
+            <div *ngIf="!item.editing" class="card-contents-item">
+              <b>{{ item.item }}</b>
+            </div>
+
+            <div *ngIf="!item.editing" class="card-contents-inStock">
+              {{ item.inStock === 0 ? "Out of Stock" : item.inStock }}
+            </div>
+
+            <div *ngIf="!item.editing" class="button-container">
+              <button
+                color="primary"
+                (click)="item.editing = true"
+                mat-mini-fab
               >
-                <option value="Aldi">Aldi</option>
-                <option value="Jewel Osco">Jewel Osco</option>
-                <option value="Pete's Fresh Market">Pete's Fresh Market</option>
-                <option value="Online">Online</option>
-              </select>
-            </form>
-          </div>
-
-          <div *ngIf="!item.editing" class="card-contents-item">
-            <b>{{ item.item }}</b>
-          </div>
-
-          <div *ngIf="!item.editing" class="card-contents-inStock">
-            {{ item.inStock === 0 ? "Out of Stock" : item.inStock }}
-          </div>
-
-          <div *ngIf="!item.editing" class="button-container">
-            <button color="primary" (click)="item.editing = true" mat-mini-fab>
-              <mat-icon>mode</mat-icon>
-            </button>
-            <button color="warn" mat-mini-fab (click)="deleteItem(item._id)">
-              <mat-icon fontIcon="delete" />
-            </button>
-          </div>
+                <mat-icon>mode</mat-icon>
+              </button>
+              <button color="warn" mat-mini-fab (click)="deleteItem(item._id)">
+                <mat-icon fontIcon="delete" />
+              </button>
+            </div>
           </div>
         </div>
-        
+
         <div class="add-button">
           <button
             mat-fab
@@ -398,7 +414,7 @@
             <mat-icon>{{ isAdding ? "clear" : "add" }}</mat-icon>
           </button>
         </div>
-  
+
         <div *ngIf="isAdding" class="form-container">
           <form
             class="item-form"
@@ -419,17 +435,19 @@
                 required
               />
             </mat-form-field>
-  
+
             <mat-form-field>
               <mat-select id="frequency" formControlName="frequency" required>
-                <mat-option value="One-Time Request">One-Time Request</mat-option>
+                <mat-option value="One-Time Request"
+                  >One-Time Request</mat-option
+                >
                 <mat-option value="Weekly">Weekly</mat-option>
                 <mat-option value="Monthly">Monthly</mat-option>
                 <mat-option value="Indefinite">Indefinite</mat-option>
               </mat-select>
               <mat-label> <strong> Frequency</strong> </mat-label>
             </mat-form-field>
-  
+
             <mat-form-field>
               <mat-label for="inStock">In Stock</mat-label>
               <input
@@ -440,7 +458,7 @@
                 formControlName="inStock"
               />
             </mat-form-field>
-  
+
             <mat-form-field>
               <mat-select id="store" name="store" formControlName="store">
                 <mat-option value="Aldi">Aldi</mat-option>
@@ -452,7 +470,7 @@
               </mat-select>
               <mat-label>Store </mat-label>
             </mat-form-field>
-  
+
             <button
               mat-raised-button
               color="primary"
@@ -467,79 +485,88 @@
 
       <div class="petes-market-filter" *ngIf="peteschip">
         <div class="card-contents-all" *ngFor="let item of items$ | async">
-          <div class="petes-filter" *ngIf="this.item.store=='Petes'" >
-          <div *ngIf="item.editing" class="edit-form">
-            <button mat-mini-fab color="warn" (click)="filterPetes()">
-              <mat-icon fontIcon="clear" />
-            </button>
-            <form [formGroup]="aldiForm" (ngSubmit)="submitEdit(this.item._id)">
-              <button mat-mini-fab color="primary" type="submit">
-                <mat-icon fontIcon="done"></mat-icon>
+          <div class="petes-filter" *ngIf="this.item.store == 'Petes'">
+            <div *ngIf="item.editing" class="edit-form">
+              <button mat-mini-fab color="warn" (click)="filterPetes()">
+                <mat-icon fontIcon="clear" />
               </button>
-              <input
-                class="edit-input"
-                type="text"
-                id="item"
-                name="item"
-                [(ngModel)]="item.item"
-                formControlName="item"
-                required
-              />
-              <input
-                class="edit-stock"
-                id="inStock"
-                name="inStock"
-                type="number"
-                [(ngModel)]="item.inStock"
-                formControlName="inStock"
-              />
-              <select
-                class="edit-frequency"
-                id="frequency"
-                name="frequency"
-                [(ngModel)]="item.frequency"
-                formControlName="frequency"
-                required
+              <form
+                [formGroup]="aldiForm"
+                (ngSubmit)="submitEdit(this.item._id)"
               >
-                <option value="One-Time Request">One-Time Request</option>
-                <option value="Monthly">Monthly</option>
-                <option value="Weekly">Weekly</option>
-                <option value="Indefinite">Idefinite</option>
-              </select>
-              <select
-                class="edit-store"
-                id="store"
-                name="store"
-                [(ngModel)]="item.store"
-                formControlName="store"
+                <button mat-mini-fab color="primary" type="submit">
+                  <mat-icon fontIcon="done"></mat-icon>
+                </button>
+                <input
+                  class="edit-input"
+                  type="text"
+                  id="item"
+                  name="item"
+                  [(ngModel)]="item.item"
+                  formControlName="item"
+                  required
+                />
+                <input
+                  class="edit-stock"
+                  id="inStock"
+                  name="inStock"
+                  type="number"
+                  [(ngModel)]="item.inStock"
+                  formControlName="inStock"
+                />
+                <select
+                  class="edit-frequency"
+                  id="frequency"
+                  name="frequency"
+                  [(ngModel)]="item.frequency"
+                  formControlName="frequency"
+                  required
+                >
+                  <option value="One-Time Request">One-Time Request</option>
+                  <option value="Monthly">Monthly</option>
+                  <option value="Weekly">Weekly</option>
+                  <option value="Indefinite">Idefinite</option>
+                </select>
+                <select
+                  class="edit-store"
+                  id="store"
+                  name="store"
+                  [(ngModel)]="item.store"
+                  formControlName="store"
+                >
+                  <option value="Aldi">Aldi</option>
+                  <option value="Jewel Osco">Jewel Osco</option>
+                  <option value="Pete's Fresh Market">
+                    Pete's Fresh Market
+                  </option>
+                  <option value="Online">Online</option>
+                </select>
+              </form>
+            </div>
+
+            <div *ngIf="!item.editing" class="card-contents-item">
+              <b>{{ item.item }}</b>
+            </div>
+
+            <div *ngIf="!item.editing" class="card-contents-inStock">
+              {{ item.inStock === 0 ? "Out of Stock" : item.inStock }}
+            </div>
+
+            <div *ngIf="!item.editing" class="button-container">
+              <button
+                color="primary"
+                (click)="item.editing = true"
+                mat-mini-fab
               >
-                <option value="Aldi">Aldi</option>
-                <option value="Jewel Osco">Jewel Osco</option>
-                <option value="Pete's Fresh Market">Pete's Fresh Market</option>
-                <option value="Online">Online</option>
-              </select>
-            </form>
-          </div>
-
-          <div *ngIf="!item.editing" class="card-contents-item">
-            <b>{{ item.item }}</b>
-          </div>
-
-          <div *ngIf="!item.editing" class="card-contents-inStock">
-            {{ item.inStock === 0 ? "Out of Stock" : item.inStock }}
-          </div>
-
-          <div *ngIf="!item.editing" class="button-container">
-            <button color="primary" (click)="item.editing = true" mat-mini-fab>
-              <mat-icon>mode</mat-icon>
-            </button>
-            <button color="warn" mat-mini-fab (click)="deleteItem(item._id)">
-              <mat-icon fontIcon="delete" />
-            </button>
-          </div>
+                <mat-icon>mode</mat-icon>
+              </button>
+              <button color="warn" mat-mini-fab (click)="deleteItem(item._id)">
+                <mat-icon fontIcon="delete" />
+              </button>
+            </div>
           </div>
         </div>
-        
+
         <div class="add-button">
           <button
             mat-fab
@@ -549,7 +576,7 @@
             <mat-icon>{{ isAdding ? "clear" : "add" }}</mat-icon>
           </button>
         </div>
-  
+
         <div *ngIf="isAdding" class="form-container">
           <form
             class="item-form"
@@ -570,17 +597,19 @@
                 required
               />
             </mat-form-field>
-  
+
             <mat-form-field>
               <mat-select id="frequency" formControlName="frequency" required>
-                <mat-option value="One-Time Request">One-Time Request</mat-option>
+                <mat-option value="One-Time Request"
+                  >One-Time Request</mat-option
+                >
                 <mat-option value="Weekly">Weekly</mat-option>
                 <mat-option value="Monthly">Monthly</mat-option>
                 <mat-option value="Indefinite">Indefinite</mat-option>
               </mat-select>
               <mat-label> <strong> Frequency</strong> </mat-label>
             </mat-form-field>
-  
+
             <mat-form-field>
               <mat-label for="inStock">In Stock</mat-label>
               <input
@@ -591,7 +620,7 @@
                 formControlName="inStock"
               />
             </mat-form-field>
-  
+
             <mat-form-field>
               <mat-select id="store" name="store" formControlName="store">
                 <mat-option value="Aldi">Aldi</mat-option>
@@ -603,7 +632,7 @@
               </mat-select>
               <mat-label>Store </mat-label>
             </mat-form-field>
-  
+
             <button
               mat-raised-button
               color="primary"
@@ -616,82 +645,90 @@
         </div>
       </div>
 
-
-        <div class="online-store-filter" *ngIf="onlinechip">
+      <div class="online-store-filter" *ngIf="onlinechip">
         <div class="card-contents-all" *ngFor="let item of items$ | async">
-          <div class="online-filter" *ngIf="this.item.store=='Online'" >
-          <div *ngIf="item.editing" class="edit-form">
-            <button mat-mini-fab color="warn" (click)="filterOnline()">
-              <mat-icon fontIcon="clear" />
-            </button>
-            <form [formGroup]="aldiForm" (ngSubmit)="submitEdit(this.item._id)">
-              <button mat-mini-fab color="primary" type="submit">
-                <mat-icon fontIcon="done"></mat-icon>
+          <div class="online-filter" *ngIf="this.item.store == 'Online'">
+            <div *ngIf="item.editing" class="edit-form">
+              <button mat-mini-fab color="warn" (click)="filterOnline()">
+                <mat-icon fontIcon="clear" />
               </button>
-              <input
-                class="edit-input"
-                type="text"
-                id="item"
-                name="item"
-                [(ngModel)]="item.item"
-                formControlName="item"
-                required
-              />
-              <input
-                class="edit-stock"
-                id="inStock"
-                name="inStock"
-                type="number"
-                [(ngModel)]="item.inStock"
-                formControlName="inStock"
-              />
-              <select
-                class="edit-frequency"
-                id="frequency"
-                name="frequency"
-                [(ngModel)]="item.frequency"
-                formControlName="frequency"
-                required
+              <form
+                [formGroup]="aldiForm"
+                (ngSubmit)="submitEdit(this.item._id)"
               >
-                <option value="One-Time Request">One-Time Request</option>
-                <option value="Monthly">Monthly</option>
-                <option value="Weekly">Weekly</option>
-                <option value="Indefinite">Idefinite</option>
-              </select>
-              <select
-                class="edit-store"
-                id="store"
-                name="store"
-                [(ngModel)]="item.store"
-                formControlName="store"
+                <button mat-mini-fab color="primary" type="submit">
+                  <mat-icon fontIcon="done"></mat-icon>
+                </button>
+                <input
+                  class="edit-input"
+                  type="text"
+                  id="item"
+                  name="item"
+                  [(ngModel)]="item.item"
+                  formControlName="item"
+                  required
+                />
+                <input
+                  class="edit-stock"
+                  id="inStock"
+                  name="inStock"
+                  type="number"
+                  [(ngModel)]="item.inStock"
+                  formControlName="inStock"
+                />
+                <select
+                  class="edit-frequency"
+                  id="frequency"
+                  name="frequency"
+                  [(ngModel)]="item.frequency"
+                  formControlName="frequency"
+                  required
+                >
+                  <option value="One-Time Request">One-Time Request</option>
+                  <option value="Monthly">Monthly</option>
+                  <option value="Weekly">Weekly</option>
+                  <option value="Indefinite">Idefinite</option>
+                </select>
+                <select
+                  class="edit-store"
+                  id="store"
+                  name="store"
+                  [(ngModel)]="item.store"
+                  formControlName="store"
+                >
+                  <option value="Aldi">Aldi</option>
+                  <option value="Jewel Osco">Jewel Osco</option>
+                  <option value="Pete's Fresh Market">
+                    Pete's Fresh Market
+                  </option>
+                  <option value="Online">Online</option>
+                </select>
+              </form>
+            </div>
+
+            <div *ngIf="!item.editing" class="card-contents-item">
+              <b>{{ item.item }}</b>
+            </div>
+
+            <div *ngIf="!item.editing" class="card-contents-inStock">
+              {{ item.inStock === 0 ? "Out of Stock" : item.inStock }}
+            </div>
+
+            <div *ngIf="!item.editing" class="button-container">
+              <button
+                color="primary"
+                (click)="item.editing = true"
+                mat-mini-fab
               >
-                <option value="Aldi">Aldi</option>
-                <option value="Jewel Osco">Jewel Osco</option>
-                <option value="Pete's Fresh Market">Pete's Fresh Market</option>
-                <option value="Online">Online</option>
-              </select>
-            </form>
-          </div>
-
-          <div *ngIf="!item.editing" class="card-contents-item">
-            <b>{{ item.item }}</b>
-          </div>
-
-          <div *ngIf="!item.editing" class="card-contents-inStock">
-            {{ item.inStock === 0 ? "Out of Stock" : item.inStock }}
-          </div>
-
-          <div *ngIf="!item.editing" class="button-container">
-            <button color="primary" (click)="item.editing = true" mat-mini-fab>
-              <mat-icon>mode</mat-icon>
-            </button>
-            <button color="warn" mat-mini-fab (click)="deleteItem(item._id)">
-              <mat-icon fontIcon="delete" />
-            </button>
-          </div>
+                <mat-icon>mode</mat-icon>
+              </button>
+              <button color="warn" mat-mini-fab (click)="deleteItem(item._id)">
+                <mat-icon fontIcon="delete" />
+              </button>
+            </div>
           </div>
         </div>
-        
+
         <div class="add-button">
           <button
             mat-fab
@@ -701,7 +738,7 @@
             <mat-icon>{{ isAdding ? "clear" : "add" }}</mat-icon>
           </button>
         </div>
-  
+
         <div *ngIf="isAdding" class="form-container">
           <form
             class="item-form"
@@ -722,17 +759,19 @@
                 required
               />
             </mat-form-field>
-  
+
             <mat-form-field>
               <mat-select id="frequency" formControlName="frequency" required>
-                <mat-option value="One-Time Request">One-Time Request</mat-option>
+                <mat-option value="One-Time Request"
+                  >One-Time Request</mat-option
+                >
                 <mat-option value="Weekly">Weekly</mat-option>
                 <mat-option value="Monthly">Monthly</mat-option>
                 <mat-option value="Indefinite">Indefinite</mat-option>
               </mat-select>
               <mat-label> <strong> Frequency</strong> </mat-label>
             </mat-form-field>
-  
+
             <mat-form-field>
               <mat-label for="inStock">In Stock</mat-label>
               <input
@@ -743,7 +782,7 @@
                 formControlName="inStock"
               />
             </mat-form-field>
-  
+
             <mat-form-field>
               <mat-select id="store" name="store" formControlName="store">
                 <mat-option value="Aldi">Aldi</mat-option>
@@ -755,7 +794,7 @@
               </mat-select>
               <mat-label>Store </mat-label>
             </mat-form-field>
-  
+
             <button
               mat-raised-button
               color="primary"
@@ -766,83 +805,92 @@
             </button>
           </form>
         </div>
-        </div>
+      </div>
 
       <div class="out-of-stock-filter" *ngIf="ooschip">
         <div class="card-contents-all" *ngFor="let item of items$ | async">
-          <div class="online-filter" *ngIf="this.item.inStock==0" >
-          <div *ngIf="item.editing" class="edit-form">
-            <button mat-mini-fab color="warn" (click)="filterStock()">
-              <mat-icon fontIcon="clear" />
-            </button>
-            <form [formGroup]="aldiForm" (ngSubmit)="submitEdit(this.item._id)">
-              <button mat-mini-fab color="primary" type="submit">
-                <mat-icon fontIcon="done"></mat-icon>
+          <div class="online-filter" *ngIf="this.item.inStock == 0">
+            <div *ngIf="item.editing" class="edit-form">
+              <button mat-mini-fab color="warn" (click)="filterStock()">
+                <mat-icon fontIcon="clear" />
               </button>
-              <input
-                class="edit-input"
-                type="text"
-                id="item"
-                name="item"
-                placeholder={{item.item}}
-                formControlName="item"
-                required
-              />
-              <input
-                class="edit-stock"
-                id="inStock"
-                name="inStock"
-                type="number"
-                placeholder={{item.inStock}}
-                formControlName="inStock"
-              />
-              <select
-                class="edit-frequency"
-                id="frequency"
-                name="frequency"
-                [(ngModel)]="item.frequency"
-                formControlName="frequency"
-                required
+              <form
+                [formGroup]="aldiForm"
+                (ngSubmit)="submitEdit(this.item._id)"
               >
-                <option value="One-Time Request">One-Time Request</option>
-                <option value="Monthly">Monthly</option>
-                <option value="Weekly">Weekly</option>
-                <option value="Indefinite">Idefinite</option>
-              </select>
-              <select
-                class="edit-store"
-                id="store"
-                name="store"
-                [(ngModel)]="item.store"
-                formControlName="store"
+                <button mat-mini-fab color="primary" type="submit">
+                  <mat-icon fontIcon="done"></mat-icon>
+                </button>
+                <input
+                  class="edit-input"
+                  type="text"
+                  id="item"
+                  name="item"
+                  placeholder="{{ item.item }}"
+                  formControlName="item"
+                  required
+                />
+                <input
+                  class="edit-stock"
+                  id="inStock"
+                  name="inStock"
+                  type="number"
+                  placeholder="{{ item.inStock }}"
+                  formControlName="inStock"
+                />
+                <select
+                  class="edit-frequency"
+                  id="frequency"
+                  name="frequency"
+                  [(ngModel)]="item.frequency"
+                  formControlName="frequency"
+                  required
+                >
+                  <option value="One-Time Request">One-Time Request</option>
+                  <option value="Monthly">Monthly</option>
+                  <option value="Weekly">Weekly</option>
+                  <option value="Indefinite">Idefinite</option>
+                </select>
+                <select
+                  class="edit-store"
+                  id="store"
+                  name="store"
+                  [(ngModel)]="item.store"
+                  formControlName="store"
+                >
+                  <option value="Aldi">Aldi</option>
+                  <option value="Jewel Osco">Jewel Osco</option>
+                  <option value="Pete's Fresh Market">
+                    Pete's Fresh Market
+                  </option>
+                  <option value="Online">Online</option>
+                </select>
+              </form>
+            </div>
+
+            <div *ngIf="!item.editing" class="card-contents-item">
+              <b>{{ item.item }}</b>
+            </div>
+
+            <div *ngIf="!item.editing" class="card-contents-inStock">
+              {{ item.inStock === 0 ? "Out of Stock" : item.inStock }}
+            </div>
+
+            <div *ngIf="!item.editing" class="button-container">
+              <button
+                color="primary"
+                (click)="item.editing = true"
+                mat-mini-fab
               >
-                <option value="Aldi">Aldi</option>
-                <option value="Jewel Osco">Jewel Osco</option>
-                <option value="Pete's Fresh Market">Pete's Fresh Market</option>
-                <option value="Online">Online</option>
-              </select>
-            </form>
-          </div>
-
-          <div *ngIf="!item.editing" class="card-contents-item">
-            <b>{{ item.item }}</b>
-          </div>
-
-          <div *ngIf="!item.editing" class="card-contents-inStock">
-            {{ item.inStock === 0 ? "Out of Stock" : item.inStock }}
-          </div>
-
-          <div *ngIf="!item.editing" class="button-container">
-            <button color="primary" (click)="item.editing = true" mat-mini-fab>
-              <mat-icon>mode</mat-icon>
-            </button>
-            <button color="warn" mat-mini-fab (click)="deleteItem(item._id)">
-              <mat-icon fontIcon="delete" />
-            </button>
-          </div>
+                <mat-icon>mode</mat-icon>
+              </button>
+              <button color="warn" mat-mini-fab (click)="deleteItem(item._id)">
+                <mat-icon fontIcon="delete" />
+              </button>
+            </div>
           </div>
         </div>
-        
+
         <div class="add-button">
           <button
             mat-fab
@@ -852,12 +900,12 @@
             <mat-icon>{{ isAdding ? "clear" : "add" }}</mat-icon>
           </button>
         </div>
-  
+
         <div *ngIf="isAdding" class="form-container">
           <form
             class="item-form"
-            [formGroup]="aldiForm"
-            (ngSubmit)="submitForm()"
+            [formGroup]="oosForm"
+            (ngSubmit)="oosSubmit()"
           >
             <div class="alert alert-danger" *ngIf="displayError">
               Input Required
@@ -873,17 +921,19 @@
                 required
               />
             </mat-form-field>
-  
+
             <mat-form-field>
               <mat-select id="frequency" formControlName="frequency" required>
-                <mat-option value="One-Time Request">One-Time Request</mat-option>
+                <mat-option value="One-Time Request"
+                  >One-Time Request</mat-option
+                >
                 <mat-option value="Weekly">Weekly</mat-option>
                 <mat-option value="Monthly">Monthly</mat-option>
                 <mat-option value="Indefinite">Indefinite</mat-option>
               </mat-select>
               <mat-label> <strong> Frequency</strong> </mat-label>
             </mat-form-field>
-  
+
             <mat-form-field>
               <mat-label for="inStock">In Stock</mat-label>
               <input
@@ -894,7 +944,7 @@
                 formControlName="inStock"
               />
             </mat-form-field>
-  
+
             <mat-form-field>
               <mat-select id="store" name="store" formControlName="store">
                 <mat-option value="Aldi">Aldi</mat-option>
@@ -906,11 +956,11 @@
               </mat-select>
               <mat-label>Store </mat-label>
             </mat-form-field>
-  
+
             <button
               mat-raised-button
               color="primary"
-              [disabled]="!itemForm.valid"
+              [disabled]="!oosForm.valid"
               type="submit"
             >
               Submit
@@ -918,7 +968,6 @@
           </form>
         </div>
       </div>
-
     </div>
   </div>
 </div>
