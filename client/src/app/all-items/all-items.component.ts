@@ -185,7 +185,7 @@ export class AllItemsComponent {
         item: [item.item, [Validators.required]],
         frequency: [item.frequency, [Validators.required]],
         inStock: [item.inStock, []],
-        store: [item.store, []],
+        store: [item.store="Jewel Osco"],
       });
     });
     this.initialState.subscribe((item) => {
@@ -193,7 +193,7 @@ export class AllItemsComponent {
         item: [item.item, [Validators.required]],
         frequency: [item.frequency, [Validators.required]],
         inStock: [item.inStock, []],
-        store: [item.store, []],
+        store: [item.store="Petes"],
       });
     });
     this.initialState.subscribe((item) => {
@@ -201,7 +201,7 @@ export class AllItemsComponent {
         item: [item.item, [Validators.required]],
         frequency: [item.frequency, [Validators.required]],
         inStock: [item.inStock, []],
-        store: [item.store, []],
+        store: [item.store="Online"],
       });
     });
 

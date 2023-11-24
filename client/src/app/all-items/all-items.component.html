@@ -2,7 +2,7 @@
   <div class="alert alert-danger" *ngIf="displayEditError">Input Required</div>
   <h2>All Items</h2>
   <div class="all-chips">
-    <mat-chip-listbox aria-label="search">
+    <mat-chip-listbox aria-label="search-chips">
       <mat-chip-option selected (click)="allChip()">All</mat-chip-option>
       <mat-chip-option unselected (click)="aldiChip()">Aldi</mat-chip-option>
       <mat-chip-option unselected (click)="jewelChip()"
@@ -404,83 +404,7 @@
             </div>
           </div>
         </div>
-
-        <div class="add-button">
-          <button
-            mat-fab
-            [color]="isAdding ? 'warn' : 'primary'"
-            (click)="toggle()"
-          >
-            <mat-icon>{{ isAdding ? "clear" : "add" }}</mat-icon>
-          </button>
-        </div>
-
-        <div *ngIf="isAdding" class="form-container">
-          <form
-            class="item-form"
-            [formGroup]="jewelForm"
-            (ngSubmit)="jewelSubmit()"
-          >
-            <div class="alert alert-danger" *ngIf="displayError">
-              Input Required
-            </div>
-            <mat-form-field>
-              <mat-label for="item"><strong>Item Name</strong></mat-label>
-              <input
-                matInput
-                type="text"
-                id="item"
-                name="item"
-                formControlName="item"
-                required
-              />
-            </mat-form-field>
-
-            <mat-form-field>
-              <mat-select id="frequency" formControlName="frequency" required>
-                <mat-option value="One-Time Request"
-                  >One-Time Request</mat-option
-                >
-                <mat-option value="Weekly">Weekly</mat-option>
-                <mat-option value="Monthly">Monthly</mat-option>
-                <mat-option value="Indefinite">Indefinite</mat-option>
-              </mat-select>
-              <mat-label> <strong> Frequency</strong> </mat-label>
-            </mat-form-field>
-
-            <mat-form-field>
-              <mat-label for="inStock">In Stock</mat-label>
-              <input
-                matInput
-                type="number"
-                id="inStock"
-                name="inStock"
-                formControlName="inStock"
-              />
-            </mat-form-field>
-
-            <mat-form-field>
-              <mat-select id="store" name="store" formControlName="store">
-                <mat-option value="Aldi">Aldi</mat-option>
-                <mat-option value="Jewel Osco">Jewel Osco</mat-option>
-                <mat-option value="Pete's Fresh Market"
-                  >Pete's Fresh Market</mat-option
-                >
-                <mat-option value="Online">Online</mat-option>
-              </mat-select>
-              <mat-label>Store </mat-label>
-            </mat-form-field>
-
-            <button
-              mat-raised-button
-              color="primary"
-              [disabled]="!jewelForm.valid"
-              type="submit"
-            >
-              Submit
-            </button>
-          </form>
-        </div>
+        
       </div>
 
       <div class="petes-market-filter" *ngIf="peteschip">
@@ -567,82 +491,6 @@
           </div>
         </div>
 
-        <div class="add-button">
-          <button
-            mat-fab
-            [color]="isAdding ? 'warn' : 'primary'"
-            (click)="toggle()"
-          >
-            <mat-icon>{{ isAdding ? "clear" : "add" }}</mat-icon>
-          </button>
-        </div>
-
-        <div *ngIf="isAdding" class="form-container">
-          <form
-            class="item-form"
-            [formGroup]="petesForm"
-            (ngSubmit)="petesSubmit()"
-          >
-            <div class="alert alert-danger" *ngIf="displayError">
-              Input Required
-            </div>
-            <mat-form-field>
-              <mat-label for="item"><strong>Item Name</strong></mat-label>
-              <input
-                matInput
-                type="text"
-                id="item"
-                name="item"
-                formControlName="item"
-                required
-              />
-            </mat-form-field>
-
-            <mat-form-field>
-              <mat-select id="frequency" formControlName="frequency" required>
-                <mat-option value="One-Time Request"
-                  >One-Time Request</mat-option
-                >
-                <mat-option value="Weekly">Weekly</mat-option>
-                <mat-option value="Monthly">Monthly</mat-option>
-                <mat-option value="Indefinite">Indefinite</mat-option>
-              </mat-select>
-              <mat-label> <strong> Frequency</strong> </mat-label>
-            </mat-form-field>
-
-            <mat-form-field>
-              <mat-label for="inStock">In Stock</mat-label>
-              <input
-                matInput
-                type="number"
-                id="inStock"
-                name="inStock"
-                formControlName="inStock"
-              />
-            </mat-form-field>
-
-            <mat-form-field>
-              <mat-select id="store" name="store" formControlName="store">
-                <mat-option value="Aldi">Aldi</mat-option>
-                <mat-option value="Jewel Osco">Jewel Osco</mat-option>
-                <mat-option value="Pete's Fresh Market"
-                  >Pete's Fresh Market</mat-option
-                >
-                <mat-option value="Online">Online</mat-option>
-              </mat-select>
-              <mat-label>Store </mat-label>
-            </mat-form-field>
-
-            <button
-              mat-raised-button
-              color="primary"
-              [disabled]="!petesForm.valid"
-              type="submit"
-            >
-              Submit
-            </button>
-          </form>
-        </div>
       </div>
 
       <div class="online-store-filter" *ngIf="onlinechip">
@@ -727,71 +575,6 @@
               </button>
             </div>
           </div>
-        </div>
-
-        <div class="add-button">
-          <button
-            mat-fab
-            [color]="isAdding ? 'warn' : 'primary'"
-            (click)="toggle()"
-          >
-            <mat-icon>{{ isAdding ? "clear" : "add" }}</mat-icon>
-          </button>
-        </div>
-
-        <div *ngIf="isAdding" class="form-container">
-          <form
-            class="item-form"
-            [formGroup]="onlineForm"
-            (ngSubmit)="onlineSubmit()"
-          >
-            <div class="alert alert-danger" *ngIf="displayError">
-              Input Required
-            </div>
-            <mat-form-field>
-              <mat-label for="item"><strong>Item Name</strong></mat-label>
-              <input
-                matInput
-                type="text"
-                id="item"
-                name="item"
-                formControlName="item"
-                required
-              />
-            </mat-form-field>
-
-            <mat-form-field>
-              <mat-select id="frequency" formControlName="frequency" required>
-                <mat-option value="One-Time Request"
-                  >One-Time Request</mat-option
-                >
-                <mat-option value="Weekly">Weekly</mat-option>
-                <mat-option value="Monthly">Monthly</mat-option>
-                <mat-option value="Indefinite">Indefinite</mat-option>
-              </mat-select>
-              <mat-label> <strong> Frequency</strong> </mat-label>
-            </mat-form-field>
-
-            <mat-form-field>
-              <mat-label for="inStock">In Stock</mat-label>
-              <input
-                matInput
-                type="number"
-                id="inStock"
-                name="inStock"
-                formControlName="inStock"
-              />
-            </mat-form-field>
-
-            <button
-              mat-raised-button
-              color="primary"
-              [disabled]="!onlineForm.valid"
-              type="submit"
-            >
-              Submit
-            </button>
-          </form>
         </div>
       </div>
 
@@ -879,82 +662,6 @@
           </div>
         </div>
 
-        <div class="add-button">
-          <button
-            mat-fab
-            [color]="isAdding ? 'warn' : 'primary'"
-            (click)="toggle()"
-          >
-            <mat-icon>{{ isAdding ? "clear" : "add" }}</mat-icon>
-          </button>
-        </div>
-
-        <div *ngIf="isAdding" class="form-container">
-          <form
-            class="item-form"
-            [formGroup]="oosForm"
-            (ngSubmit)="oosSubmit()"
-          >
-            <div class="alert alert-danger" *ngIf="displayError">
-              Input Required
-            </div>
-            <mat-form-field>
-              <mat-label for="item"><strong>Item Name</strong></mat-label>
-              <input
-                matInput
-                type="text"
-                id="item"
-                name="item"
-                formControlName="item"
-                required
-              />
-            </mat-form-field>
-
-            <mat-form-field>
-              <mat-select id="frequency" formControlName="frequency" required>
-                <mat-option value="One-Time Request"
-                  >One-Time Request</mat-option
-                >
-                <mat-option value="Weekly">Weekly</mat-option>
-                <mat-option value="Monthly">Monthly</mat-option>
-                <mat-option value="Indefinite">Indefinite</mat-option>
-              </mat-select>
-              <mat-label> <strong> Frequency</strong> </mat-label>
-            </mat-form-field>
-
-            <mat-form-field>
-              <mat-label for="inStock">In Stock</mat-label>
-              <input
-                matInput
-                type="number"
-                id="inStock"
-                name="inStock"
-                formControlName="inStock"
-              />
-            </mat-form-field>
-
-            <mat-form-field>
-              <mat-select id="store" name="store" formControlName="store">
-                <mat-option value="Aldi">Aldi</mat-option>
-                <mat-option value="Jewel Osco">Jewel Osco</mat-option>
-                <mat-option value="Pete's Fresh Market"
-                  >Pete's Fresh Market</mat-option
-                >
-                <mat-option value="Online">Online</mat-option>
-              </mat-select>
-              <mat-label>Store </mat-label>
-            </mat-form-field>
-
-            <button
-              mat-raised-button
-              color="primary"
-              [disabled]="!oosForm.valid"
-              type="submit"
-            >
-              Submit
-            </button>
-          </form>
-        </div>
       </div>
     </div>
   </div>
