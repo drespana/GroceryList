@@ -148,15 +148,15 @@
             </mat-form-field>
 
             <mat-form-field>
-              <mat-select id="store" name="store" formControlName="store">
-                <mat-option value="Aldi">Aldi</mat-option>
-                <mat-option value="Jewel Osco">Jewel Osco</mat-option>
-                <mat-option value="Pete's Fresh Market"
-                  >Pete's Fresh Market</mat-option
+              <mat-select id="store" formControlName="store">
+                <mat-option value="Aldi"
+                  >Aldi</mat-option
                 >
-                <mat-option value="Online">Online</mat-option>
+                <mat-option value="Jewel Osco">Jewel Osco</mat-option>
+                <mat-option value="Petes">Pete's Fresh Market</mat-option>
+                <mat-option value="Indefinite">Indefinite</mat-option>
               </mat-select>
-              <mat-label>Store </mat-label>
+              <mat-label> Store </mat-label>
             </mat-form-field>
 
             <button
@@ -248,7 +248,7 @@
               >
                 <mat-icon>mode</mat-icon>
               </button>
-              <button color="warn" mat-mini-fab (click)="deleteItem(item._id)">
+              <button color="warn" mat-mini-fab (click)="deleteAldi(item._id)">
                 <mat-icon fontIcon="delete" />
               </button>
             </div>
@@ -269,7 +269,7 @@
           <form
             class="item-form"
             [formGroup]="aldiForm"
-            (ngSubmit)="submitForm()"
+            (ngSubmit)="aldiSubmit()"
           >
             <div class="alert alert-danger" *ngIf="displayError">
               Input Required
@@ -312,7 +312,7 @@
             <button
               mat-raised-button
               color="primary"
-              [disabled]="!itemForm.valid"
+              [disabled]="!aldiForm.valid"
               type="submit"
             >
               Submit
@@ -329,7 +329,7 @@
                 <mat-icon fontIcon="clear" />
               </button>
               <form
-                [formGroup]="aldiForm"
+                [formGroup]="editForm"
                 (ngSubmit)="submitEdit(this.item._id)"
               >
                 <button mat-mini-fab color="primary" type="submit">
@@ -418,8 +418,8 @@
         <div *ngIf="isAdding" class="form-container">
           <form
             class="item-form"
-            [formGroup]="aldiForm"
-            (ngSubmit)="submitForm()"
+            [formGroup]="jewelForm"
+            (ngSubmit)="jewelSubmit()"
           >
             <div class="alert alert-danger" *ngIf="displayError">
               Input Required
@@ -474,7 +474,7 @@
             <button
               mat-raised-button
               color="primary"
-              [disabled]="!itemForm.valid"
+              [disabled]="!jewelForm.valid"
               type="submit"
             >
               Submit
@@ -491,7 +491,7 @@
                 <mat-icon fontIcon="clear" />
               </button>
               <form
-                [formGroup]="aldiForm"
+                [formGroup]="editForm"
                 (ngSubmit)="submitEdit(this.item._id)"
               >
                 <button mat-mini-fab color="primary" type="submit">
@@ -580,8 +580,8 @@
         <div *ngIf="isAdding" class="form-container">
           <form
             class="item-form"
-            [formGroup]="aldiForm"
-            (ngSubmit)="submitForm()"
+            [formGroup]="petesForm"
+            (ngSubmit)="petesSubmit()"
           >
             <div class="alert alert-danger" *ngIf="displayError">
               Input Required
@@ -636,7 +636,7 @@
             <button
               mat-raised-button
               color="primary"
-              [disabled]="!itemForm.valid"
+              [disabled]="!petesForm.valid"
               type="submit"
             >
               Submit
@@ -653,7 +653,7 @@
                 <mat-icon fontIcon="clear" />
               </button>
               <form
-                [formGroup]="aldiForm"
+                [formGroup]="editForm"
                 (ngSubmit)="submitEdit(this.item._id)"
               >
                 <button mat-mini-fab color="primary" type="submit">
@@ -742,8 +742,8 @@
         <div *ngIf="isAdding" class="form-container">
           <form
             class="item-form"
-            [formGroup]="aldiForm"
-            (ngSubmit)="submitForm()"
+            [formGroup]="onlineForm"
+            (ngSubmit)="onlineSubmit()"
           >
             <div class="alert alert-danger" *ngIf="displayError">
               Input Required
@@ -783,22 +783,10 @@
               />
             </mat-form-field>
 
-            <mat-form-field>
-              <mat-select id="store" name="store" formControlName="store">
-                <mat-option value="Aldi">Aldi</mat-option>
-                <mat-option value="Jewel Osco">Jewel Osco</mat-option>
-                <mat-option value="Pete's Fresh Market"
-                  >Pete's Fresh Market</mat-option
-                >
-                <mat-option value="Online">Online</mat-option>
-              </mat-select>
-              <mat-label>Store </mat-label>
-            </mat-form-field>
-
             <button
               mat-raised-button
               color="primary"
-              [disabled]="!itemForm.valid"
+              [disabled]="!onlineForm.valid"
               type="submit"
             >
               Submit
@@ -815,7 +803,7 @@
                 <mat-icon fontIcon="clear" />
               </button>
               <form
-                [formGroup]="aldiForm"
+                [formGroup]="editForm"
                 (ngSubmit)="submitEdit(this.item._id)"
               >
                 <button mat-mini-fab color="primary" type="submit">
