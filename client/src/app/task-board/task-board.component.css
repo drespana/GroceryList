@@ -1,49 +1,48 @@
 .title {
-    display:flex;
-    justify-content: center;
-    background-color: antiquewhite;
-    border-radius: 3px;
-    padding: 8px 2em 0 2em;
-    margin: 0 30% 0 30%;
-    box-shadow: 2px 2px 5px;
+  display: flex;
+  justify-content: center;
+  background-color: antiquewhite;
+  border-radius: 3px;
+  padding: 8px 2em 0 2em;
+  margin: 0 30% 0 30%;
+  box-shadow: 2px 2px 5px;
 }
 
 .wooden-board {
-    margin:1em 3em 1em 3em;
-    border: solid 1px;
-    box-shadow: 5px 5px 5px;
-    background-color: #2d0200;
-background-image: url("https://www.transparenttextures.com/patterns/wood-pattern.png");
+  margin: 1em 3em 1em 3em;
+  border: solid 1px;
+  box-shadow: 5px 5px 5px;
+  background-image: url("https://img.freepik.com/free-photo/brown-wooden-flooring_53876-90802.jpg?size=626&ext=jpg&ga=GA1.1.1826414947.1701043200&semt=ais");
 }
 
 .board-content {
-    display: flex;
-    flex-direction: column;
-    margin: 4em 4em 4em 4em ;
-    box-shadow: -5px -5px 5px; 
-    padding: 2em 2em 2em 2em;
-    background-image: url("https://previews.123rf.com/images/nomadsoul1/nomadsoul11303/nomadsoul1130302558/18433100-close-up-of-cork-board-background-or-texture.jpg")
+  display: flex;
+  flex-direction: column;
+  margin: 4em 4em 4em 4em;
+  box-shadow: -5px -5px 5px;
+  padding: 2em 2em 2em 2em;
+  background-image: url("https://as1.ftcdn.net/v2/jpg/01/95/67/04/1000_F_195670408_W7LGmCY6SQEMOE9q8hm2RvkWlujUDaQZ.jpg");
 }
 
 .left-board {
-    margin: 2em 4em 2em 4em;
-    padding: 2em 3em 3em 3em;
-    background-color: aliceblue;
-    border-radius:3px;
-    box-shadow: 3px 3px 5px;
-    width:30%;
+  margin: 2em 1em 2em 1em;
+  padding: 2em 3em 3em 3em;
+  background-color: aliceblue;
+  border-radius: 3px;
+  box-shadow: 3px 3px 5px;
+  width: 30%;
 }
 
 .calendar {
-    margin: 2em 4em 2em 4em;
-    padding: 2em 3em 3em 3em;
-    background-color: aliceblue;
-    border-radius:3px;
-    box-shadow: 3px 3px 5px;
-    width:70%;
+  margin: 2em 1em 2em 1em;
+  padding: 2em 3em 3em 3em;
+  background-color: aliceblue;
+  border-radius: 3px;
+  box-shadow: 3px 3px 5px;
+  width: 70%;
 }
 
 .tasks {
-    display: flex;
-    flex-direction: row;
+  display: flex;
+  flex-direction: row;
 }
