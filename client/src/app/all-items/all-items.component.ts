@@ -21,11 +21,6 @@ export class AllItemsComponent {
   // hidden
   isAdding: boolean = false;
   isEditing: boolean = false;
-  isoos: boolean = false;
-  isaldi: boolean = false;
-  isjewel: boolean = false;
-  ispetes: boolean = false;
-  isonline: boolean = false;
 
   // hidden errors
   displayError: boolean = false;
@@ -34,11 +29,6 @@ export class AllItemsComponent {
   // forms
   itemForm: FormGroup = new FormGroup({});
   editForm: FormGroup = new FormGroup({});
-  oosForm: FormGroup = new FormGroup({});
-  aldiForm: FormGroup = new FormGroup({});
-  jewelForm: FormGroup = new FormGroup({});
-  petesForm: FormGroup = new FormGroup({});
-  onlineForm: FormGroup = new FormGroup({});
 
   // create
   newItem: Item = {};
@@ -74,70 +64,6 @@ export class AllItemsComponent {
     return this.itemForm.get('store')!;
   }
 
-  get oosItem() {
-    return this.oosForm.get('item')!;
-  }
-  get oosStock() {
-    return this.oosForm.get('inStock')!;
-  }
-  get oosFrequency() {
-    return this.oosForm.get('frequency')!;
-  }
-  get oosStore() {
-    return this.oosForm.get('store')!;
-  }
-
-  get aldiItem() {
-    return this.aldiForm.get('item')!;
-  }
-  get aldiStock() {
-    return this.aldiForm.get('inStock')!;
-  }
-  get aldiFrequency() {
-    return this.aldiForm.get('frequency')!;
-  }
-  get aldiStore() {
-    return this.aldiForm.get('store')!;
-  }
-
-  get jewelItem() {
-    return this.jewelForm.get('item')!;
-  }
-  get jewelStock() {
-    return this.jewelForm.get('inStock')!;
-  }
-  get jewelFrequency() {
-    return this.jewelForm.get('frequency')!;
-  }
-  get jewelStore() {
-    return this.jewelForm.get('store')!;
-  }
-
-  get petesItem() {
-    return this.petesForm.get('item')!;
-  }
-  get petesStock() {
-    return this.petesForm.get('inStock')!;
-  }
-  get petesFrequency() {
-    return this.petesForm.get('frequency')!;
-  }
-  get petesStore() {
-    return this.petesForm.get('store')!;
-  }
-
-  get onlineItem() {
-    return this.onlineForm.get('item')!;
-  }
-  get onlineStock() {
-    return this.onlineForm.get('inStock')!;
-  }
-  get onlineFrequency() {
-    return this.onlineForm.get('frequency')!;
-  }
-  get onlineStore() {
-    return this.onlineForm.get('store')!;
-  }
 
   // OnInit //
   ngOnInit(): void {
@@ -164,66 +90,12 @@ export class AllItemsComponent {
         store: [item.store, []],
       });
     });
-    this.initialState.subscribe((item) => {
-      this.oosForm = this.fb.group({
-        item: [item.item, [Validators.required]],
-        frequency: [item.frequency, [Validators.required]],
-        inStock: [(item.inStock = 0)],
-        store: [item.store, []],
-      });
-    });
-    this.initialState.subscribe((item) => {
-      this.aldiForm = this.fb.group({
-        item: [item.item, [Validators.required]],
-        frequency: [item.frequency, [Validators.required]],
-        inStock: [item.inStock, []],
-        store: [(item.store = 'Aldi')],
-      });
-    });
-    this.initialState.subscribe((item) => {
-      this.jewelForm = this.fb.group({
-        item: [item.item, [Validators.required]],
-        frequency: [item.frequency, [Validators.required]],
-        inStock: [item.inStock, []],
-        store: [item.store="Jewel Osco"],
-      });
-    });
-    this.initialState.subscribe((item) => {
-      this.petesForm = this.fb.group({
-        item: [item.item, [Validators.required]],
-        frequency: [item.frequency, [Validators.required]],
-        inStock: [item.inStock, []],
-        store: [item.store="Petes"],
-      });
-    });
-    this.initialState.subscribe((item) => {
-      this.onlineForm = this.fb.group({
-        item: [item.item, [Validators.required]],
-        frequency: [item.frequency, [Validators.required]],
-        inStock: [item.inStock, []],
-        store: [item.store="Online"],
-      });
-    });
+
 
     this.itemForm.valueChanges.subscribe((val) => {
       this.formValuesChanged.emit(val);
     });
     this.editForm.valueChanges.subscribe((val) => {
-      this.formValuesChanged.emit(val);
-    });
-    this.oosForm.valueChanges.subscribe((val) => {
-      this.formValuesChanged.emit(val);
-    });
-    this.aldiForm.valueChanges.subscribe((val) => {
-      this.formValuesChanged.emit(val);
-    });
-    this.jewelForm.valueChanges.subscribe((val) => {
-      this.formValuesChanged.emit(val);
-    });
-    this.petesForm.valueChanges.subscribe((val) => {
-      this.formValuesChanged.emit(val);
-    });
-    this.onlineForm.valueChanges.subscribe((val) => {
       this.formValuesChanged.emit(val);
     });
 
@@ -237,8 +109,8 @@ export class AllItemsComponent {
     } else {
       this.newItem = this.editForm.value;
       this.editItem(id, this.newItem);
-      this.fetchItems();
       this.ngOnInit();
+      this.fetchItems();
     }
   }
 
@@ -253,68 +125,8 @@ export class AllItemsComponent {
       // this.formSubmitted.emit(this.itemForm.value)
       this.newItem = this.itemForm.value;
       this.addItem(this.newItem);
+      this.ngOnInit();
       this.fetchItems();
-      this.ngOnInit();
-    }
-  }
-  oosSubmit() {
-    if (this.oosForm.invalid) {
-      this.displayError = true;
-    } else {
-      // this.formSubmitted.emit(this.itemForm.value)
-      this.newItem = this.oosForm.value;
-      this.addItem(this.newItem);
-      this.ngOnInit();
-      this.filterStock();
-      this.filterStock();
-    }
-  }
-  aldiSubmit() {
-    if (this.aldiForm.invalid) {
-      this.displayError = true;
-    } else {
-      // this.formSubmitted.emit(this.itemForm.value)
-      this.newItem = this.aldiForm.value;
-      this.addItem(this.newItem);
-      this.ngOnInit();
-      this.filterAldi();
-      this.filterAldi();
-    }
-  }
-  petesSubmit() {
-    if (this.petesForm.invalid) {
-      this.displayError = true;
-    } else {
-      // this.formSubmitted.emit(this.itemForm.value)
-      this.newItem = this.petesForm.value;
-      this.addItem(this.newItem);
-      this.ngOnInit();
-      this.filterPetes();
-      this.filterPetes();
-    }
-  }
-  jewelSubmit() {
-    if (this.jewelForm.invalid) {
-      this.displayError = true;
-    } else {
-      // this.formSubmitted.emit(this.itemForm.value)
-      this.newItem = this.jewelForm.value;
-      this.addItem(this.newItem);
-      this.ngOnInit();
-      this.filterJewel();
-      this.filterJewel();
-    }
-  }
-  onlineSubmit() {
-    if (this.onlineForm.invalid) {
-      this.displayError = true;
-    } else {
-      // this.formSubmitted.emit(this.itemForm.value)
-      this.newItem = this.onlineForm.value;
-      this.addItem(this.newItem);
-      this.ngOnInit();
-      this.filterOnline();
-      this.filterOnline();
     }
   }
 
@@ -352,7 +164,7 @@ export class AllItemsComponent {
     this.jewelchip = false;
     this.peteschip = false;
     this.onlinechip = false;
-    // this.ngOnInit();
+    this.ngOnInit();
     this.filterAldi();
   }
   jewelchip: boolean = false;
@@ -414,35 +226,6 @@ export class AllItemsComponent {
     });
   }
 
-  deleteAldi(id: string | undefined): void {
-    this.itemService.deleteItem(id).subscribe({
-      next: () => this.filterAldi(),
-    });
-  }
-
-  deleteOos(id: string | undefined): void {
-    this.itemService.deleteItem(id).subscribe({
-      next: () => this.filterStock(),
-    });
-  }
-
-  deleteOnline(id: string | undefined): void {
-    this.itemService.deleteItem(id).subscribe({
-      next: () => this.filterOnline(),
-    });
-  }
-
-  deletePetes(id: string | undefined): void {
-    this.itemService.deleteItem(id).subscribe({
-      next: () => this.filterPetes(),
-    });
-  }
-
-  deleteJewel(id: string | undefined): void {
-    this.itemService.deleteItem(id).subscribe({
-      next: () => this.filterJewel(),
-    });
-  }
 
   filterStock(): void {
     this.itemService.getOutOfStock();
