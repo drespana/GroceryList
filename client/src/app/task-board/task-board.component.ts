@@ -1,4 +1,10 @@
-import { Component } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { TaskService } from '../task.service';
+import { BehaviorSubject } from 'rxjs';
+import Task from '../Task';
 
 @Component({
   selector: 'app-task-board',
