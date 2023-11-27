@@ -8,13 +8,26 @@ import { Component } from '@angular/core';
 export class TaskBoardComponent {
 
   addingReminder:boolean=false;
-  addingTask:boolean=false;
+  addingWeeklyTask:boolean=false;
+  addingMonthlyTask:boolean=false;
   weeklyCalendar:boolean=true;
   monthlyCalendar:boolean=false;
 
   toggleCalendar(){
     this.weeklyCalendar = !this.weeklyCalendar
     this.monthlyCalendar = !this.monthlyCalendar
+  }
+
+  toggleReminderForm(){
+    this.addingReminder = !this.addingReminder
+  }
+
+  toggleWeeklyTaskForm(){
+    this.addingWeeklyTask = !this.addingWeeklyTask
+  }
+
+  toggleMonthlyTaskForm(){
+    this.addingMonthlyTask = !this.addingMonthlyTask
   }
 
 }

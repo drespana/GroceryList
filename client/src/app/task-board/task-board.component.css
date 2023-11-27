@@ -62,6 +62,11 @@ h2 {
   flex-direction: row;
 }
 
+.task-notes-container,
+.task-description-container {
+  padding: 0 0 1.4em 0;
+}
+
 .notebook {
   width: 85%;
   color:rgb(75, 75, 75);
