@@ -7,15 +7,16 @@
     <mat-icon>menu</mat-icon>
   </button>
 
-  <h2>Shopping List</h2>
+  <h2>Desk</h2>
 </mat-toolbar>
 
 <mat-sidenav-container class="sideBarNavigation">
 
   <mat-sidenav class="sideNavCont"  #sideNav mode="side" [(opened)]="opened">
     <div class="sideNav">
-    <button mat-button routerLink="/groceries">Lists</button>
-    <button mat-button routerLink="/all">All Items</button>
+    <button mat-button routerLink="/groceries">Grocery Lists</button>
+    <button mat-button routerLink="/all">All Groceries</button>
+    <button mat-button routerLink="/tasks">Task Board</button>
     </div>
   </mat-sidenav>
 

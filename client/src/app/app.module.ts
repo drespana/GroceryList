@@ -24,12 +24,14 @@ import { AppComponent } from './app.component';
 import { GroceriesListComponent } from './groceries-list/groceries-list.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AllItemsComponent } from './all-items/all-items.component';
+import { TaskBoardComponent } from './task-board/task-board.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     GroceriesListComponent,
-    AllItemsComponent
+    AllItemsComponent,
+    TaskBoardComponent
   ],
   imports: [
     MatFormFieldModule,

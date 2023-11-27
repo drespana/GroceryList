@@ -1,0 +1,66 @@
+<h2>Task Board</h2>
+
+<div>
+  <div class="wooden-board">
+    <div class="board-background">
+      <div class="board-content">
+        <div class="tasks">
+          <div class="left-board">
+            <h5>Reminders</h5>
+            <form class="add-reminder-form" *ngIf="addingReminder"></form>
+            <div class="button-container">
+              <button mat-mini-fab class="add-button" [color]="addingReminder ? 'warn' : 'primary'"
+              (click)="toggleReminderForm()">
+                <mat-icon>{{ addingReminder ? "clear" : "add" }}</mat-icon>
+              </button>
+            </div>
+          </div>
+          <div class="calendar">
+            <h5>This Month Here</h5>
+            <button mat-flat-button color="primary" (click)="toggleCalendar()">
+              {{ weeklyCalendar ? "Monthly" : "Weekly" }}
+            </button>
+            <div class="weekly-calendar" *ngIf="weeklyCalendar">
+              <p>weekly calendar</p>
+              <form class="add-weekly-task-form" *ngIf="addingWeeklyTask"></form>
+              <div class="button-container">
+                <button
+                  mat-mini-fab
+                  [color]="addingWeeklyTask ? 'warn' : 'primary'"
+                  (click)="toggleWeeklyTaskForm()"
+                >
+                  <mat-icon>{{ addingWeeklyTask ? "clear" : "add" }}</mat-icon>
+                </button>
+              </div>
+            </div>
+            <div class="monthly" *ngIf="monthlyCalendar">
+              <p>montlhy calendar</p>
+              <form class="add-monthly-task-form" *ngIf="addingMonthlyTask"></form>
+              <div class="button-container">
+                <button
+                  mat-mini-fab
+                  class="add-button"
+                  [color]="addingMonthlyTask ? 'warn' : 'primary'"
+                  (click)="toggleMonthlyTaskForm()"
+                >
+                  <mat-icon>{{ addingMonthlyTask ? "clear" : "add" }}</mat-icon>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="notebook">
+    <div class="red-line"></div>
+    <div class="task-description-container">
+      <h5>Description</h5>
+      <div>Task Description Here</div>
+    </div>
+    <div class="task-notes-container">
+      <h5>Notes</h5>
+      <div>Task Notes Here</div>
+    </div>
+  </div>
+</div>

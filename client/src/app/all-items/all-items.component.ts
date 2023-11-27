@@ -145,15 +145,16 @@ export class AllItemsComponent {
   }
   ooschip: boolean = false;
   oosChip() {
+    this.ooschip = !this.ooschip;
     this.isAdding = false;
     this.allchip = false;
-    this.ooschip = !this.ooschip;
     this.aldichip = false;
     this.jewelchip = false;
     this.peteschip = false;
     this.onlinechip = false;
     this.ngOnInit();
     this.filterStock();
+
   }
   aldichip: boolean = false;
   aldiChip() {

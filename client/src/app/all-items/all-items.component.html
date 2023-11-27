@@ -24,7 +24,7 @@
       <div class="all-filter" *ngIf="allchip">
         <div class="card-contents-all" *ngFor="let item of items$ | async">
           <div *ngIf="item.editing" class="edit-form">
-            <button mat-mini-fab color="warn" (click)="filterAll()">
+            <button mat-mini-fab color="warn" (click)="this.item.editing=false">
               <mat-icon fontIcon="clear" />
             </button>
             <form [formGroup]="editForm" (ngSubmit)="submitEdit(this.item._id)">

@@ -1,0 +1,89 @@
+h2 {
+  display: flex;
+  justify-content: center;
+  margin: 1.5em 0 1em 0;
+}
+
+.title {
+  display: flex;
+  justify-content: center;
+  background-color: antiquewhite;
+  border-radius: 3px;
+  padding: 8px 2em 0 2em;
+  margin: 0 30% 0 30%;
+  box-shadow: 2px 2px 5px;
+}
+
+.button-container {
+  display: flex;
+  justify-content: end;
+}
+
+.wooden-board {
+  margin: 1em 3em 1em 3em;
+  border: solid 1px;
+  border-radius: 5px;
+  box-shadow: 5px 5px 5px;
+  background-image: url("https://img.freepik.com/free-photo/brown-wooden-flooring_53876-90802.jpg?size=626&ext=jpg&ga=GA1.1.1826414947.1701043200&semt=ais");
+}
+
+.board-content {
+  display: flex;
+  flex-direction: column;
+  margin: 4em 4em 4em 4em;
+  box-shadow: -5px -5px 5px;
+  padding: 2em 2em 2em 2em;
+  background-image: url("https://as1.ftcdn.net/v2/jpg/01/95/67/04/1000_F_195670408_W7LGmCY6SQEMOE9q8hm2RvkWlujUDaQZ.jpg");
+}
+
+.left-board {
+  margin: 2em 1em 2em 1em;
+  padding: 1.5em 1em 1em 1.2em;
+  color:rgb(62, 62, 62);
+  background-color: rgb(255, 255, 255);
+  background-image: linear-gradient(#ccc 1.1px, transparent 1px);
+  background-size: 100% 30px;
+  border-radius: 3px;
+  box-shadow: 3px 3px 5px;
+  width: 30%;
+}
+
+.calendar {
+  margin: 2em 1em 2em 1em;
+  padding: 2em 3em 3em 3em;
+  background-color: aliceblue;
+  border-radius: 3px;
+  box-shadow: 3px 3px 5px;
+  width: 70%;
+}
+
+.tasks {
+  display: flex;
+  flex-direction: row;
+}
+
+.task-notes-container,
+.task-description-container {
+  padding: 0 0 1.4em 0;
+}
+
+.notebook {
+  width: 85%;
+  color:rgb(63, 63, 63);
+  border-radius: 3px;
+  background-color: rgb(252, 245, 236);
+  padding: 80px 45px 50px 90px;
+  background-image: linear-gradient(#ccc 1px, transparent 1px);
+  background-size: 20px 30px;
+  margin:3em auto;
+}
+
+/* .red-line{
+  margin: 0;
+  margin-left: -1.5em;;
+  position: absolute;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  border-left: 2px solid rgb(198, 98, 98);
+  height:100%;
+} */
