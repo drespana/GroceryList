@@ -1,0 +1,38 @@
+<h2>Task Board</h2>
+
+<div>
+  <div class="wooden-board">
+    <div class="board-background">
+      <div class="board-content">
+        <div class="title">
+          <h2>Task Board</h2>
+        </div>
+        <div class="tasks">
+          <div class="left-board">
+            <h5>Reminders</h5>
+            <button mat-mini-fab class="add-button" color="primary">
+              <mat-icon>add</mat-icon>
+            </button>
+          </div>
+          <div class="calendar">
+            <button mat-flat-button color="primary" (click)="toggleCalendar()">
+              {{ weeklyCalendar ? "Monthly" : "Weekly" }}
+            </button>
+            <div class="weekly-calendar" *ngIf="weeklyCalendar">
+              <p>weekly calendar</p>
+              <button mat-mini-fab class="add-button" color="primary">
+                <mat-icon>add</mat-icon>
+              </button>
+            </div>
+            <div class="monthly" *ngIf="monthlyCalendar">
+              <p>montlhy calendar</p>
+              <button mat-mini-fab class="add-button" color="primary">
+                <mat-icon>add</mat-icon>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
