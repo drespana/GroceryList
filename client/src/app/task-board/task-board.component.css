@@ -1,3 +1,9 @@
+h2 {
+  display: flex;
+  justify-content: center;
+  margin: 1.5em 0 1em 0;
+}
+
 .title {
   display: flex;
   justify-content: center;
@@ -8,9 +14,15 @@
   box-shadow: 2px 2px 5px;
 }
 
+.button-container {
+  display: flex;
+  justify-content: end;
+}
+
 .wooden-board {
   margin: 1em 3em 1em 3em;
   border: solid 1px;
+  border-radius: 5px;
   box-shadow: 5px 5px 5px;
   background-image: url("https://img.freepik.com/free-photo/brown-wooden-flooring_53876-90802.jpg?size=626&ext=jpg&ga=GA1.1.1826414947.1701043200&semt=ais");
 }
@@ -26,7 +38,7 @@
 
 .left-board {
   margin: 2em 1em 2em 1em;
-  padding: 2em 3em 3em 3em;
+  padding: 1.5em 1em 1em 1.2em;
   background-color: aliceblue;
   border-radius: 3px;
   box-shadow: 3px 3px 5px;
