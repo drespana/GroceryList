@@ -75,7 +75,7 @@ h2 {
   padding: 80px 45px 50px 90px;
   background-image: linear-gradient(#ccc 1px, transparent 1px);
   background-size: 20px 30px;
-  margin: 3em 6em 3em 6em;
+  margin:3em auto;
 }
 
 /* .red-line{
