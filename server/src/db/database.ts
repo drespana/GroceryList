@@ -1,7 +1,11 @@
 import * as mongodb from "mongodb";
 import Item from "../models/Item";
+import Task from "../models/Task";
+import Reminder from "../models/Reminder";
 
 export const collections: {items?: mongodb.Collection<Item>} = {};
+export const taskCollections: {tasks?: mongodb.Collection<Task>} = {};
+export const reminderCollections: {reminders?: mongodb.Collection<Reminder>} = {};
 
 export async function connectToDatabase(uri:string) {
     const client = new mongodb.MongoClient(uri);
@@ -10,10 +14,16 @@ export async function connectToDatabase(uri:string) {
 
     const db = client.db("grocerydb");
 
-    await applySchemaValidation(db);
+    // await applySchemaValidation(db);
 
     const groceryCollection = db.collection<Item>("grocerycollection");
     collections.items = groceryCollection;
+
+    const taskCollection = db.collection<Task>("taskcollection");
+    taskCollections.tasks = taskCollection;
+
+    const reminderCollection = db.collection<Reminder>("remindercollection");
+    reminderCollections.reminders = reminderCollection;
 }
 
 // Update our existing collection with JSON schema validation so we know our documents will always match the shape of our Employee model, even if added elsewhere.
