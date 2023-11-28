@@ -7,13 +7,13 @@ import Item from './Item';
   providedIn: 'root'
 })
 export class ItemService {
-  private url  = 'http://localhost:5200';
+  private url  = 'https://https://localhost:5200';
   private items$: Subject<Item[]> = new Subject();
 
   constructor(private http: HttpClient) { }
 
   private refreshItems() {
-    this.http.get<Item[]>('http://localhost:5200/groceries')
+    this.http.get<Item[]>(`${this.url}/groceries`)
       .subscribe(items => {
         this.items$.next(items);
       })
