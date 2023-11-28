@@ -7,7 +7,7 @@ import Reminder from './Reminder';
   providedIn: 'root'
 })
 export class ReminderService {
-  private url  = 'https://grocery-list-6be4.onrender.com';
+  private url  = 'https://https://localhost:5200';
   private reminders$: Subject<Reminder[]> = new Subject();
 
   constructor(private http: HttpClient) { }

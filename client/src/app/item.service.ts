@@ -7,7 +7,7 @@ import Item from './Item';
   providedIn: 'root'
 })
 export class ItemService {
-  private url  = 'https://grocery-list-6be4.onrender.com';
+  private url  = 'https://https://localhost:5200';
   private items$: Subject<Item[]> = new Subject();
 
   constructor(private http: HttpClient) { }
