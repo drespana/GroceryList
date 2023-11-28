@@ -1,6 +1,6 @@
 # GroceryList 
 User can add, edit, delete items on different Lists.
-User can add, edit, delete tasks and responsibilites.
+User will be able to add, edit, delete tasks and responsibilites.
 
 ## Pre-Requisites
 - node.js
