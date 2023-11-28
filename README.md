@@ -5,5 +5,5 @@ User can add, edit, delete tasks and responsibilites.
 ## Server
 Run 'npx ts-node server/server.ts'.
 
-## Browser application bundle generation
+## Client
 Run 'ng serve'.
