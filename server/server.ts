@@ -23,8 +23,8 @@ connectToDatabase(uri)
         app.use("/groceries", itemRouter)
         app.use("/tasks", taskRouter)
         app.use("/reminders", reminderRouter)
-        app.listen(5200, ()=> {
-            console.log("Server running at http://localhost:5200");
+        app.listen( ()=> {
+            console.log("Server running at https://grocery-list-6be4.onrender.com");
         })
     })
     .catch(error => console.error(error));

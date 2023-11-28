@@ -7,13 +7,13 @@ import Task from './Task';
   providedIn: 'root'
 })
 export class TaskService {
-  private url  = 'http://localhost:5200';
+  private url  = 'https://grocery-list-6be4.onrender.com';
   private tasks$: Subject<Task[]> = new Subject();
 
   constructor(private http: HttpClient) { }
 
   private refreshTasks() {
-    this.http.get<Task[]>('http://localhost:5200/tasks')
+    this.http.get<Task[]>(`${this.url}/tasks`)
       .subscribe(tasks => {
         this.tasks$.next(tasks);
       })

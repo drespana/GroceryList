@@ -7,13 +7,13 @@ import Reminder from './Reminder';
   providedIn: 'root'
 })
 export class ReminderService {
-  private url  = 'http://localhost:5200';
+  private url  = 'https://grocery-list-6be4.onrender.com';
   private reminders$: Subject<Reminder[]> = new Subject();
 
   constructor(private http: HttpClient) { }
 
   private refreshReminders() {
-    this.http.get<Reminder[]>('http://localhost:5200/Reminders')
+    this.http.get<Reminder[]>(`${this.url}/Reminders`)
       .subscribe(reminders => {
         this.reminders$.next(reminders);
       })
