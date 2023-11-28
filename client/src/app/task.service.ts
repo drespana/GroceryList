@@ -7,7 +7,7 @@ import Task from './Task';
   providedIn: 'root'
 })
 export class TaskService {
-  private url  = 'https://grocery-list-6be4.onrender.com';
+  private url  = 'https://localhost:5200';
   private tasks$: Subject<Task[]> = new Subject();
 
   constructor(private http: HttpClient) { }
