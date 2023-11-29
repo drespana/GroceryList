@@ -5,6 +5,11 @@ h2 {
   margin: 1.5em 0 1em 0;
 }
 
+.reminder-title {
+  background-color: transparent;
+  border:none;
+}
+
 .title {
   display: flex;
   justify-content: center;
@@ -17,7 +22,7 @@ h2 {
 
 .button-container {
   display: flex;
-  justify-content: end;
+  justify-content: flex-end;
 }
 
 .wooden-board {
@@ -49,6 +54,15 @@ h2 {
   width: 30%;
 }
 
+.each-reminder {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  color:rgb(62, 62, 62);
+  margin: 2px 0 6px 0;
+}
+
 .calendar {
   margin: 2em 1em 2em 1em;
   padding: 2em 3em 3em 3em;
@@ -64,9 +78,15 @@ h2 {
   margin: 1em auto 1em auto;
 }
 
+.add-reminder-form {
+  width:100%;
+  margin: 1em auto 0 auto;
+}
+
 .reminder-input,
 .reminder-textarea {
   width:80%;
+  margin: auto;
 }
 
 .tasks {
