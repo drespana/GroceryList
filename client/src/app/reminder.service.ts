@@ -13,7 +13,7 @@ export class ReminderService {
   constructor(private http: HttpClient) { }
 
   private refreshReminders() {
-    this.http.get<Reminder[]>(`${this.url}/Reminders`)
+    this.http.get<Reminder[]>(`${this.url}/reminders`)
       .subscribe(reminders => {
         this.reminders$.next(reminders);
       })

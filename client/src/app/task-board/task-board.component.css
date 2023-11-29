@@ -1,3 +1,4 @@
+.month,
 h2 {
   display: flex;
   justify-content: center;
@@ -55,6 +56,12 @@ h2 {
   border-radius: 3px;
   box-shadow: 3px 3px 5px;
   width: 70%;
+}
+
+.add-weekly-task-form {
+  display: flex;
+  flex-direction: column;
+  margin: 1em auto 1em auto;
 }
 
 .reminder-input,

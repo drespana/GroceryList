@@ -6,4 +6,5 @@ export default interface Task {
     notes?:string;
     _id?:string;
     editing?:boolean;
+    selected?:boolean;
 }

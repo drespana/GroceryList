@@ -11,7 +11,7 @@ import Item from '../Item';
   templateUrl: './all-items.component.html',
   styleUrls: ['./all-items.component.css'],
 })
-export class AllItemsComponent {
+export class AllItemsComponent implements OnInit {
   @Input() initialState: BehaviorSubject<Item> = new BehaviorSubject({});
 
   @Output() formSubmitted = new EventEmitter<Item>();

@@ -7,25 +7,56 @@
         <div class="tasks">
           <div class="left-board">
             <h5>Reminders</h5>
+            <div
+              class="all-reminders-container"
+              *ngFor="let reminder of reminders$ | async"
+            >
+              <div class="edit-reminder"></div>
+              <div class="each-reminder">
+                <button
+                  mat-flat-button
+                  class="reminder-title"
+                  (click)="this.reminder.selected = true"
+                >
+                  {{ reminder.title }}
+                </button>
+              </div>
+            </div>
             <form class="add-reminder-form" *ngIf="addingReminder">
-            <input class="reminder-input" placeholder="Title">
-            <textarea class="reminder-textarea" placeholder="Description"></textarea>
+              <input class="reminder-input" placeholder="Title" />
+              <textarea
+                class="reminder-textarea"
+                placeholder="Description"
+              ></textarea>
             </form>
             <div class="button-container">
-              <button mat-mini-fab class="add-button" [color]="addingReminder ? 'warn' : 'primary'"
-              (click)="toggleReminderForm()">
+              <button
+                mat-mini-fab
+                class="add-button"
+                [color]="addingReminder ? 'warn' : 'primary'"
+                (click)="toggleReminderForm()"
+              >
                 <mat-icon>{{ addingReminder ? "clear" : "add" }}</mat-icon>
               </button>
             </div>
           </div>
           <div class="calendar">
-            <h5>This Month Here</h5>
+            <h5 class="month">This Month Here</h5>
             <button mat-flat-button color="primary" (click)="toggleCalendar()">
               {{ weeklyCalendar ? "Monthly" : "Weekly" }}
             </button>
             <div class="weekly-calendar" *ngIf="weeklyCalendar">
               <p>weekly calendar</p>
-              <form class="add-weekly-task-form" *ngIf="addingWeeklyTask"></form>
+              <form
+                class="add-weekly-task-form"
+                *ngIf="addingWeeklyTask"
+              >
+            <input placeholder="Task">
+            <input placeholder="Frequency">
+            <input placeholder="Weekday">
+            <textarea placeholder="Description"></textarea>
+            <textarea placeholder="Notes"></textarea>
+            </form>
               <div class="button-container">
                 <button
                   mat-mini-fab
@@ -38,7 +69,10 @@
             </div>
             <div class="monthly" *ngIf="monthlyCalendar">
               <p>montlhy calendar</p>
-              <form class="add-monthly-task-form" *ngIf="addingMonthlyTask"></form>
+              <form
+                class="add-monthly-task-form"
+                *ngIf="addingMonthlyTask"
+              ></form>
               <div class="button-container">
                 <button
                   mat-mini-fab
@@ -57,13 +91,23 @@
   </div>
   <div class="notebook">
     <div class="red-line"></div>
-    <div class="task-description-container">
-      <h5>Description</h5>
-      <div>Task Description Here</div>
+    <div
+      class="reminder-notebook-contents"
+      *ngFor="let reminder of reminders$ | async"
+    >
+      <div *ngIf="this.reminder.selected">{{ reminder.description }}</div>
     </div>
-    <div class="task-notes-container">
-      <h5>Notes</h5>
-      <div>Task Notes Here</div>
+    <div class="task-notebook-contents">
+      <div>
+        <div class="task-description-container">
+          <h5>Description</h5>
+          <div>Task Description Here</div>
+        </div>
+        <div class="task-notes-container">
+          <h5>Notes</h5>
+          <div>Task Notes Here</div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

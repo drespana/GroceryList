@@ -3,4 +3,5 @@ export default interface Reminder {
     description?:string;
     _id?:string;
     editing?:boolean;
+    selected?:boolean;
 }
