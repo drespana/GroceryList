@@ -53,7 +53,6 @@ export class TaskBoardComponent implements OnInit {
     this.addingMonthlyTask = !this.addingMonthlyTask
   }
 
-
   private fetchReminders(): void {
     this.reminders$ = this.reminderService.getReminders();
   }

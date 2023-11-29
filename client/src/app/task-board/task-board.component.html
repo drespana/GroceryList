@@ -97,10 +97,15 @@
       class="reminder-notebook-contents"
       *ngFor="let reminder of reminders$ | async"
     >
-      <div *ngIf="this.reminder.selected">{{ reminder.description }}</div>
+      <div *ngIf="this.reminder.selected">
+        <div>
+        <h5>Description</h5>
+        {{ reminder.description }}
+      </div>
     </div>
-    <div class="task-notebook-contents">
-      <div>
+    </div>
+    <div class="task-notebook-contents" *ngFor="let task of tasks$ | async">
+      <div *ngIf="this.task.selected">
         <div class="task-description-container">
           <h5>Description</h5>
           <div>Task Description Here</div>
