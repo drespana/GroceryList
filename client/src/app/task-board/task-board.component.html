@@ -7,7 +7,10 @@
         <div class="tasks">
           <div class="left-board">
             <h5>Reminders</h5>
-            <form class="add-reminder-form" *ngIf="addingReminder"></form>
+            <form class="add-reminder-form" *ngIf="addingReminder">
+            <input class="reminder-input" placeholder="Title">
+            <textarea class="reminder-textarea" placeholder="Description"></textarea>
+            </form>
             <div class="button-container">
               <button mat-mini-fab class="add-button" [color]="addingReminder ? 'warn' : 'primary'"
               (click)="toggleReminderForm()">

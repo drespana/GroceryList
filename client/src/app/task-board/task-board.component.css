@@ -57,6 +57,11 @@ h2 {
   width: 70%;
 }
 
+.reminder-input,
+.reminder-textarea {
+  width:80%;
+}
+
 .tasks {
   display: flex;
   flex-direction: row;
@@ -75,7 +80,7 @@ h2 {
   padding: 80px 45px 50px 90px;
   background-image: linear-gradient(#ccc 1px, transparent 1px);
   background-size: 20px 30px;
-  margin:3em auto;
+  margin:3em auto 0 auto;
 }
 
 /* .red-line{
