@@ -7,7 +7,7 @@ import Reminder from './Reminder';
   providedIn: 'root'
 })
 export class ReminderService {
-  private url  = 'https://https://localhost:5200';
+  private url  = 'http://localhost:5200';
   private reminders$: Subject<Reminder[]> = new Subject();
 
   constructor(private http: HttpClient) { }
