@@ -211,7 +211,7 @@ export class AllItemsComponent implements OnInit {
       error: (error) => {
         alert('Failed to create Item');
         console.error(error);
-      },
+      }
     });
   }
 

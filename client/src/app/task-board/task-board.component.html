@@ -21,7 +21,7 @@
                   {{ reminder.title }}
                 </button>
                 <button mat-icon-button color="primary" ><mat-icon fontIcon="mode" /></button>
-                <button mat-icon-button color="warn" ><mat-icon fontIcon="delete"/></button>
+                <button mat-icon-button color="warn" (click)="deleteReminder(this.reminder._id)" ><mat-icon fontIcon="delete"/></button>
               </div>
             </div>
             <form class="add-reminder-form" *ngIf="addingReminder">
@@ -98,10 +98,11 @@
       *ngFor="let reminder of reminders$ | async"
     >
       <div *ngIf="this.reminder.selected">
-        <div>
+        <div class="reminder-notebook-description">
         <h5>Description</h5>
         {{ reminder.description }}
       </div>
+      <div></div>
     </div>
     </div>
     <div class="task-notebook-contents" *ngFor="let task of tasks$ | async">
