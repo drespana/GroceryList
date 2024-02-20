@@ -7,4 +7,5 @@ export default interface Task {
     weekday?:string;
     description?:string;
     notes?:string;
+    owner?:string;
 }

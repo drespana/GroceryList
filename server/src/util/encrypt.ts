@@ -1,5 +1,5 @@
 import * as dotenv from 'dotenv';
-import * as crypto from 'crypto';
+import * as crypto from 'node:crypto';
 
 dotenv.config();
 
@@ -12,7 +12,7 @@ const key = keyBuffer.toString('utf-8');
 
 const algo = 'aes-256-cbc';
 
-function encrypt(plainText: string): string {
+function encrypt(plainText: any): string {
   const iv = crypto.randomBytes(16);
   const cipher = crypto.createCipheriv(algo, key, iv);
   let encryptedText = cipher.update(plainText, 'utf8', 'hex');
