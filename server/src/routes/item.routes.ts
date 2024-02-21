@@ -3,6 +3,7 @@ import * as mongodb from "mongodb";
 import { encrypt, decrypt } from "../util/encrypt";
 import { collections } from "../db/database";
 import Item from "../models/Item";
+import { requiresAuth } from "express-openid-connect";
 
 export const itemRouter = express.Router();
 itemRouter.use(express.json());
@@ -131,7 +132,7 @@ itemRouter.get("/:id", async (req, res) => {
 });
 
 // POST item to db
-itemRouter.post("/", async (req, res) => {
+itemRouter.post("/", requiresAuth(), async (req, res) => {
   try {
     const item = req.body;
 
