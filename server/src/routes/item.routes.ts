@@ -8,8 +8,13 @@ import { requiresAuth } from "express-openid-connect";
 export const itemRouter = express.Router();
 itemRouter.use(express.json());
 
+// define type for encrypted data
+type EncryptedData = {
+  [key: string]: string | any;
+}
+
 // GET all items
-itemRouter.get("/", async (_req, res) => {
+itemRouter.get("/", requiresAuth(), async (_req, res) => {
   try {
     const allItems = await collections.items?.find({}).toArray();
     res.status(200).send(allItems);
@@ -135,18 +140,21 @@ itemRouter.get("/:id", async (req, res) => {
 itemRouter.post("/", requiresAuth(), async (req, res) => {
   try {
     const item = req.body;
+    const encrypted: EncryptedData = {};
 
-    const encrypted = {};
     for (const [key, value] of Object.entries(item)) {
-      if (key !== "_id" && key !== "owner") {
-        (encrypted as any)[key] = encrypt(value);
+      if (typeof value === "string") {
+        encrypted[key] = encrypt(value);
+      }
+      else {
+        encrypted[key] = value;
       }
     }
 
     // set item info
     const newItem = {
       _id: item._id,
-      owner: req.oidc.user.email,
+      owner: encrypt(req.oidc.user.email),
       ...encrypted
     };
 
