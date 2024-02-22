@@ -11,12 +11,13 @@ itemRouter.use(express.json());
 // define type for encrypted data
 type EncryptedData = {
   [key: string]: string | any;
-}
+};
 
 // GET all items
 itemRouter.get("/", requiresAuth(), async (_req, res) => {
   try {
     const allItems = await collections.items?.find({}).toArray();
+
     res.status(200).send(allItems);
   } catch (err) {
     res.status(500).send(err.message);
@@ -145,8 +146,7 @@ itemRouter.post("/", requiresAuth(), async (req, res) => {
     for (const [key, value] of Object.entries(item)) {
       if (typeof value === "string") {
         encrypted[key] = encrypt(value);
-      }
-      else {
+      } else {
         encrypted[key] = value;
       }
     }
@@ -155,7 +155,7 @@ itemRouter.post("/", requiresAuth(), async (req, res) => {
     const newItem = {
       _id: item._id,
       owner: encrypt(req.oidc.user.email),
-      ...encrypted
+      ...encrypted,
     };
 
     // insert encrypted item
@@ -178,7 +178,24 @@ itemRouter.put("/:id", async (req, res) => {
     const id = req?.params?.id;
     const item = req.body;
     const query = { _id: new mongodb.ObjectId(id) };
-    const result = await collections.items?.updateOne(query, { $set: item });
+    const encrypted: EncryptedData = {};
+
+    for (const [key, value] of Object.entries(item)) {
+      if (typeof value === "string") {
+        encrypted[key] = encrypt(value);
+      } else {
+        encrypted[key] = value;
+      }
+    }
+
+    // set item info
+    const newItem = {
+      _id: item._id,
+      owner: encrypt(req.oidc.user.email),
+      ...encrypted,
+    };
+
+    const result = await collections.items?.updateOne(query, { $set: newItem });
 
     if (result && result.matchedCount) {
       res.status(200).send(`Updated item: ID ${id}`);
@@ -194,18 +211,27 @@ itemRouter.put("/:id", async (req, res) => {
 });
 
 // DELETE
-itemRouter.delete("/:id", async (req, res) => {
+itemRouter.delete("/:id", requiresAuth(), async (req, res) => {
   try {
     const id = req?.params?.id;
     const query = { _id: new mongodb.ObjectId(id) };
-    const result = await collections.items?.deleteOne(query);
+    const item = await collections.items?.findOne(query);
 
-    if (result && result.deletedCount) {
-      res.status(200).send(`Removed item: ID ${id}`);
-    } else if (!result) {
-      res.status(400).send(`Failed to remove item: ID ${id}`);
-    } else {
-      res.status(404).send(`failed to remove item: ID ${id}`);
+    // decrypt item's owner value
+    const decryptedOwner = decrypt(item.owner);
+    // check if the logged in user matches the value
+    if (decryptedOwner == req.oidc.user.email) {
+      const result = await collections.items?.deleteOne(query);
+      if (result && result.deletedCount) {
+        res.status(200).send(`Removed item: ID ${id}`);
+      } else if (!result) {
+        res.status(400).send(`Failed to remove item: ID ${id}`);
+      } else {
+        res.status(404).send(`failed to remove item: ID ${id}`);
+      }
+    }
+    else {
+      throw({err:"Permission Denied."})
     }
   } catch (err) {
     console.error(err.message);
