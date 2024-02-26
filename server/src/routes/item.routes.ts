@@ -132,23 +132,23 @@ itemRouter.get("/:id", requiresAuth(), async (req, res) => {
     const item = await collections.items?.findOne(query);
     // const dec = await decrypt(item.item);
     // console.log(dec)
-    // const decrypted: DecryptedData = {};
+    const decrypted: DecryptedData = {};
 
-    // for (const [key, value] of Object.entries(item)) {
-    //   try {
-    //     if (typeof value === "string") {
-    //       const decryptedValue = await decrypt(value);
-    //       decrypted[key] = decryptedValue;
-    //     } else {
-    //       decrypted[key] = value;
-    //     }
-    //   } catch (err) {
-    //     console.error(err);
-    //   }
-    // }
+    for (const [key, value] of Object.entries(item)) {
+      try {
+        if (typeof value === "string") {
+          const decryptedValue = await decrypt(value);
+          decrypted[key] = decryptedValue;
+        } else {
+          decrypted[key] = value;
+        }
+      } catch (err) {
+        console.error(err);
+      }
+    }
 
     if (item) {
-      res.status(200).send(item);
+      res.status(200).send(decrypted);
     } else {
       res.status(404).send(`Failed to find an item: ID: ${id}`);
     }

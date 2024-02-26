@@ -16,7 +16,7 @@ function encrypt(plainText: any): string {
   const cipher = crypto.createCipheriv(algo, keyBuffer, iv);
   let encryptedText = cipher.update(plainText, 'utf8', 'base64');
   encryptedText += cipher.final('base64');
-  return iv.toString() + ':' + encryptedText;
+  return iv.toString('base64') + ':' + encryptedText;
 }
 
 function decrypt(input: string): string {
@@ -42,7 +42,7 @@ function decrypt(input: string): string {
   // log
   console.log("DECRYPTED TEXT: "+ decryptedText)
 
-  decryptedText += decipher.final('utf8');
+  //decryptedText += decipher.final('utf8');
   
   // log
   console.log("DECRYPTED TEXT: "+ decryptedText)
