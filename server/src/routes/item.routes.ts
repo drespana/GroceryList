@@ -13,6 +13,10 @@ type EncryptedData = {
   [key: string]: string | any;
 };
 
+type DecryptedData = {
+  [key: string]: string | any;
+};
+
 // GET all items
 itemRouter.get("/", requiresAuth(), async (_req, res) => {
   try {
@@ -83,7 +87,7 @@ itemRouter.get("/online", async (req, res) => {
 itemRouter.get("/indefinite", async (req, res) => {
   try {
     const indefiniteItems = await collections.items.find({
-      frequency: "Indefinite",
+      frequency: "Indefinite"
     });
     res.status(200).send(indefiniteItems);
   } catch (err) {
@@ -121,11 +125,27 @@ itemRouter.get("/one-time-request", async (req, res) => {
 });
 
 // GET item by id
-itemRouter.get("/:id", async (req, res) => {
+itemRouter.get("/:id", requiresAuth(), async (req, res) => {
   try {
     const id = req?.params?.id;
     const query = { _id: new mongodb.ObjectId(id) };
     const item = await collections.items?.findOne(query);
+    // const dec = await decrypt(item.item);
+    // console.log(dec)
+    // const decrypted: DecryptedData = {};
+
+    // for (const [key, value] of Object.entries(item)) {
+    //   try {
+    //     if (typeof value === "string") {
+    //       const decryptedValue = await decrypt(value);
+    //       decrypted[key] = decryptedValue;
+    //     } else {
+    //       decrypted[key] = value;
+    //     }
+    //   } catch (err) {
+    //     console.error(err);
+    //   }
+    // }
 
     if (item) {
       res.status(200).send(item);
@@ -133,7 +153,7 @@ itemRouter.get("/:id", async (req, res) => {
       res.status(404).send(`Failed to find an item: ID: ${id}`);
     }
   } catch (err) {
-    res.status(404).send(`Failed to find an item: ID ${req?.params?.id}`);
+    res.status(404).send(`Failed to find Item: ID ${req?.params?.id}`);
   }
 });
 
@@ -218,7 +238,8 @@ itemRouter.delete("/:id", requiresAuth(), async (req, res) => {
     const item = await collections.items?.findOne(query);
 
     // decrypt item's owner value
-    const decryptedOwner = decrypt(item.owner);
+    console.log(decrypt(item.owner));
+    const decryptedOwner = await decrypt(item.owner);
     // check if the logged in user matches the value
     if (decryptedOwner == req.oidc.user.email) {
       const result = await collections.items?.deleteOne(query);
@@ -229,9 +250,8 @@ itemRouter.delete("/:id", requiresAuth(), async (req, res) => {
       } else {
         res.status(404).send(`failed to remove item: ID ${id}`);
       }
-    }
-    else {
-      throw({err:"Permission Denied."})
+    } else {
+      throw { err: "Permission Denied." };
     }
   } catch (err) {
     console.error(err.message);
