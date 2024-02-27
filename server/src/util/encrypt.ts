@@ -9,6 +9,7 @@ if (keyBuffer.length !== 32) {
   throw new Error('Invalid ENCRYPTION_KEY length. It should be 32 bytes.');
 }
 
+const key = Buffer.from(keyBuffer);
 const algo = 'aes-256-gcm';
 
 function encrypt(plainText: any): string {
@@ -20,32 +21,14 @@ function encrypt(plainText: any): string {
 }
 
 function decrypt(input: string): string {
-  
-  // log input
-  console.log("INPUT: "+ input)
   const parts = input.split(':');
   if (parts.length !== 2) {
     throw new Error('Invalid encrypted text format.');
   }
   const iv = Buffer.from(parts[0], 'base64');
   const encryptedText = parts[1];
-
-  // log input parts
-  console.log("IV: "+iv)
-  console.log("ENCRYPTED TEXT: "+encryptedText);
-
   const decipher = crypto.createDecipheriv(algo, keyBuffer, iv);
-  // log
-  console.log("DECIPHER"+ decipher)
-
   let decryptedText = decipher.update(encryptedText, 'base64', 'utf-8');
-  // log
-  console.log("DECRYPTED TEXT: "+ decryptedText)
-
-  //decryptedText += decipher.final('utf8');
-  
-  // log
-  console.log("DECRYPTED TEXT: "+ decryptedText)
   return decryptedText;
 }
 

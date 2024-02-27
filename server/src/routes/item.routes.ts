@@ -21,8 +21,25 @@ type DecryptedData = {
 itemRouter.get("/", requiresAuth(), async (_req, res) => {
   try {
     const allItems = await collections.items?.find({}).toArray();
-
-    res.status(200).send(allItems);
+    const decryptedItems: any[] = [];
+    for (const item of allItems){
+      const decryptedItem: DecryptedData = {};
+      for (const [key, value] of Object.entries(item)) {
+        if (typeof value === "string") {
+          try {
+            const decryptedValue = await decrypt(value);
+            decryptedItem[key] = decryptedValue;
+          } catch(err) {
+            console.error("Error decrypting: "+err.message)
+          }
+        } else {
+          decryptedItem[key] = value;
+        }
+      }
+      decryptedItems.push(decryptedItem);
+    }
+    
+    res.status(200).send(decryptedItems);
   } catch (err) {
     res.status(500).send(err.message);
   }
@@ -130,8 +147,6 @@ itemRouter.get("/:id", requiresAuth(), async (req, res) => {
     const id = req?.params?.id;
     const query = { _id: new mongodb.ObjectId(id) };
     const item = await collections.items?.findOne(query);
-    // const dec = await decrypt(item.item);
-    // console.log(dec)
     const decrypted: DecryptedData = {};
 
     for (const [key, value] of Object.entries(item)) {
