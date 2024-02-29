@@ -4,4 +4,5 @@ export default interface Reminder {
     _id?:mongodb.ObjectId;
     title?:string;
     description?:string;
+    owner?:string;
 }
