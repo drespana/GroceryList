@@ -28,9 +28,10 @@ if (!uri) {
   process.exit(1);
 }
 
+const app = express();
 connectToDatabase(uri)
   .then(() => {
-    const app = express();
+    
     app.use(cors());
     app.use(auth(config));
     app.use("/groceries", itemRouter);
@@ -54,3 +55,5 @@ connectToDatabase(uri)
     });
   })
   .catch((error) => console.error({ error: error.message }));
+
+export default app;
