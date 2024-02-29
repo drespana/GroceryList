@@ -12,7 +12,6 @@ itemRouter.use(express.json());
 type EncryptedData = {
   [key: string]: string | any;
 };
-
 type DecryptedData = {
   [key: string]: string | any;
 };
@@ -20,17 +19,17 @@ type DecryptedData = {
 // GET all items
 itemRouter.get("/", requiresAuth(), async (_req, res) => {
   try {
-    const allItems = await collections.items?.find({}).toArray();
+    const allItems = await collections.items?.find().toArray();
     const decryptedItems: any[] = [];
-    for (const item of allItems){
+    for (const item of allItems) {
       const decryptedItem: DecryptedData = {};
       for (const [key, value] of Object.entries(item)) {
         if (typeof value === "string") {
           try {
             const decryptedValue = await decrypt(value);
             decryptedItem[key] = decryptedValue;
-          } catch(err) {
-            console.error("Error decrypting: "+err.message)
+          } catch (err) {
+            console.error("Error decrypting: " + err.message);
           }
         } else {
           decryptedItem[key] = value;
@@ -38,7 +37,6 @@ itemRouter.get("/", requiresAuth(), async (_req, res) => {
       }
       decryptedItems.push(decryptedItem);
     }
-    
     res.status(200).send(decryptedItems);
   } catch (err) {
     res.status(500).send(err.message);
@@ -48,9 +46,27 @@ itemRouter.get("/", requiresAuth(), async (_req, res) => {
 // GET store Pete's Fresh Market
 itemRouter.get("/petes-fresh-market", async (req, res) => {
   try {
-    const petesItems = await collections.items
-      .find({ store: "Pete's Fresh Market" })
-      .toArray();
+    const allItems = await collections.items?.find().toArray();
+    const decryptedItems: any[] = [];
+    for (const item of allItems) {
+      const decryptedItem: DecryptedData = {};
+      for (const [key, value] of Object.entries(item)) {
+        if (typeof value === "string") {
+          try {
+            const decryptedValue = await decrypt(value);
+            decryptedItem[key] = decryptedValue;
+          } catch (err) {
+            console.error("Error decrypting: " + err.message);
+          }
+        } else {
+          decryptedItem[key] = value;
+        }
+      }
+      decryptedItems.push(decryptedItem);
+    }
+    const petesItems = decryptedItems.filter(
+      (item) => item.store && item.store === "Pete's Fresh Market"
+    );
     res.status(200).send(petesItems);
   } catch (err) {
     res.status(500).send(err.message);
@@ -60,9 +76,27 @@ itemRouter.get("/petes-fresh-market", async (req, res) => {
 // GET store Jewel Osco
 itemRouter.get("/jewel-osco", async (req, res) => {
   try {
-    const jewelItems = await collections.items
-      .find({ store: "Jewel Osco" })
-      .toArray();
+    const allItems = await collections.items?.find().toArray();
+    const decryptedItems: any[] = [];
+    for (const item of allItems) {
+      const decryptedItem: DecryptedData = {};
+      for (const [key, value] of Object.entries(item)) {
+        if (typeof value === "string") {
+          try {
+            const decryptedValue = await decrypt(value);
+            decryptedItem[key] = decryptedValue;
+          } catch (err) {
+            console.error("Error decrypting: " + err.message);
+          }
+        } else {
+          decryptedItem[key] = value;
+        }
+      }
+      decryptedItems.push(decryptedItem);
+    }
+    const jewelItems = decryptedItems.filter(
+      (item) => item.store && item.store === "Jewel Osco"
+    );
     res.status(200).send(jewelItems);
   } catch (err) {
     res.status(500).send(err.message);
@@ -72,7 +106,27 @@ itemRouter.get("/jewel-osco", async (req, res) => {
 // GET by store Aldi
 itemRouter.get("/aldi", async (req, res) => {
   try {
-    const aldiItems = await collections.items.find({ store: "Aldi" }).toArray();
+    const allItems = await collections.items?.find().toArray();
+    const decryptedItems: any[] = [];
+    for (const item of allItems) {
+      const decryptedItem: DecryptedData = {};
+      for (const [key, value] of Object.entries(item)) {
+        if (typeof value === "string") {
+          try {
+            const decryptedValue = await decrypt(value);
+            decryptedItem[key] = decryptedValue;
+          } catch (err) {
+            console.error("Error decrypting: " + err.message);
+          }
+        } else {
+          decryptedItem[key] = value;
+        }
+      }
+      decryptedItems.push(decryptedItem);
+    }
+    const aldiItems = decryptedItems.filter(
+      (item) => item.store && item.store === "Aldi"
+    );
     res.status(200).send(aldiItems);
   } catch (err) {
     res.status(500).send(err.message);
@@ -83,7 +137,24 @@ itemRouter.get("/aldi", async (req, res) => {
 itemRouter.get("/out-of-stock", async (req, res) => {
   try {
     const oosItems = await collections.items?.find({ inStock: 0 }).toArray();
-    res.status(200).send(oosItems);
+    const decryptedItems: any[] = [];
+    for (const item of oosItems) {
+      const decryptedItem: DecryptedData = {};
+      for (const [key, value] of Object.entries(item)) {
+        if (typeof value === "string") {
+          try {
+            const decryptedValue = await decrypt(value);
+            decryptedItem[key] = decryptedValue;
+          } catch (err) {
+            console.error("Error decrypting: " + err.message);
+          }
+        } else {
+          decryptedItem[key] = value;
+        }
+      }
+      decryptedItems.push(decryptedItem);
+    }
+    res.status(200).send(decryptedItems);
   } catch (err) {
     res.status(500).send(err.message);
   }
@@ -92,9 +163,27 @@ itemRouter.get("/out-of-stock", async (req, res) => {
 // GET store online
 itemRouter.get("/online", async (req, res) => {
   try {
-    const onlineItems = await collections.items
-      ?.find({ store: "Online" })
-      .toArray();
+    const allItems = await collections.items?.find().toArray();
+    const decryptedItems: any[] = [];
+    for (const item of allItems) {
+      const decryptedItem: DecryptedData = {};
+      for (const [key, value] of Object.entries(item)) {
+        if (typeof value === "string") {
+          try {
+            const decryptedValue = await decrypt(value);
+            decryptedItem[key] = decryptedValue;
+          } catch (err) {
+            console.error("Error decrypting: " + err.message);
+          }
+        } else {
+          decryptedItem[key] = value;
+        }
+      }
+      decryptedItems.push(decryptedItem);
+    }
+    const onlineItems = decryptedItems.filter(
+      (item) => item.store && item.store === "Online"
+    );
     res.status(200).send(onlineItems);
   } catch (err) {
     res.status(500).send(err.message);
@@ -103,9 +192,27 @@ itemRouter.get("/online", async (req, res) => {
 
 itemRouter.get("/indefinite", async (req, res) => {
   try {
-    const indefiniteItems = await collections.items.find({
-      frequency: "Indefinite"
-    });
+    const allItems = await collections.items?.find().toArray();
+    const decryptedItems: any[] = [];
+    for (const item of allItems) {
+      const decryptedItem: DecryptedData = {};
+      for (const [key, value] of Object.entries(item)) {
+        if (typeof value === "string") {
+          try {
+            const decryptedValue = await decrypt(value);
+            decryptedItem[key] = decryptedValue;
+          } catch (err) {
+            console.error("Error decrypting: " + err.message);
+          }
+        } else {
+          decryptedItem[key] = value;
+        }
+      }
+      decryptedItems.push(decryptedItem);
+    }
+    const indefiniteItems = decryptedItems.filter(
+      (item) => item.frequency && item.frequency === "Indefinite"
+    );
     res.status(200).send(indefiniteItems);
   } catch (err) {
     res.status(500).send(err.message);
@@ -114,7 +221,27 @@ itemRouter.get("/indefinite", async (req, res) => {
 
 itemRouter.get("/weekly", async (req, res) => {
   try {
-    const weeklyItems = await collections.items.find({ frequency: "Weekly" });
+    const allItems = await collections.items?.find().toArray();
+    const decryptedItems: any[] = [];
+    for (const item of allItems) {
+      const decryptedItem: DecryptedData = {};
+      for (const [key, value] of Object.entries(item)) {
+        if (typeof value === "string") {
+          try {
+            const decryptedValue = await decrypt(value);
+            decryptedItem[key] = decryptedValue;
+          } catch (err) {
+            console.error("Error decrypting: " + err.message);
+          }
+        } else {
+          decryptedItem[key] = value;
+        }
+      }
+      decryptedItems.push(decryptedItem);
+    }
+    const weeklyItems = decryptedItems.filter(
+      (item) => item.frequency && item.frequency === "Weekly"
+    );
     res.status(200).send(weeklyItems);
   } catch (err) {
     res.status(500).send(err.message);
@@ -123,7 +250,27 @@ itemRouter.get("/weekly", async (req, res) => {
 
 itemRouter.get("/monthly", async (req, res) => {
   try {
-    const monthlyItems = await collections.items.find({ frequency: "Monthly" });
+    const allItems = await collections.items?.find().toArray();
+    const decryptedItems: any[] = [];
+    for (const item of allItems) {
+      const decryptedItem: DecryptedData = {};
+      for (const [key, value] of Object.entries(item)) {
+        if (typeof value === "string") {
+          try {
+            const decryptedValue = await decrypt(value);
+            decryptedItem[key] = decryptedValue;
+          } catch (err) {
+            console.error("Error decrypting: " + err.message);
+          }
+        } else {
+          decryptedItem[key] = value;
+        }
+      }
+      decryptedItems.push(decryptedItem);
+    }
+    const monthlyItems = decryptedItems.filter(
+      (item) => item.frequency && item.frequency === "Monthly"
+    );
     res.status(200).send(monthlyItems);
   } catch (err) {
     res.status(500).send(err.message);
@@ -132,9 +279,27 @@ itemRouter.get("/monthly", async (req, res) => {
 
 itemRouter.get("/one-time-request", async (req, res) => {
   try {
-    const oneTimeItems = await collections.items.find({
-      frequency: "One-Time Request",
-    });
+    const allItems = await collections.items?.find().toArray();
+    const decryptedItems: any[] = [];
+    for (const item of allItems) {
+      const decryptedItem: DecryptedData = {};
+      for (const [key, value] of Object.entries(item)) {
+        if (typeof value === "string") {
+          try {
+            const decryptedValue = await decrypt(value);
+            decryptedItem[key] = decryptedValue;
+          } catch (err) {
+            console.error("Error decrypting: " + err.message);
+          }
+        } else {
+          decryptedItem[key] = value;
+        }
+      }
+      decryptedItems.push(decryptedItem);
+    }
+    const oneTimeItems = decryptedItems.filter(
+      (item) => item.frequency && item.frequency === "One-Time Request"
+    );
     res.status(200).send(oneTimeItems);
   } catch (err) {
     res.status(500).send(err.message);
@@ -161,7 +326,6 @@ itemRouter.get("/:id", requiresAuth(), async (req, res) => {
         console.error(err);
       }
     }
-
     if (item) {
       res.status(200).send(decrypted);
     } else {
@@ -252,8 +416,6 @@ itemRouter.delete("/:id", requiresAuth(), async (req, res) => {
     const query = { _id: new mongodb.ObjectId(id) };
     const item = await collections.items?.findOne(query);
 
-    // decrypt item's owner value
-    console.log(decrypt(item.owner));
     const decryptedOwner = await decrypt(item.owner);
     // check if the logged in user matches the value
     if (decryptedOwner == req.oidc.user.email) {
